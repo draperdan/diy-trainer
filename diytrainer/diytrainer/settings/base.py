@@ -194,7 +194,8 @@ DJANGO_APPS = (
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
-    'crispy_forms',
+    'floppyforms',
+    'crispy_forms'
 )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
