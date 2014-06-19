@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{{ detaillevel.level }}
+
+{{ detaillevel.terminology_html|safe }}
+
+{{ detaillevel.project.name }}
+
+<ul>
+    <li><a href="{% url 'project_satisfied_feedback' detaillevel.project.slug %}">I'm good</a></li>
+    <li><a href="{% if detaillevel.get_next >= 3 %}{% url 'detaillevel_detail' detaillevel.project.slug detaillevel.get_next %}{% else %}{% url 'project_unsatisfied_feedback' detaillevel.project.slug %}{% endif %}">Give me more</a></li>
+</ul>
+
+{% endblock content %}

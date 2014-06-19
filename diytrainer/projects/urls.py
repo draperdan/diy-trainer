@@ -11,21 +11,19 @@ urlpatterns = patterns('',
         name='detaillevel_detail'
     ),
     url(
-        regex=r'^(?P<project_slug>[-\w]+)/satisfied/feedback/$',
-        view=views.SatisfiedFeedbackCreateView.as_view(),
+        regex=r'^(?P<project_slug>[-\w]+)/feedback/$',
+        view=views.FeedbackSatisfiedCreateView.as_view(),
         name='project_satisfied_feedback'
     ),
     url(
-        regex=r'^(?P<project_slug>[-\w]+)/need-more-info/feedback/$',
-        view=views.NeedMoreInfoFeedbackCreateView.as_view(),
-        name='project_needmoreinfo_feedback'
+        regex=r'^(?P<project_slug>[-\w]+)/feedback/$',
+        view=views.FeedbackUnsatisfiedCreateView.as_view(),
+        name='project_unsatisfied_feedback'
     ),
-    url(
-        regex=r'^(?P<project_slug>[-\w]+)/feedback/thanks/$',
-        view=TemplateView.as_view(template_name="projects/feedback_submitted.html"),
-    ),
-    url(
-        regex=r'^(?P<project_slug>[-\w]+)/feedback/sorry/$',
-        view=TemplateView.as_view(template_name="projects/feedback_submitted_more.html"),
-    )
+    url(r'^(?P<project_slug>[-\w]+)/feedback/thanks/$',
+        views.SatisfiedFeedbackSubmittedTemplateView.as_view(),
+        name='feedback_submitted'),
+    url(r'^(?P<project_slug>[-\w]+)/feedback/sorry/$',
+        views.UnsatisfiedFeedbackSubmittedTemplateView.as_view(),
+        name='feedback_submitted'),
 )

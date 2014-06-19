@@ -28,7 +28,7 @@ def markup(text):
 
 @python_2_unicode_compatible
 class Project(models.Model):
-    """ A project for the granulatity test. """
+    """ A project for the granularity test. """
     name = models.CharField(max_length=250)
     slug = models.SlugField()
     description = models.TextField()
@@ -75,10 +75,22 @@ class DetailLevel(ProjectRelatedModel):
         self.terminology_html = markup(self.terminology)
         self.tools_and_materials_html = markup(self.tools_and_materials)
         self.instructions_html = markup(self.instructions)
-        super(Project, self).save(*args, **kwargs)
+        super(DetailLevel, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.level
+
+    def get_next(self):
+        next = DetailLevel.objects.filter(level__gt=self.level)
+        if next:
+            return next[0]
+        return False
+
+    def get_prev(self):
+        prev = DetailLevel.objects.filter(level__lt=self.level)
+        if prev:
+            return prev[0]
+        return False
 
     def get_absolute_url(self):
         return reverse('detaillevel_detail', kwargs={'level': self.level})
@@ -95,13 +107,13 @@ class Feedback(ProjectRelatedModel):
                                       ('figuring out a hiccup', ('Figuring out a hiccup')),
                                       ('finishing touches', ('Finishing touches')),
                                       ('not currently working on this project', ('Not currently working on this project')))
-    PROJECT_PROGRESS_CHOICES = Choices(
+    PROJECT_CONFIDENCE_CHOICES = Choices(
                                       ('not confident i can complete it. i rarely if ever do these types of projects myself.', ('Not confident I can complete it. I rarely if ever do these types of projects myself.')),
                                       ('curious about learning how to do this project. i\'d like to do it myself if i can.', ('Curious about learning how to do this project. I\'d like to do it myself if I can.')),
                                       ('confident i can complete this project on my own.', ('Confident I can complete this project on my own.')),
                                       ('a home services professional or craftsman. i make a living by working on/repairing homes.', ('A home services professional or craftsman. I make a living by working on/repairing homes.')))
     project_progress = models.CharField(choices=PROJECT_PROGRESS_CHOICES, max_length=50, blank=True)
-    project_confidence = models.CharField(choices=PROJECT_PROGRESS_CHOICES, max_length=100, blank=True)
+    project_confidence = models.CharField(choices=PROJECT_CONFIDENCE_CHOICES, max_length=100, blank=True)
     project_recommendation = models.TextField(blank=True)
     submission_date = models.DateTimeField(default=datetime.datetime.now,
                                            editable=False)

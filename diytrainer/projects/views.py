@@ -1,62 +1,61 @@
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, TemplateView
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 
-from .models import Project, Feedback
+from .models import Project, Feedback, DetailLevel
 from .forms import FeedbackForm
+
+
+class FeedbackSubmittedActionMixin(object):
+    template_name = "projects/feedback_submitted.html"
 
 
 class FeedbackActionMixin(object):
     model = Feedback
     form_class = FeedbackForm
 
+    def dispatch(self, *args, **kwargs):
+        self.project = get_object_or_404(Project, slug=kwargs['project_slug'])
+        return super(FeedbackActionMixin, self).dispatch(*args, **kwargs)
 
-class SatisfiedFeedbackCreateView(FeedbackActionMixin, CreateView):
+    def form_valid(self, form):
+        #Get associated project and save
+        self.object = form.save(commit=False)
+        self.object.project = self.project
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+    def get_context_data(self, *args, **kwargs):
+        context_data = super(FeedbackActionMixin, self).get_context_data(*args, **kwargs)
+        context_data.update({'project': self.project})
+        return context_data
+
+
+class FeedbackSatisfiedCreateView(FeedbackActionMixin, CreateView):
     success_url = 'thanks/'
 
-    def dispatch(self, *args, **kwargs):
-        self.project = get_object_or_404(Project, slug=kwargs['project_slug'])
-        return super(SatisfiedFeedbackCreateView, self).dispatch(*args, **kwargs)
 
-    def form_valid(self, form):
-        #Get associated project and save
-        self.object = form.save(commit=False)
-        self.object.project = self.project
-        self.object.save()
-        return HttpResponseRedirect(self.get_success_url())
-
-    def get_context_data(self, *args, **kwargs):
-        context_data = super(SatisfiedFeedbackCreateView, self).get_context_data(*args, **kwargs)
-        context_data.update({'project': self.project})
-        context_data.append(self.extra_context)
-        return context_data
-
-
-class NeedMoreInfoFeedbackCreateView(FeedbackActionMixin, CreateView):
+class FeedbackUnsatisfiedCreateView(FeedbackActionMixin, CreateView):
     success_url = 'sorry/'
 
-    def dispatch(self, *args, **kwargs):
-        self.project = get_object_or_404(Project, slug=kwargs['project_slug'])
-        return super(NeedMoreInfoFeedbackCreateView, self).dispatch(*args, **kwargs)
 
-    def form_valid(self, form):
-        #Get associated project and save
-        self.object = form.save(commit=False)
-        self.object.project = self.project
-        self.object.save()
-        return HttpResponseRedirect(self.get_success_url())
+class SatisfiedFeedbackSubmittedTemplateView(FeedbackSubmittedActionMixin, TemplateView):
 
-    def get_context_data(self, *args, **kwargs):
-        context_data = super(NeedMoreInfoFeedbackCreateView, self).get_context_data(*args, **kwargs)
-        context_data.update({'project': self.project})
-        context_data.append(self.extra_context)
-        return context_data
+    def get_context_data(self, **kwargs):
+        context = super(SatisfiedFeedbackSubmittedTemplateView, self).get_context_data(**kwargs)
+        context['show_extra_content'] = False
+        return context
+
+
+class UnsatisfiedFeedbackSubmittedTemplateView(FeedbackSubmittedActionMixin, TemplateView):
+
+    def get_context_data(self, **kwargs):
+        context = super(UnsatisfiedFeedbackSubmittedTemplateView, self).get_context_data(**kwargs)
+        context['show_extra_content'] = True
+        return context
 
 
 class DetailLevelView(DetailView):
-    model = DetailView
-
-    def get_context_data(self, *args, **kwargs):
-        context = super(DetailLevelView, self).get_context_data(*args, **kwargs)
-        context.update({'project': self.project})
-        return context
+    model = DetailLevel
+    slug_field = 'level'
+    slug_url_kwarg = 'level'
