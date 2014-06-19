@@ -11,7 +11,7 @@ urlpatterns = patterns('',
 
     # Examples:
     # url(r'^$', 'diytrainer.views.home', name='home'),
-    url(r'^', include('diytrainer.guides.urls')),
+    url(r'^', include('guides.urls')),
 
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),

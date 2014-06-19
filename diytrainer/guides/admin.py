@@ -1,9 +1,19 @@
 from django.contrib import admin
 
-from .models import GuideFeedback
+from .models import Guide, Feedback, EmailSignUp
 
 
-class GuideFeedbackAdmin(admin.ModelAdmin):
+class GuideAdmin(admin.ModelAdmin):
     pass
 
-admin.site.register(GuideFeedback, GuideFeedbackAdmin)
+
+class FeedbackAdmin(admin.ModelAdmin):
+    pass
+
+
+class EmailSignUpAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Guide, GuideAdmin)
+admin.site.register(Feedback, FeedbackAdmin)
+admin.site.register(EmailSignUp, EmailSignUpAdmin)

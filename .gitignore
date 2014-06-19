@@ -38,3 +38,6 @@ tramp
 Thumbs.db
 Desktop.ini
 
+# App specific
+diytrainer/media
+diytrainer/guides/migrations
