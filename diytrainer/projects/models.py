@@ -30,6 +30,7 @@ def markup(text):
 class Project(models.Model):
     """ A project for the granulatity test. """
     name = models.CharField(max_length=250)
+    slug = models.SlugField()
     description = models.TextField()
     description_html = models.TextField(editable=False, blank=True)
 
@@ -79,9 +80,12 @@ class DetailLevel(ProjectRelatedModel):
     def __str__(self):
         return self.level
 
+    def get_absolute_url(self):
+        return reverse('detaillevel_detail', kwargs={'level': self.level})
+
 
 @python_2_unicode_compatible
-class ProjectFeedback(ProjectRelatedModel):
+class Feedback(ProjectRelatedModel):
     """ Feedback for a given project. """
     PROJECT_PROGRESS_CHOICES = Choices(
                                       ('planning and preparing', ('Planning and preparing')),
@@ -103,7 +107,7 @@ class ProjectFeedback(ProjectRelatedModel):
                                            editable=False)
 
     class Meta:
-        verbose_name_plural = 'Project feedback'
+        verbose_name_plural = 'Feedback'
         ordering = ('submission_date',)
 
     def __str__(self):

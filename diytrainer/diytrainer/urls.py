@@ -9,9 +9,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
     #url(r'^$', TemplateView.as_view(template_name='base.html')),
 
-    # Examples:
-    # url(r'^$', 'diytrainer.views.home', name='home'),
     url(r'^', include('guides.urls')),
+    url(r'^', include('projects.urls')),
 
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),

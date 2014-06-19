@@ -11,12 +11,12 @@ urlpatterns = patterns('',
         name='email_signup'
     ),
     url(
-        regex=r'^(?P<guide_pk>\d+)/feedback/$',
+        regex=r'^(?P<guide_version>\d+)/feedback/$',
         view=views.FeedbackCreateView.as_view(),
-        name='feedback'
+        name='guide_feedback'
     ),
     url(
-        regex=r'^(?P<guide_pk>\d+)/feedback/thanks/$',
+        regex=r'^(?P<guide_version>\d+)/feedback/thanks/$',
         view=TemplateView.as_view(template_name="guides/feedback_submitted.html"),
     )
 )

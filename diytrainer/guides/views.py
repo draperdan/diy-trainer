@@ -34,7 +34,7 @@ class FeedbackCreateView(CreateView):
     success_url = 'thanks/'
 
     def dispatch(self, *args, **kwargs):
-        self.guide = get_object_or_404(Guide, pk=kwargs['guide_pk'])
+        self.guide = get_object_or_404(Guide, version=kwargs['guide_version'])
         return super(FeedbackCreateView, self).dispatch(*args, **kwargs)
 
     def form_valid(self, form):
