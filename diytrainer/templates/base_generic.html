@@ -3,12 +3,12 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{% block title %}diytrainer{% endblock title %}</title>
+    <title>{% block title %}DIY Trainer | diy-trainer.com{% endblock title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -18,21 +18,14 @@
     {% block extra_css %}{% endblock extra_css %}
   </head>
 
-  <body>
+  <body id="{% block view %}{% endblock view %}">
 
     <div class="container">
-
-      <h1>{% block page_title %}{% endblock page_title %}</h1>
-
       {% block content %}
-        <p>Use this document as a way to quick start any new project.</p>
       {% endblock content %}
-
-    </div> <!-- /container -->
+    </div>
 
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-
-    {#<script src="{% static 'js/diytrainer.js' %}"></script>#}
 
     {% block extra_js %}{% endblock extra_js %}
   </body>

@@ -1,5 +1,7 @@
 from django.contrib import admin
 
+from sorl.thumbnail.admin import AdminImageMixin
+
 from .models import Project, Feedback, DetailLevel
 
 
@@ -7,7 +9,7 @@ class DetailLevelInline(admin.StackedInline):
     model = DetailLevel
 
 
-class ProjectAdmin(admin.ModelAdmin):
+class ProjectAdmin(AdminImageMixin, admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
     inlines = [
         DetailLevelInline

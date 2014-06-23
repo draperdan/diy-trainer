@@ -1,12 +1,29 @@
-{% extends 'base.html' %}
+{% extends 'base_guides.html' %}
 {% load crispy_forms_tags %}
 
+{% block title %}{{ guide.name }}{{ block.super }}{% endblock title %}
+
+{% block view %}email_signup{% endblock view %}
+
 {% block content %}
+<header>
+    <hgroup>
+        <h1>DIY Trainer</h1>
+        <h2>{{ guide.headline }}</h2>
+        <h3>{{ guide.subhead }}</h3>
+    </hgroup>
+</header>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <input type="submit" value="Submit">
-</form>
+<section id="email_signup_form">
+    <h1>DIY Trainer is almost here.</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" value="Submit">
+    </form>
+</section>
 
+<section id="guide_explainer">
+    {{ guide.description_html|safe }}
+</section>
 {% endblock content %}

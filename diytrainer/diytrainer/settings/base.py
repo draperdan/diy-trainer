@@ -198,11 +198,12 @@ DJANGO_APPS = (
 LOCAL_APPS = (
     'floppyforms',
     'crispy_forms',
+    'sorl.thumbnail',
     'guides',
     'projects'
 )
 
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
+CRISPY_TEMPLATE_PACK = 'uni_form'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS

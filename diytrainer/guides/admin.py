@@ -1,9 +1,11 @@
 from django.contrib import admin
 
+from sorl.thumbnail.admin import AdminImageMixin
+
 from .models import Guide, Feedback, EmailSignUp
 
 
-class GuideAdmin(admin.ModelAdmin):
+class GuideAdmin(AdminImageMixin, admin.ModelAdmin):
     pass
 
 

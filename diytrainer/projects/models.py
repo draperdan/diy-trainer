@@ -2,6 +2,7 @@ import datetime
 from markdown import markdown
 from typogrify.filters import typogrify
 from model_utils import Choices
+from sorl.thumbnail import ImageField
 
 from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
@@ -33,6 +34,8 @@ class Project(models.Model):
     slug = models.SlugField()
     description = models.TextField()
     description_html = models.TextField(editable=False, blank=True)
+    # NOTE: Change lead_art to null=False in production
+    lead_art = ImageField(upload_to='images/projects/project', null=True)
 
     class Meta:
         verbose_name_plural = 'Projects'
@@ -80,12 +83,14 @@ class DetailLevel(ProjectRelatedModel):
     def __str__(self):
         return self.level
 
+    # For paging-type functionality to get the next level for a project
     def get_next(self):
         next = DetailLevel.objects.filter(level__gt=self.level)
         if next:
             return next[0]
         return False
 
+    # For paging-type functionality to get the previous level for a project
     def get_prev(self):
         prev = DetailLevel.objects.filter(level__lt=self.level)
         if prev:

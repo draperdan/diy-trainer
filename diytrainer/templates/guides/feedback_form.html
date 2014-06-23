@@ -1,12 +1,30 @@
-{% extends 'base.html' %}
+{% extends 'base_guides.html' %}
+
 {% load crispy_forms_tags %}
 
-{% block content %}
+{% block title %}Feedback | {{ guide.name }}{{ block.super }}{% endblock title %}
 
-<form method="post">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <input type="submit" value="Submit">
-</form>
+{% block view %}feedback{% endblock view %}
+
+{% block content %}
+<header>
+    <hgroup>
+        <h1>DIY Trainer</h1>
+        <h2>Thank you</h2>
+        <h3>Thanks for your interest! We're working hard to get DIY Trainer in shape for you.</h3>
+    </hgroup>
+</header>
+
+<section id="feedback_form">
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="range_helper">
+            <span class="start">1<br>Completely<br>Mortified</span>
+            <span class="finish">2<br>Utterly<br>Fearless</span>
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+</section>
 
 {% endblock content %}

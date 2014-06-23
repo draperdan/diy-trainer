@@ -1,6 +1,7 @@
 import datetime
 from markdown import markdown
 from typogrify.filters import typogrify
+from sorl.thumbnail import ImageField
 
 from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
@@ -37,7 +38,7 @@ class Guide(models.Model):
                                help_text='Limited to 250 characters.')
     description = models.TextField()
     description_html = models.TextField(editable=False, blank=True)
-    rendering = models.ImageField(upload_to='images/guides/guide')
+    rendering = ImageField(upload_to='images/guides/guide')
 
     class Meta:
         verbose_name_plural = 'Guides'

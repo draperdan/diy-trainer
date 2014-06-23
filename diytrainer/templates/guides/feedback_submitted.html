@@ -1,7 +1,16 @@
-{% extends 'base.html' %}
+{% extends 'base_guides.html' %}
+
+{% block title %}Thanks! | {{ guide.name }}{{ block.super }}{% endblock title %}
+
+{% block view %}feedback{% endblock view %}
 
 {% block content %}
-
-Thanks!
+<header>
+    <hgroup>
+        <h1>DIY Trainer</h1>
+        <h2>Thanks again!</h2>
+        <h3>We appreciate your input. We'll use it to improve the DIY Trainer for you and all of our users in the future.</h3>
+    </hgroup>
+</header>
 
 {% endblock content %}
