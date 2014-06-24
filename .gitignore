@@ -41,3 +41,4 @@ Desktop.ini
 # App specific
 diytrainer/media
 diytrainer/guides/migrations
+diytrainer/projects/migrations
