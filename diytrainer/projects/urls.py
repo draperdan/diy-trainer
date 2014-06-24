@@ -1,6 +1,5 @@
 from django.conf.urls import patterns
 from django.conf.urls import url
-from django.views.generic import TemplateView
 
 from . import views
 
@@ -11,19 +10,23 @@ urlpatterns = patterns('',
         name='detaillevel_detail'
     ),
     url(
-        regex=r'^(?P<project_slug>[-\w]+)/feedback/$',
+        regex=r'^(?P<project_slug>[-\w]+)/satisfied-feedback/$',
         view=views.FeedbackSatisfiedCreateView.as_view(),
         name='project_satisfied_feedback'
     ),
     url(
-        regex=r'^(?P<project_slug>[-\w]+)/feedback/$',
+        regex=r'^(?P<project_slug>[-\w]+)/unsatisfied-feedback/$',
         view=views.FeedbackUnsatisfiedCreateView.as_view(),
         name='project_unsatisfied_feedback'
     ),
-    url(r'^(?P<project_slug>[-\w]+)/feedback/thanks/$',
-        views.SatisfiedFeedbackSubmittedTemplateView.as_view(),
-        name='feedback_submitted'),
-    url(r'^(?P<project_slug>[-\w]+)/feedback/sorry/$',
-        views.UnsatisfiedFeedbackSubmittedTemplateView.as_view(),
-        name='feedback_submitted'),
+    url(
+        regex=r'^(?P<project_slug>[-\w]+)/satisfied-feedback/thanks/$',
+        view=views.SatisfiedFeedbackSubmittedTemplateView.as_view(),
+        name='feedback_submitted'
+    ),
+    url(
+        regex=r'^(?P<project_slug>[-\w]+)/unsatisfied-feedback/sorry/$',
+        view=views.UnsatisfiedFeedbackSubmittedTemplateView.as_view(),
+        name='feedback_submitted'
+    ),
 )

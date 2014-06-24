@@ -7,6 +7,7 @@ from sorl.thumbnail import ImageField
 from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 from django.core.urlresolvers import reverse
+from django.utils.translation import ugettext_lazy as _
 
 
 def markup(text):
@@ -60,6 +61,8 @@ class ProjectRelatedModel(models.Model):
 class DetailLevel(ProjectRelatedModel):
     """ A detail level for a given project. """
     level = models.PositiveSmallIntegerField()
+    # NOTE: Change project_introduction to null=False in production
+    introduction = models.TextField(null=True)
     time_skill_and_complexity = models.TextField()
     time_skill_and_complexity_html = models.TextField(editable=False, blank=True)
     terminology = models.TextField()
@@ -105,18 +108,29 @@ class DetailLevel(ProjectRelatedModel):
 class Feedback(ProjectRelatedModel):
     """ Feedback for a given project. """
     PROJECT_PROGRESS_CHOICES = Choices(
-                                      ('planning and preparing', ('Planning and preparing')),
-                                      ('getting started', ('Getting started')),
-                                      ('getting started', ('Getting started')),
-                                      ('in the thick of it', ('In the thick of it')),
-                                      ('figuring out a hiccup', ('Figuring out a hiccup')),
-                                      ('finishing touches', ('Finishing touches')),
-                                      ('not currently working on this project', ('Not currently working on this project')))
+                                      ('planning and preparing',
+                                       _('Planning and preparing')),
+                                      ('getting started',
+                                       _('Getting started')),
+                                      ('getting started',
+                                       _('Getting started')),
+                                      ('in the thick of it',
+                                       _('In the thick of it')),
+                                      ('figuring out a hiccup',
+                                       _('Figuring out a hiccup')),
+                                      ('finishing touches',
+                                       _('Finishing touches')),
+                                      ('not currently working on this project',
+                                       _('Not currently working on this project')))
     PROJECT_CONFIDENCE_CHOICES = Choices(
-                                      ('not confident i can complete it. i rarely if ever do these types of projects myself.', ('Not confident I can complete it. I rarely if ever do these types of projects myself.')),
-                                      ('curious about learning how to do this project. i\'d like to do it myself if i can.', ('Curious about learning how to do this project. I\'d like to do it myself if I can.')),
-                                      ('confident i can complete this project on my own.', ('Confident I can complete this project on my own.')),
-                                      ('a home services professional or craftsman. i make a living by working on/repairing homes.', ('A home services professional or craftsman. I make a living by working on/repairing homes.')))
+                                        ('not confident i can complete it. i rarely if ever do these types of projects myself.',
+                                         _('Not confident I can complete it. I rarely if ever do these types of projects myself.')),
+                                        ('curious about learning how to do this project. i\'d like to do it myself if i can.',
+                                         _('Curious about learning how to do this project. I\'d like to do it myself if I can.')),
+                                        ('confident i can complete this project on my own.',
+                                         _('Confident I can complete this project on my own.')),
+                                        ('a home services professional or craftsman. i make a living by working on/repairing homes.',
+                                         _('A home services professional or craftsman. I make a living by working on/repairing homes.')))
     project_progress = models.CharField(choices=PROJECT_PROGRESS_CHOICES, max_length=50, blank=True)
     project_confidence = models.CharField(choices=PROJECT_CONFIDENCE_CHOICES, max_length=100, blank=True)
     project_recommendation = models.TextField(blank=True)

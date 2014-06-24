@@ -12,7 +12,6 @@ class FormActionMixin(object):
         return super(FormActionMixin, self).dispatch(*args, **kwargs)
 
     def form_valid(self, form):
-        #Get associated guide and save
         self.object = form.save(commit=False)
         self.object.guide = self.guide
         self.object.save()

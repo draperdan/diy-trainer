@@ -1,7 +1,31 @@
-{% extends 'base.html' %}
+{% extends 'base_projects.html' %}
+
+{% block title %}Thanks! {{ block.super }}{% endblock title %}
+
+{% block view %}feedback{% endblock view %}
 
 {% block content %}
+<header>
+    <hgroup>
+        <h1>DIY Trainer</h1>
+        <h2>Thanks again!</h2>
+        <h3>We appreciate your input. We'll use it to improve the DIY Trainer for you and all of our users in the future.</h3>
+    </hgroup>
+</header>
+
+<div class="extra_content">
+{% if show_extra_content %}
+    <img src="http://placehold.it/140x100">
+    <p>Here's a video guide for the project you're working on, if you still need extra help. Good luck!</p>
+    <a href="http://youtube.com">View on YouTube</a>
+{% else %}
+    <p>Now that your voice has been heard, we'll let you get back to work. Head back to the guide to finish your project.</p>
+    <a href="{% url 'detaillevel_detail' request.session.project_slug 1 %}">Back to the Guide</a>
+{% endif %}
+</div>
 
 {{ show_extra_content }}
+
+
 
 {% endblock content %}

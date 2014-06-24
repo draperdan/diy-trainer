@@ -10,3 +10,23 @@
 //@import 'base/grid-settings';
 @import 'neat/neat';
 @import 'base/base';
+
+// Feedback forms
+#feedback {
+
+    // Projects app
+    &.projects {
+
+        .ctrlHolder {
+
+            ul {
+                // Hide the first option to get around the empty_label issue in Django
+                li:first-child {
+                    display: none;
+                }
+            }
+        }
+
+    }
+}
+

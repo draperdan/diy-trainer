@@ -210,3 +210,6 @@ input[type="submit"] {
   user-select: none;
   vertical-align: middle;
   white-space: nowrap; }
+
+#feedback.projects .ctrlHolder ul li:first-child {
+  display: none; }

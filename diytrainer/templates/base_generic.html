@@ -18,15 +18,19 @@
     {% block extra_css %}{% endblock extra_css %}
   </head>
 
-  <body id="{% block view %}{% endblock view %}">
+  <body id="{% block view %}{% endblock view %}" class="{% block app_name %}{% endblock %}">
 
     <div class="container">
       {% block content %}
       {% endblock content %}
     </div>
 
+    {% block footer %}{% endblock footer %}
+
     <script src="http://code.jquery.com/jquery-latest.js"></script>
 
-    {% block extra_js %}{% endblock extra_js %}
+    {% block extra_js %}
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+    {% endblock extra_js %}
   </body>
 </html>

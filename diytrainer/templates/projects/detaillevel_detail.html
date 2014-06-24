@@ -1,16 +1,54 @@
-{% extends 'base.html' %}
+{% extends 'base_projects.html' %}
+
+{% block title %}{{ detaillevel.project.name }} | Detail Level {{ detaillevel.level }}{{ block.super }}{% endblock title %}
+
+{% block view %}detaillevel{% endblock view %}
 
 {% block content %}
 
-{{ detaillevel.level }}
+<header>
+    <hgroup>
+        <h1>DIY Trainer</h1>
+        <h2>{{ detaillevel.project.name }}</h2>
+        <div id="detail_level">Amount of detail:
+        {% for level in detaillevel.project.detaillevel_set.all %}
+            {% ifequal level.level detaillevel.level %}
+                <span class="current_level">{{ level }}</span>
+            {% else %}
+                {{ level }}
+            {% endifequal %}
+        {% endfor %}
+        <h3>Step-by-step guide with just the right amount of detail for you.</h3>
+        <h4>{{ detaillevel.introduction }}</h4>
+    </hgroup>
+</header>
+
+<div class="project_lead_art">
+    <img src="{{ MEDIA_URL }}{{ detaillevel.project.lead_art }}" alt="{{ detaillevel.project.name }}">
+</div>
+
+<div class="project_overview">
+    {{ project.description_html|safe }}
+</div>
+
+<section id="detaillevel_content">
+{{ detaillevel.time_skill_and_complexity_html|safe }}
 
 {{ detaillevel.terminology_html|safe }}
 
-{{ detaillevel.project.name }}
-
-<ul>
-    <li><a href="{% url 'project_satisfied_feedback' detaillevel.project.slug %}">I'm good</a></li>
-    <li><a href="{% if detaillevel.get_next >= 3 %}{% url 'detaillevel_detail' detaillevel.project.slug detaillevel.get_next %}{% else %}{% url 'project_unsatisfied_feedback' detaillevel.project.slug %}{% endif %}">Give me more</a></li>
-</ul>
+{{ detaillevel.tools_and_materials_html|safe }}
 
 {% endblock content %}
+
+{% block footer %}
+<footer>
+    <div class="container">
+        <h2>Get more detail</h2>
+        <p>Do you have the information you need, or do you still want to see more information related to this project?</p>
+        <ul class="detaillevel_options">
+            <li class="satisfied_option"><a href="{% url 'project_satisfied_feedback' detaillevel.project.slug %}">I'm good</a></li>
+            <li class="unsatisfied_option"><a href="{% if detaillevel.get_next >= 3 %}{% url 'detaillevel_detail' detaillevel.project.slug detaillevel.get_next %}{% else %}{% url 'project_unsatisfied_feedback' detaillevel.project.slug %}{% endif %}">Give me more</a></li>
+        </ul>
+    </div>
+</footer>
+{% endblock footer %}

@@ -19,14 +19,14 @@ class FeedbackActionMixin(object):
         return super(FeedbackActionMixin, self).dispatch(*args, **kwargs)
 
     def form_valid(self, form):
-        #Get associated project and save
         self.object = form.save(commit=False)
         self.object.project = self.project
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
 
     def get_context_data(self, *args, **kwargs):
-        context_data = super(FeedbackActionMixin, self).get_context_data(*args, **kwargs)
+        context_data = super(FeedbackActionMixin,
+                             self).get_context_data(*args, **kwargs)
         context_data.update({'project': self.project})
         return context_data
 
@@ -39,23 +39,27 @@ class FeedbackUnsatisfiedCreateView(FeedbackActionMixin, CreateView):
     success_url = 'sorry/'
 
 
-class SatisfiedFeedbackSubmittedTemplateView(FeedbackSubmittedActionMixin, TemplateView):
+class SatisfiedFeedbackSubmittedTemplateView(FeedbackSubmittedActionMixin,
+                                             TemplateView):
 
     def get_context_data(self, **kwargs):
-        context = super(SatisfiedFeedbackSubmittedTemplateView, self).get_context_data(**kwargs)
+        context = super(SatisfiedFeedbackSubmittedTemplateView,
+                        self).get_context_data(**kwargs)
         context['show_extra_content'] = False
         return context
 
 
-class UnsatisfiedFeedbackSubmittedTemplateView(FeedbackSubmittedActionMixin, TemplateView):
+class UnsatisfiedFeedbackSubmittedTemplateView(FeedbackSubmittedActionMixin,
+                                               TemplateView):
 
     def get_context_data(self, **kwargs):
-        context = super(UnsatisfiedFeedbackSubmittedTemplateView, self).get_context_data(**kwargs)
+        context = super(UnsatisfiedFeedbackSubmittedTemplateView,
+                        self).get_context_data(**kwargs)
         context['show_extra_content'] = True
         return context
 
 
 class DetailLevelView(DetailView):
-    model = DetailLevel
     slug_field = 'level'
     slug_url_kwarg = 'level'
+    queryset = DetailLevel.objects.select_related('project').all()
