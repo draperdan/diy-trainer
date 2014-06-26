@@ -35,8 +35,7 @@ class Project(models.Model):
     slug = models.SlugField()
     description = models.TextField()
     description_html = models.TextField(editable=False, blank=True)
-    # NOTE: Change lead_art to null=False in production
-    lead_art = ImageField(upload_to='images/projects/project', null=True)
+    lead_art = ImageField(upload_to='images/projects/project')
 
     class Meta:
         verbose_name_plural = 'Projects'
@@ -61,15 +60,15 @@ class ProjectRelatedModel(models.Model):
 class DetailLevel(ProjectRelatedModel):
     """ A detail level for a given project. """
     level = models.PositiveSmallIntegerField()
-    # NOTE: Change project_introduction to null=False in production
-    introduction = models.TextField(null=True)
-    time_skill_and_complexity = models.TextField()
+    descriptor = models.CharField(max_length=250)
+    introduction = models.TextField()
+    time_skill_and_complexity = models.TextField(blank=True)
     time_skill_and_complexity_html = models.TextField(editable=False, blank=True)
-    terminology = models.TextField()
+    terminology = models.TextField(blank=True)
     terminology_html = models.TextField(editable=False, blank=True)
-    tools_and_materials = models.TextField()
+    tools_and_materials = models.TextField(blank=True)
     tools_and_materials_html = models.TextField(editable=False, blank=True)
-    instructions = models.TextField()
+    instructions = models.TextField(blank=True)
     instructions_html = models.TextField(editable=False, blank=True)
 
     class Meta:

@@ -86,7 +86,7 @@ class EmailSignUp(GuideRelatedModel):
 
     class Meta:
         verbose_name_plural = 'Email sign ups'
-        ordering = ('id',)
+        ordering = ('pk',)
 
     def __str__(self):
         return self.email
