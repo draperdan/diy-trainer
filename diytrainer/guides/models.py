@@ -34,9 +34,7 @@ class Guide(models.Model):
     version = models.PositiveSmallIntegerField()
     headline = models.CharField(max_length=250,
                                 help_text='Limited to 250 characters.')
-    subhead = models.CharField(max_length=250,
-                               help_text='Limited to 250 characters.')
-    description = models.TextField()
+    description = models.TextField(help_text='Markdown only. No HTML is allowed.')
     description_html = models.TextField(editable=False, blank=True)
     rendering = ImageField(upload_to='images/guides/guide')
 

@@ -1,4 +1,5 @@
 {% extends 'base_guides.html' %}
+{% load staticfiles %}
 {% load crispy_forms_tags %}
 
 {% block title %}{{ guide.name }}{{ block.super }}{% endblock title %}
@@ -10,20 +11,31 @@
     <hgroup>
         <h1>DIY Trainer</h1>
         <h2>{{ guide.headline }}</h2>
-        <h3>{{ guide.subhead }}</h3>
     </hgroup>
 </header>
 
-<section id="email_signup_form">
-    <h1>DIY Trainer is almost here.</h1>
+<div id="guide_rendering">
+    <img src="{{ MEDIA_URL }}{{ guide.rendering }}" alt="Rendering of {{ guide.name }}">
+</div>
+
+<div id="email_signup_form">
+    <h2>DIY Trainer is almost here.</h2>
+    <h3>Sign up to be notified when DIY Trainer launches.</h3>
     <form method="post">
         {% csrf_token %}
         {{ form|crispy }}
         <input type="submit" value="Submit">
     </form>
-</section>
+</div>
 
 <section id="guide_explainer">
+    <h1>Here's how:</h1>
     {{ guide.description_html|safe }}
 </section>
+
+<div id="feedback_form_refer">
+    <h2>We're busy building out our library of DIY projects. Tell us which ones you'd like to see the most...</h2>
+    <a href="{% url 'guide_feedback' guide.version %}">Tell Us &rsaquo;</a>
+</div>
+
 {% endblock content %}

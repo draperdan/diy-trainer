@@ -4,12 +4,113 @@
 /* Author: Patrick Beeson, pbeeson@thevariable.com */
 /* Copyright The Variable */
 
+// Global overrides
+
+$visual-grid: true;
+$visual-grid-color: yellow;
+
+// Colors
+$guide_bg_green: rgba(106,189,69,1);
+$guide_bright_green: rgba(105,231,69,1);
+$guide_medium_green: rgba(86,191,57,1);
+$guide_dark_gray: rgba(45,45,45,1);
+
+//Typography
+$open-sans: 'Open Sans', sans-serif;
+
 // Framework imports
 
 @import 'bourbon/bourbon';
-//@import 'base/grid-settings';
-@import 'neat/neat';
+@import 'base/grid-settings';
 @import 'base/base';
+
+@import 'neat/neat';
+
+// Mixins
+/* Calculate fluid ratio based on two dimensions (width/height) */
+@mixin fluid-ratio($large-size, $small-size) {
+  $width-large: nth($large-size, 1);
+  $width-small: nth($small-size, 1);
+  $height-large: nth($large-size, 2);
+  $height-small: nth($small-size, 2);
+  $slope: ($height-large - $height-small) / ($width-large - $width-small);
+  $height: $height-small - $width-small * $slope;
+
+  padding-top: $slope * 100%;
+  height: $height;
+
+  background-size: cover;
+  -moz-background-size: cover;  /* Firefox 3.6 */
+  background-position: center;  /* Internet Explorer 7/8 */
+}
+
+// Global
+.container {
+    @include outer-container;
+}
+
+
+// 'Splash' or guides project
+.guides {
+    font-family: $open-sans;
+    @include background(url(../images/guide_shape_bg.png) top no-repeat, url(../images/guide_grid_bg.png) top no-repeat, linear-gradient($guide_bg_green, black) top no-repeat);
+
+    header {
+        @include row();
+        position: relative;
+        top: 25px;
+
+        hgroup {
+            @include span-columns(12);
+        }
+
+        h1 {
+            @include span-columns(1 of 12);
+            @include shift(1);
+            @include hide-text;
+            width: 132px;
+            height: 154px;
+            background-image: url(../images/diy_trainer_logo.png);
+            background-size: cover;
+            position: relative;
+            z-index: 2;
+            left: 60px;
+            bottom: 10px;
+        }
+
+        h2 {
+            @include span-columns(8 of 12);
+            @include shift(-1);
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            background-image: url(../images/guide_headline_bg.png);
+            background-size: cover;
+            width: 777px;
+            height: 112px;
+            position: relative;
+            z-index: 1;
+            padding-top: 25px;
+            padding-left: 150px;
+            padding-right: 100px;
+            line-height: 1.5em;
+            letter-spacing: 2px;
+        }
+    }
+
+    #guide_rendering {
+        @include row();
+        text-align: center;
+        margin: 0 auto;        
+    }
+
+    // Email sign-up view
+    &#email_signup {
+
+
+    }
+}
+
 
 // Feedback forms
 #feedback {
