@@ -6,12 +6,12 @@
 
 // Global overrides
 
-$visual-grid: true;
+//$visual-grid: true;
 $visual-grid-color: yellow;
 
 // Colors
 $guide_bg_green: rgba(106,189,69,1);
-$guide_bright_green: rgba(105,231,69,1);
+$guide_bright_green: rgba(102,231,67,1);
 $guide_medium_green: rgba(86,191,57,1);
 $guide_dark_gray: rgba(45,45,45,1);
 
@@ -51,9 +51,10 @@ $open-sans: 'Open Sans', sans-serif;
 
 
 // 'Splash' or guides project
-.guides {
+body.guides {
     font-family: $open-sans;
-    @include background(url(../images/guide_shape_bg.png) top no-repeat, url(../images/guide_grid_bg.png) top no-repeat, linear-gradient($guide_bg_green, black) top no-repeat);
+    background-color: $guide_medium_green;
+    @include background(url(../images/guide_shape_bg.png) center 500% no-repeat, url(../images/guide_grid_bg.png) top no-repeat, linear-gradient($guide_bg_green, black) top no-repeat);
 
     header {
         @include row();
@@ -66,7 +67,7 @@ $open-sans: 'Open Sans', sans-serif;
 
         h1 {
             @include span-columns(1 of 12);
-            @include shift(1);
+            @include shift(2);
             @include hide-text;
             width: 132px;
             height: 154px;
@@ -74,40 +75,188 @@ $open-sans: 'Open Sans', sans-serif;
             background-size: cover;
             position: relative;
             z-index: 2;
-            left: 60px;
+            //left: 60px;
             bottom: 10px;
         }
 
         h2 {
             @include span-columns(8 of 12);
-            @include shift(-1);
+            @include shift(-2);
             font-size: 16px;
             font-weight: 700;
             text-transform: uppercase;
             background-image: url(../images/guide_headline_bg.png);
             background-size: cover;
-            width: 777px;
+            //width: 777px;
             height: 112px;
             position: relative;
             z-index: 1;
             padding-top: 25px;
-            padding-left: 150px;
-            padding-right: 100px;
+            padding-left: 175px;
+            padding-right: 75px;
             line-height: 1.5em;
             letter-spacing: 2px;
+            left: 40px;
         }
     }
 
     #guide_rendering {
         @include row();
-        text-align: center;
-        margin: 0 auto;        
+        @include span-columns(12);
+        text-align: center;    
     }
 
     // Email sign-up view
     &#email_signup {
 
+        #email_signup_form {
+            @include row();
+            @include span-columns(8);
+            @include shift(2);
+            padding: 10px 25px;
+            margin-top: 10px;
+            background-color: $guide_bright_green;
 
+            #form_caption {
+                @include span-columns(4 of 8);
+                text-align: center;
+
+                h2 {
+                    font-size: 18px;
+                    text-transform: uppercase;
+                    color: white;
+                    font-weight: 700;
+                    letter-spacing: 1px;
+                }
+
+                h3 {
+                    font-size: 14px;
+                    color: $guide_dark_gray;
+                    font-weight: normal;
+                    padding-left: 50px;
+                    padding-right: 50px;
+                }               
+            }
+
+
+
+            form {
+                @include span-columns(4 of 8);
+                background-color: $guide_medium_green;
+                padding: 10px;
+
+                label {
+                    display: none;
+                }
+
+                input.emailinput {
+                    margin-bottom: 0;
+                    width: 75%;
+                    float: left;
+                    border-radius: 0;
+                }
+
+                input[type="image"] {
+                    @include hide-text;
+                    padding-left: 25px;
+                }
+
+            }
+        }
+    }
+
+    section#guide_explainer {
+        clear: left;
+        color: #fff;
+        padding-top: 25px;
+        @include span-columns(10);
+        @include shift(1);
+
+        h1 {
+            @include row();
+            font-size: 48px;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        #descriptor_list {
+            @include row();
+            margin-bottom: 50px;
+
+            li {
+                @include span-columns(4);
+                @include shift(2);
+                //@include omega(2n);
+                position: relative;
+
+                h2 {
+                    font-size: 30px;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    margin-bottom: 10px;
+                }
+
+                p {
+                    font-size: 14px;
+                    line-height: 1.8em;
+                }
+
+                .descriptor_number {
+                    @include hide-text;
+                    position: absolute;
+                    width: 132px;
+                    height: 100px;
+                    left: -150px;
+                }
+            }       
+        }
+    }
+
+    #feedback_form_refer {
+        clear: left;
+        @include span-columns(8);
+        @include shift(2);
+        background-color: $guide_medium_green;
+        padding: 10px;
+        margin-bottom: 50px;
+
+        h2 {
+            @include span-columns(5 of 8);
+            @include shift(1);
+            font-size: 24px;
+            font-weight: normal;
+        }
+
+        a {
+            background-color: $guide_dark_gray;
+            color: $guide_medium_green;
+            padding: 10px 15px;
+            font-weight: 800;
+            font-size: 18px;
+            text-transform: uppercase;
+            margin-top: 25px;
+            margin-right: 25px;
+            float: right;
+        }
+    }
+
+    &.guide_1 {
+
+        .descriptor_1 {
+
+            .descriptor_number {
+                background-image: url(../images/guide1_description_one.png);
+            }
+        }
+
+        .descriptor_2 {
+
+            .descriptor_number {
+                background-image: url(../images/guide1_description_two.png);
+            }
+        }
     }
 }
 

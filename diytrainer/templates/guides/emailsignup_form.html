@@ -6,6 +6,8 @@
 
 {% block view %}email_signup{% endblock view %}
 
+{% block extra_classes %} guide_{{ guide.version }}{% endblock %}
+
 {% block content %}
 <header>
     <hgroup>
@@ -19,18 +21,28 @@
 </div>
 
 <div id="email_signup_form">
-    <h2>DIY Trainer is almost here.</h2>
-    <h3>Sign up to be notified when DIY Trainer launches.</h3>
+    <div id="form_caption">
+        <h2>DIY Trainer is almost here.</h2>
+        <h3>Sign up to be notified when DIY Trainer launches.</h3>
+    </div>
     <form method="post">
         {% csrf_token %}
         {{ form|crispy }}
-        <input type="submit" value="Submit">
+        <input type="image" value="Submit" src="{% static 'images/email_submit_btn.png' %}" class="emailsubmit">
     </form>
 </div>
 
 <section id="guide_explainer">
     <h1>Here's how:</h1>
-    {{ guide.description_html|safe }}
+    <ul id="descriptor_list">
+        {% for descriptor in guide.descriptor_set.all %}
+            <li class="descriptor_{{ descriptor.rank }}">
+                <span class="descriptor_number">{{ descriptor.rank }}</span>
+                <h2>{{ descriptor.title }}</h2>
+                <p>{{ descriptor.body }}</p>
+            </li>
+        {% endfor %}
+    </ul>
 </section>
 
 <div id="feedback_form_refer">

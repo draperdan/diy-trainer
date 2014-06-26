@@ -32,7 +32,7 @@
     {% block extra_css %}{% endblock extra_css %}
   </head>
 
-  <body id="{% block view %}{% endblock view %}" class="{% block app_name %}{% endblock %}">
+  <body id="{% block view %}{% endblock view %}" class="{% block app_name %}{% endblock %}{% block extra_classes %}{% endblock %}">
 
     <div class="container">
       {% block content %}

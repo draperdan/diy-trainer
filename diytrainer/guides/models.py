@@ -34,17 +34,14 @@ class Guide(models.Model):
     version = models.PositiveSmallIntegerField()
     headline = models.CharField(max_length=250,
                                 help_text='Limited to 250 characters.')
-    description = models.TextField(help_text='Markdown only. No HTML is allowed.')
-    description_html = models.TextField(editable=False, blank=True)
-    rendering = ImageField(upload_to='images/guides/guide')
+    description_image = models.ImageField(blank=True,
+                                          upload_to='images/guides/description'
+                                          )
+    rendering = ImageField(upload_to='images/guides/renderings')
 
     class Meta:
         verbose_name_plural = 'Guides'
         ordering = ('version',)
-
-    def save(self, *args, **kwargs):
-        self.description_html = markup(self.description)
-        super(Guide, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -58,6 +55,21 @@ class GuideRelatedModel(models.Model):
         abstract = True
 
     guide = models.ForeignKey(Guide)
+
+
+@python_2_unicode_compatible
+class Descriptor(GuideRelatedModel):
+    """ A descriptor for a guide. """
+    rank = models.PositiveSmallIntegerField(help_text='An integer from 1 to 3')
+    title = models.CharField(max_length=100)
+    body = models.TextField()
+
+    class Meta:
+        verbose_name_plural = 'Descriptors'
+        ordering = ('rank',)
+
+    def __str__(self):
+        return self.title
 
 
 @python_2_unicode_compatible

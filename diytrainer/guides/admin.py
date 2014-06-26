@@ -2,11 +2,17 @@ from django.contrib import admin
 
 from sorl.thumbnail.admin import AdminImageMixin
 
-from .models import Guide, Feedback, EmailSignUp
+from .models import Guide, Feedback, EmailSignUp, Descriptor
+
+
+class DescriptorInline(admin.StackedInline):
+    model = Descriptor
 
 
 class GuideAdmin(AdminImageMixin, admin.ModelAdmin):
-    pass
+    inlines = [
+        DescriptorInline
+    ]
 
 
 class FeedbackAdmin(admin.ModelAdmin):
