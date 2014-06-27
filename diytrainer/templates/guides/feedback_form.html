@@ -11,20 +11,20 @@
     <hgroup>
         <h1>DIY Trainer</h1>
         <h2>Thank you</h2>
-        <h3>Thanks for your interest! We're working hard to get DIY Trainer in shape for you.</h3>
+        <h3>Thanks for your interest!<br>We're working hard to get DIY Trainer in shape for you.</h3>
     </hgroup>
 </header>
 
-<section id="feedback_form">
+<div id="feedback_form">
     <form method="post">
         {% csrf_token %}
         {{ form|crispy }}
         <div class="range_helper">
-            <span class="start">1<br>Completely<br>Mortified</span>
-            <span class="finish">2<br>Utterly<br>Fearless</span>
+            <span class="start"><span class="range_number">1</span><br>Completely<br>Mortified</span>
+            <span class="finish"><span class="range_number">10</span><br>Utterly<br>Fearless</span>
         </div>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit &rsaquo;">
     </form>
-</section>
+</div>
 
 {% endblock content %}

@@ -34,6 +34,11 @@
 
 <section id="guide_explainer">
     <h1>Here's how:</h1>
+    {% if guide.description_image %}
+    <div class="explainer_image">
+        <img src="{{ MEDIA_URL}}{{ guide.description_image }}" alt="{{ guide.name }}">
+    </div>
+    {% endif %}
     <ul id="descriptor_list">
         {% for descriptor in guide.descriptor_set.all %}
             <li class="descriptor_{{ descriptor.rank }}">

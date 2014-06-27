@@ -6,7 +6,7 @@
 
 // Global overrides
 
-$visual-grid: true;
+//$visual-grid: true;
 $visual-grid-color: yellow;
 
 // Colors
@@ -14,6 +14,7 @@ $guide_bg_green: rgba(106,189,69,1);
 $guide_bright_green: rgba(102,231,67,1);
 $guide_medium_green: rgba(86,191,57,1);
 $guide_dark_gray: rgba(45,45,45,1);
+$guide_light_gray: rgba(209,210,211,1);
 
 //Typography
 $open-sans: 'Open Sans', sans-serif;
@@ -181,14 +182,18 @@ body.guides {
             margin-bottom: 50px;
         }
 
+        .explainer_image {
+            @include row();
+            @include span-columns(12);
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
         #descriptor_list {
             @include row();
             margin-bottom: 50px;
 
             li {
-                //@include span-columns(4);
-                //@include shift(2);
-                //@include omega(2n);
                 position: relative;
 
                 h2 {
@@ -205,10 +210,9 @@ body.guides {
 
                 .descriptor_number {
                     @include hide-text;
-                    position: absolute;
+                    display: inline-block;
                     width: 132px;
                     height: 100px;
-                    left: -150px;
                 }
             }       
         }
@@ -249,10 +253,16 @@ body.guides {
             li {
                 @include span-columns(4);
                 @include shift(2);
+
+                %descriptor_number {
+                    left: -150px;
+                    position: absolute;
+                }
             
                 &.descriptor_1 {
 
                     .descriptor_number {
+                        @extend %descriptor_number;
                         background-image: url(../images/guide1_description_one.png);
                     }
                 }
@@ -260,6 +270,7 @@ body.guides {
                 &.descriptor_2 {
 
                     .descriptor_number {
+                        @extend %descriptor_number;
                         background-image: url(../images/guide1_description_two.png);
                     }
                 }
@@ -278,16 +289,23 @@ body.guides {
 
                 .descriptor_text {
                     @include span-columns(5 of 10);
+                    left: -150px;
                 }
 
                 img {
                     @include span-columns(5 of 10);
-                    //@include shift(1);
+                    left: -150px;
+                }
+
+                %descriptor_number {
+                    left: -150px;
+                    position: absolute;
                 }
             
                 &.descriptor_1 {
 
                     .descriptor_number {
+                        @extend %descriptor_number;
                         background-image: url(../images/guide2_description_one.png);
                     }
                 }
@@ -295,6 +313,7 @@ body.guides {
                 &.descriptor_2 {
 
                     .descriptor_number {
+                        @extend %descriptor_number;
                         background-image: url(../images/guide2_description_two.png);
                     }
                 }
@@ -302,7 +321,46 @@ body.guides {
                 &.descriptor_3 {
 
                     .descriptor_number {
+                        @extend %descriptor_number;
                         background-image: url(../images/guide2_description_three.png);
+                    }
+                }
+            }
+        }
+    }
+
+    &.guide_3 {
+
+        #descriptor_list {
+            @include span-columns(12);
+
+            li {
+                @include span-columns(4 of 12);
+                //@include shift(1);
+                text-align: center;
+
+                p {
+                    padding-left: 25px;
+                    padding-right: 25px;
+                }
+            
+                &.descriptor_1 {
+
+                    .descriptor_number {
+                        background-image: url(../images/guide3_description_one.png);
+                    }
+                }
+
+                &.descriptor_2 {
+
+                    .descriptor_number {
+                        background-image: url(../images/guide3_description_two.png);
+                    }
+                }
+                &.descriptor_3 {
+
+                    .descriptor_number {
+                        background-image: url(../images/guide3_description_three.png);
                     }
                 }
             }
@@ -312,7 +370,97 @@ body.guides {
 
 
 // Feedback forms
-#feedback {
+body#feedback {
+    background-color: white;
+    @include background(url(../images/guide_thankyou_grid_bg.png) top center no-repeat, url(../images/guide_thankyou_header_bg.png) top repeat-x);
+
+    header {
+
+        h1 {
+            @include span-columns(4 of 12);
+            width: 293px;
+            height: 342px;
+            background-image: url(../images/diy_trainer_logo_lg.png);
+            top: 0px;
+        }
+
+        h2 {
+            @include span-columns(4 of 12);
+            background: none;
+            text-decoration: underline;
+            font-size: 44px;
+            font-weight: 800;
+            top: 150px;
+        }
+
+        h3 {
+            @include span-columns(4 of 12);
+            font-style: italic;
+            font-weight: normal;
+            font-size: 24px;
+            position: relative;
+            top: 200px;
+            padding-left: 50px;
+            padding-right: 25px;
+        }
+    }
+
+    #feedback_form {
+        @include span-columns(8);
+        @include shift(2);
+        margin-top: 100px;
+        margin-bottom: 50px;
+
+        label {
+            font-size: 20px;
+            font-weight: 700;
+            border-bottom: thick solid black;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+
+        textarea#id_project_recommendation {
+            border: 10px solid $guide_light_gray;
+            border-radius: 0;
+            margin-bottom: 50px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+        }
+
+        .range_helper {
+            text-align: center;
+            font-size: 14px;
+            @include clearfix;
+
+            .range_number {
+                color: $guide_light_gray;
+            }
+
+            .start {
+                float: left;
+                
+            }
+
+            .finish {
+                float: right;
+                
+            }
+        }
+
+        input[type="submit"] {
+            background-color: $guide_dark_gray;
+            color: $guide_medium_green;
+            border-radius: 0;
+            text-transform: uppercase;
+            font-size: 18px;
+            font-weight: 800;
+            float: right;
+            margin-top: 50px;
+            padding: 10px 15px;
+        }
+    }
 
     // Projects app
     &.projects {
