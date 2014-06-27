@@ -5,7 +5,7 @@ from sorl.thumbnail.admin import AdminImageMixin
 from .models import Guide, Feedback, EmailSignUp, Descriptor
 
 
-class DescriptorInline(admin.StackedInline):
+class DescriptorInline(AdminImageMixin, admin.StackedInline):
     model = Descriptor
 
 

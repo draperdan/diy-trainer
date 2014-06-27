@@ -38,8 +38,13 @@
         {% for descriptor in guide.descriptor_set.all %}
             <li class="descriptor_{{ descriptor.rank }}">
                 <span class="descriptor_number">{{ descriptor.rank }}</span>
-                <h2>{{ descriptor.title }}</h2>
-                <p>{{ descriptor.body }}</p>
+                <div class="descriptor_text">
+                    <h2>{{ descriptor.title }}</h2>
+                    <p>{{ descriptor.body }}</p>
+                </div>
+                {% if descriptor.image %}
+                <img src="{{ MEDIA_URL }}{{ descriptor.image }}" alt="{{ descriptor.title }}">
+                {% endif %}
             </li>
         {% endfor %}
     </ul>

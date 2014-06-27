@@ -34,9 +34,9 @@ class Guide(models.Model):
     version = models.PositiveSmallIntegerField()
     headline = models.CharField(max_length=250,
                                 help_text='Limited to 250 characters.')
-    description_image = models.ImageField(blank=True,
-                                          upload_to='images/guides/description'
-                                          )
+    description_image = ImageField(blank=True,
+                                   upload_to='images/guides/description'
+                                   )
     rendering = ImageField(upload_to='images/guides/renderings')
 
     class Meta:
@@ -63,6 +63,7 @@ class Descriptor(GuideRelatedModel):
     rank = models.PositiveSmallIntegerField(help_text='An integer from 1 to 3')
     title = models.CharField(max_length=100)
     body = models.TextField()
+    image = ImageField(blank=True, upload_to='images/guides/descriptors')
 
     class Meta:
         verbose_name_plural = 'Descriptors'

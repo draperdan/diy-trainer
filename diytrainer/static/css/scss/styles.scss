@@ -6,7 +6,7 @@
 
 // Global overrides
 
-//$visual-grid: true;
+$visual-grid: true;
 $visual-grid-color: yellow;
 
 // Colors
@@ -54,7 +54,7 @@ $open-sans: 'Open Sans', sans-serif;
 body.guides {
     font-family: $open-sans;
     background-color: $guide_medium_green;
-    @include background(url(../images/guide_shape_bg.png) center 500% no-repeat, url(../images/guide_grid_bg.png) top no-repeat, linear-gradient($guide_bg_green, black) top no-repeat);
+    @include background(url(../images/guide_shape_bg.png) center 300px no-repeat, url(../images/guide_grid_bg.png) top no-repeat, linear-gradient($guide_bg_green, black) top no-repeat);
 
     header {
         @include row();
@@ -186,8 +186,8 @@ body.guides {
             margin-bottom: 50px;
 
             li {
-                @include span-columns(4);
-                @include shift(2);
+                //@include span-columns(4);
+                //@include shift(2);
                 //@include omega(2n);
                 position: relative;
 
@@ -244,17 +244,67 @@ body.guides {
 
     &.guide_1 {
 
-        .descriptor_1 {
+        #descriptor_list {
 
-            .descriptor_number {
-                background-image: url(../images/guide1_description_one.png);
+            li {
+                @include span-columns(4);
+                @include shift(2);
+            
+                &.descriptor_1 {
+
+                    .descriptor_number {
+                        background-image: url(../images/guide1_description_one.png);
+                    }
+                }
+
+                &.descriptor_2 {
+
+                    .descriptor_number {
+                        background-image: url(../images/guide1_description_two.png);
+                    }
+                }
             }
         }
+    }
 
-        .descriptor_2 {
+    &.guide_2 {
 
-            .descriptor_number {
-                background-image: url(../images/guide1_description_two.png);
+        #descriptor_list {
+
+            li {
+                @include span-columns(10);
+                @include shift(2);
+                margin-bottom: 25px;
+
+                .descriptor_text {
+                    @include span-columns(5 of 10);
+                }
+
+                img {
+                    @include span-columns(5 of 10);
+                    //@include shift(1);
+                }
+            
+                &.descriptor_1 {
+
+                    .descriptor_number {
+                        background-image: url(../images/guide2_description_one.png);
+                    }
+                }
+
+                &.descriptor_2 {
+
+                    .descriptor_number {
+                        background-image: url(../images/guide2_description_two.png);
+                    }
+                }
+
+                &.descriptor_3 {
+
+                    .descriptor_number {
+                        background-image: url(../images/guide2_description_three.png);
+                    }
+                }
             }
         }
     }
