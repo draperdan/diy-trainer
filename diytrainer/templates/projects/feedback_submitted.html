@@ -20,7 +20,7 @@
     <a href="http://youtube.com">View on YouTube</a>
 {% else %}
     <p>Now that your voice has been heard, we'll let you get back to work. Head back to the guide to finish your project.</p>
-    <a href="{% url 'detaillevel_detail' request.session.project_slug 1 %}">Back to the Guide</a>
+    <a href="{% url 'detaillevel_detail' project_slug level %}">Back to the Guide</a>
 {% endif %}
 </div>
 

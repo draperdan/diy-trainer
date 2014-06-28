@@ -33,17 +33,11 @@ class Project(models.Model):
     """ A project for the granularity test. """
     name = models.CharField(max_length=250)
     slug = models.SlugField()
-    description = models.TextField()
-    description_html = models.TextField(editable=False, blank=True)
     lead_art = ImageField(upload_to='images/projects/project')
 
     class Meta:
         verbose_name_plural = 'Projects'
         ordering = ('pk',)
-
-    def save(self, *args, **kwargs):
-        self.description_html = markup(self.description)
-        super(Project, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -59,17 +53,18 @@ class ProjectRelatedModel(models.Model):
 @python_2_unicode_compatible
 class DetailLevel(ProjectRelatedModel):
     """ A detail level for a given project. """
-    level = models.PositiveSmallIntegerField()
+    LEVEL_CHOICES = Choices((1, 'low', _('1')), (2, 'medium', _('2')), (3, 'high', _('3')))
+    level = models.IntegerField(choices=LEVEL_CHOICES)
     descriptor = models.CharField(max_length=250)
     introduction = models.TextField()
+    project_overview = models.TextField()
+    project_overview_html = models.TextField(editable=False, blank=True)
     time_skill_and_complexity = models.TextField(blank=True)
     time_skill_and_complexity_html = models.TextField(editable=False, blank=True)
     terminology = models.TextField(blank=True)
     terminology_html = models.TextField(editable=False, blank=True)
     tools_and_materials = models.TextField(blank=True)
     tools_and_materials_html = models.TextField(editable=False, blank=True)
-    instructions = models.TextField(blank=True)
-    instructions_html = models.TextField(editable=False, blank=True)
 
     class Meta:
         verbose_name_plural = 'Detail level'
@@ -79,11 +74,11 @@ class DetailLevel(ProjectRelatedModel):
         self.time_skill_and_complexity_html = markup(self.time_skill_and_complexity)
         self.terminology_html = markup(self.terminology)
         self.tools_and_materials_html = markup(self.tools_and_materials)
-        self.instructions_html = markup(self.instructions)
+        self.project_overview_html = markup(self.project_overview)
         super(DetailLevel, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.level
+        return '%s' % (self.level)
 
     # For paging-type functionality to get the next level for a project
     def get_next(self):
@@ -100,11 +95,46 @@ class DetailLevel(ProjectRelatedModel):
         return False
 
     def get_absolute_url(self):
-        return reverse('detaillevel_detail', kwargs={'level': self.level})
+        return reverse('detaillevel_detail', kwargs={'level': self.level, 'slug': self.project.slug})
+
+
+class DetailLevelRelatedModel(models.Model):
+    class Meta:
+        abstract = True
+
+    detail_level = models.ForeignKey(DetailLevel)
 
 
 @python_2_unicode_compatible
-class Feedback(ProjectRelatedModel):
+class Step(DetailLevelRelatedModel):
+    rank = models.PositiveSmallIntegerField()
+    title = models.CharField(max_length=100)
+    body = models.TextField()
+    quick_tip = models.TextField(blank=True)
+    image = ImageField(upload_to='images/projects/steps', blank=True)
+
+    class Meta:
+        ordering = ('rank',)
+
+    def __str__(self):
+        return self.title
+
+
+@python_2_unicode_compatible
+class Module(DetailLevelRelatedModel):
+    title = models.CharField(max_length=100)
+    rank = models.PositiveSmallIntegerField()
+    steps = models.ManyToManyField(Step)
+
+    class Meta:
+        ordering = ('rank',)
+
+    def __str__(self):
+        return self.title
+
+
+@python_2_unicode_compatible
+class Feedback(DetailLevelRelatedModel, ProjectRelatedModel):
     """ Feedback for a given project. """
     PROJECT_PROGRESS_CHOICES = Choices(
                                       ('planning and preparing',
@@ -133,8 +163,8 @@ class Feedback(ProjectRelatedModel):
     project_progress = models.CharField(choices=PROJECT_PROGRESS_CHOICES, max_length=50, blank=True)
     project_confidence = models.CharField(choices=PROJECT_CONFIDENCE_CHOICES, max_length=100, blank=True)
     project_recommendation = models.TextField(blank=True)
-    submission_date = models.DateTimeField(default=datetime.datetime.now,
-                                           editable=False)
+    submission_date = models.DateTimeField(default=datetime.datetime.now)
+    was_satisifed = models.BooleanField(help_text='Returns true if the user exits the process early.', default=False)
 
     class Meta:
         verbose_name_plural = 'Feedback'
