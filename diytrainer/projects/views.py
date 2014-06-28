@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from braces.views import SelectRelatedMixin
 
 from .models import Project, Feedback, DetailLevel
-from .forms import FeedbackForm
+from .forms import SuccessfulFeedbackForm, UnsuccessfulFeedbackForm
 
 
 class FeedbackSubmittedActionMixin(object):
@@ -14,7 +14,6 @@ class FeedbackSubmittedActionMixin(object):
 
 class FeedbackActionMixin(object):
     model = Feedback
-    form_class = FeedbackForm
 
     def dispatch(self, *args, **kwargs):
         self.project = get_object_or_404(Project, slug=kwargs['project_slug'])
@@ -25,7 +24,6 @@ class FeedbackActionMixin(object):
         instance = form.save(commit=False)
         instance.project = self.project
         instance.detail_level = self.detail_level
-        instance.was_satisfied = 1
         return super(FeedbackActionMixin, self).form_valid(form)
 
     def get_context_data(self, *args, **kwargs):
@@ -38,10 +36,12 @@ class FeedbackActionMixin(object):
 
 class FeedbackSatisfiedCreateView(FeedbackActionMixin, CreateView):
     success_url = 'thanks/'
+    form_class = SuccessfulFeedbackForm
 
 
 class FeedbackUnsatisfiedCreateView(FeedbackActionMixin, CreateView):
     success_url = 'sorry/'
+    form_class = UnsuccessfulFeedbackForm
 
 
 class SatisfiedFeedbackSubmittedTemplateView(FeedbackSubmittedActionMixin,

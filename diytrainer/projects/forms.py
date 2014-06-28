@@ -4,12 +4,14 @@ from django.utils.translation import ugettext_lazy as _
 from .models import Feedback
 
 
-class FeedbackForm(forms.ModelForm):
+class FeedbackFormMixin(object):
+
     class Meta:
         model = Feedback
         fields = ('project_progress',
                   'project_confidence',
-                  'project_recommendation')
+                  'project_recommendation',
+                  'was_satisifed')
         labels = {
             'project_progress': _('How far along are you in the process of '
                                   'completing this project?'),
@@ -21,5 +23,20 @@ class FeedbackForm(forms.ModelForm):
         }
         widgets = {
             'project_progress': forms.RadioSelect,
-            'project_confidence': forms.RadioSelect
+            'project_confidence': forms.RadioSelect,
+            'was_satisifed': forms.HiddenInput
         }
+
+
+class SuccessfulFeedbackForm(FeedbackFormMixin, forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(SuccessfulFeedbackForm, self).__init__(*args, **kwargs)
+        self.fields['was_satisifed'].initial = True
+
+
+class UnsuccessfulFeedbackForm(FeedbackFormMixin, forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(UnsuccessfulFeedbackForm, self).__init__(*args, **kwargs)
+        self.fields['was_satisifed'].initial = False

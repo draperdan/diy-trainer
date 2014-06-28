@@ -164,7 +164,7 @@ class Feedback(DetailLevelRelatedModel, ProjectRelatedModel):
     project_confidence = models.CharField(choices=PROJECT_CONFIDENCE_CHOICES, max_length=100, blank=True)
     project_recommendation = models.TextField(blank=True)
     submission_date = models.DateTimeField(default=datetime.datetime.now)
-    was_satisifed = models.BooleanField(help_text='Returns true if the user exits the process early.', default=False)
+    was_satisifed = models.BooleanField(default=False, help_text='Returns true if the user exits the process early.')
 
     class Meta:
         verbose_name_plural = 'Feedback'
