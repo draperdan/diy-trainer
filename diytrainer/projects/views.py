@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 
 from braces.views import SelectRelatedMixin
 
-from .models import Project, Feedback, DetailLevel, Step, Module
+from .models import Project, Feedback, DetailLevel
 from .forms import SuccessfulFeedbackForm, UnsuccessfulFeedbackForm
 
 

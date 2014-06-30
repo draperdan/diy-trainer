@@ -1,7 +1,8 @@
 {% extends 'base_projects.html' %}
+
 {% load crispy_forms_tags %}
 
-{% block title %}{{ block.super }}{% endblock title %}
+{% block title %}Feedback | {{ project.name }}{{ block.super }}{% endblock title %}
 
 {% block view %}feedback{% endblock view %}
 
@@ -14,11 +15,12 @@
     </hgroup>
 </header>
 
-
-<form method="post">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <input type="submit" value="Submit">
-</form>
+<div id="feedback_form">
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" value="Submit &rsaquo;">
+    </form>
+</div>
 
 {% endblock content %}

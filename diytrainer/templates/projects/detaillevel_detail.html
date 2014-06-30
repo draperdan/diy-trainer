@@ -95,7 +95,7 @@
         
         <ul class="detaillevel_options">
             <li class="satisfied_option"><a href="{% url 'project_satisfied_feedback' detaillevel.project.slug detaillevel.level %}">I'm good</a></li>
-            <li class="unsatisfied_option"><a href="{% if detaillevel.get_next >= 3 %}{% url 'detaillevel_detail' detaillevel.project.slug detaillevel.get_next %}{% else %}{% url 'project_unsatisfied_feedback' detaillevel.project.slug detaillevel.level %}{% endif %}">Give me more</a></li>
+            <li class="unsatisfied_option"><a href="{% if detaillevel.get_next >= 3 %}{% url 'detaillevel_detail' detaillevel.project.slug detaillevel.get_next %}{% else %}{% url 'project_unsatisfied_feedback' detaillevel.project.slug detaillevel.level %}{% endif %}">Give me more &rsaquo;</a></li>
         </ul>
         
     </div>
