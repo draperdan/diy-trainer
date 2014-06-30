@@ -236,7 +236,11 @@ body.projects {
   font-family: "Open Sans", sans-serif;
   margin: 0; }
   body.projects header {
-    padding-top: 25px; }
+    background-color: #56bf39;
+    background: url(../images/project_shape_bg.png) center 200px no-repeat, url(../images/guide_grid_bg.png) top no-repeat, -webkit-linear-gradient(#6abd45 0, black 75%) top no-repeat;
+    background: url(../images/project_shape_bg.png) center 200px no-repeat, url(../images/guide_grid_bg.png) top no-repeat, linear-gradient(to   , black 75%) top no-repeat;
+    padding-top: 25px;
+    padding-bottom: 50px; }
     body.projects header .container {
       max-width: 73.125em;
       margin-left: auto;
@@ -281,11 +285,13 @@ body.projects {
         font-size: 56px;
         font-weight: 700;
         text-transform: uppercase;
-        border-bottom: thick solid black; }
+        color: white;
+        border-bottom: thick solid white; }
       body.projects header .header_secondary #detail_level {
         margin-top: 15px;
         margin-bottom: 25px;
         font-size: 24px;
+        color: white;
         font-weight: 700;
         text-transform: uppercase; }
         body.projects header .header_secondary #detail_level .level_list {
@@ -306,6 +312,7 @@ body.projects {
       body.projects header .header_secondary h3 {
         font-size: 18px;
         font-weight: 600;
+        color: white;
         text-transform: uppercase;
         font-style: italic;
         margin-bottom: 25px; }
@@ -322,27 +329,147 @@ body.projects {
         line-height: 1.5em;
         letter-spacing: 2px;
         padding-left: 75px;
-        padding-right: 75px; }
+        padding-right: 75px;
+        color: black; }
       body.projects header .header_secondary h5 {
         font-size: 18px;
         text-transform: none;
-        font-weight: normal; }
-  body.projects .content_wrap .container {
-    max-width: 73.125em;
-    margin-left: auto;
-    margin-right: auto; }
-    body.projects .content_wrap .container:after {
-      content: "";
-      display: table;
-      clear: both; }
-  body.projects footer .container {
-    max-width: 73.125em;
-    margin-left: auto;
-    margin-right: auto; }
-    body.projects footer .container:after {
-      content: "";
-      display: table;
-      clear: both; }
+        font-weight: normal;
+        margin-top: 25px; }
+  body.projects .content_wrap {
+    background-color: white;
+    margin-top: 50px; }
+    body.projects .content_wrap .container {
+      max-width: 73.125em;
+      margin-left: auto;
+      margin-right: auto; }
+      body.projects .content_wrap .container:after {
+        content: "";
+        display: table;
+        clear: both; }
+    body.projects .content_wrap .project_lead_art {
+      display: block;
+      float: left;
+      display: block;
+      margin-right: 2.35765%;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 50px; }
+      body.projects .content_wrap .project_lead_art:after {
+        content: "";
+        display: table;
+        clear: both; }
+      body.projects .content_wrap .project_lead_art:last-child {
+        margin-right: 0; }
+    body.projects .content_wrap section#detaillevel_content .detaillevel_section {
+      float: left;
+      display: block;
+      margin-right: 2.35765%;
+      width: 57.35098%;
+      margin-left: 34.11922%;
+      margin-bottom: 50px; }
+      body.projects .content_wrap section#detaillevel_content .detaillevel_section:last-child {
+        margin-right: 0; }
+      body.projects .content_wrap section#detaillevel_content .detaillevel_section p {
+        font-size: 18px; }
+      body.projects .content_wrap section#detaillevel_content .detaillevel_section li {
+        list-style-type: disc;
+        margin-left: 20px; }
+      body.projects .content_wrap section#detaillevel_content .detaillevel_section h2.section_heading {
+        position: relative;
+        font-size: 36px;
+        font-weight: 700;
+        text-transform: uppercase;
+        border-bottom: thick solid black;
+        padding-bottom: 10px;
+        margin-bottom: 25px; }
+        body.projects .content_wrap section#detaillevel_content .detaillevel_section h2.section_heading:before {
+          content: "";
+          position: absolute;
+          width: 212px;
+          height: 100px;
+          left: -275px;
+          top: 10px; }
+      body.projects .content_wrap section#detaillevel_content .detaillevel_section h3 {
+        font-size: 24px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-top: 25px; }
+      body.projects .content_wrap section#detaillevel_content .detaillevel_section h4 {
+        font-size: 18px; }
+      body.projects .content_wrap section#detaillevel_content .detaillevel_section .quick_tip {
+        border-top: medium solid black;
+        margin-bottom: 50px;
+        margin-top: 50px; }
+        body.projects .content_wrap section#detaillevel_content .detaillevel_section .quick_tip h4 {
+          margin-left: 8.5298%;
+          background-color: black;
+          color: #56bf39;
+          display: inline;
+          text-transform: uppercase;
+          font-size: 24px;
+          padding: 1px 25px;
+          position: relative;
+          top: 1px;
+          left: 50px;
+          letter-spacing: 1px; }
+        body.projects .content_wrap section#detaillevel_content .detaillevel_section .quick_tip p {
+          margin-left: 17.05961%;
+          margin-top: 25px;
+          font-size: 18px;
+          font-style: italic; }
+      body.projects .content_wrap section#detaillevel_content .detaillevel_section#project_overview .section_heading:before {
+        background: url(../images/project_overview_icon.png) no-repeat 0px 0px; }
+      body.projects .content_wrap section#detaillevel_content .detaillevel_section#time_skill_complexity .section_heading:before {
+        background: url(../images/time_skill_complexity_icon.png) no-repeat 0px 0px; }
+      body.projects .content_wrap section#detaillevel_content .detaillevel_section#tools_materials .section_heading:before {
+        background: url(../images/tools_materials_icon.png) no-repeat 0px 0px; }
+      body.projects .content_wrap section#detaillevel_content .detaillevel_section#instructions .section_heading:before {
+        background: url(../images/steps_icon.png) no-repeat 0px 0px; }
+      body.projects .content_wrap section#detaillevel_content .detaillevel_section#instructions .step_list li.step {
+        list-style-type: none;
+        margin-left: 0; }
+        body.projects .content_wrap section#detaillevel_content .detaillevel_section#instructions .step_list li.step .step_rank {
+          float: left;
+          display: block;
+          margin-right: 2.35765%;
+          width: 6.17215%;
+          display: inline-block;
+          font-size: 24px;
+          font-weight: 700;
+          border-radius: 50%;
+          background-color: #56bf39;
+          width: 48px;
+          height: 48px;
+          padding-left: 16px;
+          padding-top: 6px; }
+          body.projects .content_wrap section#detaillevel_content .detaillevel_section#instructions .step_list li.step .step_rank:last-child {
+            margin-right: 0; }
+        body.projects .content_wrap section#detaillevel_content .detaillevel_section#instructions .step_list li.step .step_content {
+          float: left;
+          display: block;
+          margin-right: 2.35765%;
+          width: 74.41059%;
+          margin-left: 8.5298%;
+          margin-bottom: 25px; }
+          body.projects .content_wrap section#detaillevel_content .detaillevel_section#instructions .step_list li.step .step_content:last-child {
+            margin-right: 0; }
+          body.projects .content_wrap section#detaillevel_content .detaillevel_section#instructions .step_list li.step .step_content h3 {
+            margin-top: 0px;
+            text-transform: none;
+            font-size: 18px; }
+        body.projects .content_wrap section#detaillevel_content .detaillevel_section#instructions .step_list li.step .quick_tip {
+          clear: left; }
+  body.projects footer {
+    background-color: #56bf39; }
+    body.projects footer .container {
+      max-width: 73.125em;
+      margin-left: auto;
+      margin-right: auto; }
+      body.projects footer .container:after {
+        content: "";
+        display: table;
+        clear: both; }
 
 body.guides {
   font-family: "Open Sans", sans-serif;

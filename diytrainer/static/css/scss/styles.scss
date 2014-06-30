@@ -53,9 +53,10 @@ body.projects {
     margin: 0;
 
     header {
-        //background-color: $guide_medium_green;
-        //@include background(url(../images/project_shape_bg.png) center 300px no-repeat, url(../images/guide_grid_bg.png) top no-repeat, linear-gradient($guide_bg_green, black) top no-repeat);
+        background-color: $guide_medium_green;
+        @include background(url(../images/project_shape_bg.png) center 200px no-repeat, url(../images/guide_grid_bg.png) top no-repeat, linear-gradient($guide_bg_green 0, black 75%) top no-repeat);
         padding-top: 25px;
+        padding-bottom: 50px;
 
         .container {
             @include outer-container();
@@ -77,23 +78,20 @@ body.projects {
 
         .header_secondary {
             @include span-columns(6 of 12);
-            //@include shift(2);
 
             h2 {
-                //@include span-columns(1 of 12);
-                //@include shift(2);
                 font-size: 56px;
                 font-weight: 700;
                 text-transform: uppercase;
-                //color: white;
-                border-bottom: thick solid black;
+                color: white;
+                border-bottom: thick solid white;
             }
 
             #detail_level {
                 margin-top: 15px;
                 margin-bottom: 25px;
                 font-size: 24px;
-                //color: white;
+                color: white;
                 font-weight: 700;
                 text-transform: uppercase;
 
@@ -122,7 +120,7 @@ body.projects {
             h3 {
                 font-size: 18px;
                 font-weight: 600;
-                //color: white;
+                color: white;
                 text-transform: uppercase;
                 font-style: italic;
                 margin-bottom: 25px;
@@ -142,26 +140,188 @@ body.projects {
                 letter-spacing: 2px;
                 padding-left: 75px;
                 padding-right: 75px;
+                color: black;
             }
 
             h5 {
                 font-size: 18px;
                 text-transform: none;
                 font-weight: normal;
+                margin-top: 25px;
             }   
         }
     }
 
     .content_wrap {
-        //background-color: white;
+        background-color: white;
+        margin-top: 50px;
 
         .container {
             @include outer-container();
         }
+
+        .project_lead_art {
+            @include row();
+            @include span-columns(12);
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        section#detaillevel_content {
+
+            .detaillevel_section {
+                @include span-columns(7 of 12);
+                @include shift(4);
+                margin-bottom: 50px;
+
+                p {
+                    font-size: 18px;
+                }
+
+                li {
+                    list-style-type: disc;
+                    margin-left: 20px;
+                }
+
+                h2.section_heading {
+                    position: relative;
+                    font-size: 36px;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    border-bottom: thick solid black;
+                    padding-bottom: 10px;
+                    margin-bottom: 25px;
+
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        width: 212px;
+                        height: 100px;
+                        left: -275px;
+                        top: 10px;
+                    }
+                }
+
+                h3 {
+                    font-size: 24px;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    margin-top: 25px;
+                }
+
+                h4 {
+                    font-size: 18px;
+                }
+
+                .quick_tip {
+                    border-top: medium solid black;
+                    margin-bottom: 50px;
+                    margin-top: 50px;
+
+                    h4 {
+                        @include shift(1);
+                        background-color: black;
+                        color: $guide_medium_green;
+                        display: inline;
+                        text-transform: uppercase;
+                        font-size: 24px;
+                        padding: 1px 25px;
+                        position: relative;
+                        top: 1px;
+                        left: 50px;
+                        letter-spacing: 1px;
+                    }
+
+                    p {
+                        @include shift(2);
+                        margin-top: 25px;
+                        font-size: 18px;
+                        font-style: italic;
+                    }
+                }
+
+                &#project_overview {
+
+                    .section_heading {
+                        
+                        &:before {
+                            background: url(../images/project_overview_icon.png) no-repeat 0px 0px;
+                        }
+                    }
+                }
+
+                &#time_skill_complexity {
+
+                    .section_heading {
+                        
+                        &:before {
+                            background: url(../images/time_skill_complexity_icon.png) no-repeat 0px 0px;
+                        }
+                    }
+                }
+
+                &#tools_materials {
+
+                    .section_heading {
+                        
+                        &:before {
+                            background: url(../images/tools_materials_icon.png) no-repeat 0px 0px;
+                        }
+                    }
+                }
+
+                &#instructions {
+
+                    .section_heading {
+                        
+                        &:before {
+                            background: url(../images/steps_icon.png) no-repeat 0px 0px;
+                        }
+                    }
+
+                    .step_list {
+
+                        li.step {
+                            list-style-type: none;
+                            margin-left: 0;
+
+                            .step_rank {
+                                @include span-columns(1 of 12);
+                                display: inline-block;
+                                font-size: 24px;
+                                font-weight: 700;
+                                border-radius: 50%;
+                                background-color: $guide_medium_green;
+                                width: 48px;
+                                height: 48px;
+                                padding-left: 16px;
+                                padding-top: 6px;
+                            }
+
+                            .step_content {
+                                @include span-columns(9 of 12);
+                                @include shift(1);
+                                margin-bottom: 25px;
+
+                                h3 {
+                                    margin-top: 0px;
+                                    text-transform: none;
+                                    font-size: 18px;
+                                }
+                            }
+
+                            .quick_tip {
+                                clear: left;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     footer {
-        //background-color: $guide_medium_green;
+        background-color: $guide_medium_green;
 
         .container {
             @include outer-container();

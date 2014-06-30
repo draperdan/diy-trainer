@@ -34,40 +34,54 @@
 <div class="content_wrap">
     <div class="container">
         <div class="project_lead_art">
-            <img src="{{ MEDIA_URL }}{{ detaillevel.project.lead_art }}" alt="{{ detaillevel.project.name }}">
+            <!--<img src="{{ MEDIA_URL }}{{ detaillevel.project.lead_art }}" alt="{{ detaillevel.project.name }}">-->
+            <img src="http://placehold.it/940x478">
         </div>
 
         <section id="detaillevel_content">
-            <h2 class="section_heading">Project Overview</h2>
-            {{ detaillevel.project_overview_html|safe }}
 
-            <h2 class="section_heading">Time, Skill &amp; Complexity</h2>
-            {{ detaillevel.time_skill_and_complexity_html|safe }}
+            <div id="project_overview" class="detaillevel_section">
+                <h2 class="section_heading">Project Overview</h2>
+                {{ detaillevel.project_overview_html|safe }}
+            </div>
+
+            <div id="time_skill_complexity" class="detaillevel_section">
+                <h2 class="section_heading">Time, Skill &amp; Complexity</h2>
+                {{ detaillevel.time_skill_and_complexity_html|safe }}
+            </div>
 
             {% if detaillevel.terminology %}
-            <h2 class="section_heading">Terminology</h2>
-            {{ detaillevel.terminology_html|safe }}
+            <div id="terminology" class="detaillevel_section">
+                <h2 class="section_heading">Terminology</h2>
+                {{ detaillevel.terminology_html|safe }}
+            </div>
             {% endif %}
 
-            <h2 class="section_heading">Tools &amp; Complexity</h2>
-            {{ detaillevel.tools_and_materials_html|safe }}
+            <div id="tools_materials" class="detaillevel_section">
+                <h2 class="section_heading">Tools &amp; Materials</h2>
+                {{ detaillevel.tools_and_materials_html|safe }}
+            </div>
 
-            <h2 class="section_heading">Step-by-Step Instructions</h2>
-            <ol class="step_list">
-            {% for step in detaillevel.step_set.all %}
-                <li class="step">
-                    <span class="step_rank">{{ step.rank }}</span>
-                    <h3 class="step_title">{{ step.title }}</h3>
-                    <p>{{ step.body }}</p>
-                    {% if step.quick_tip %}
-                    <div class="quicktip">
-                        <h4>Quick Tip</h4>
-                        <p>{{ step.quick_tip }}</p>
-                    </div>
-                    {% endif %}
-                </li>
-            {% endfor %}
-            </ol>
+            <div id="instructions" class="detaillevel_section">
+                <h2 class="section_heading">Step-by-Step Instructions</h2>
+                <ol class="step_list">
+                {% for step in detaillevel.step_set.all %}
+                    <li class="step">
+                        <span class="step_rank">{{ step.rank }}</span>
+                        <div class="step_content">
+                            <h3 class="step_title">{{ step.title }}</h3>
+                            <p>{{ step.body }}</p>
+                        </div>
+                        {% if step.quick_tip %}
+                        <div class="quick_tip">
+                            <h4>Quick Tip</h4>
+                            <p>{{ step.quick_tip }}</p>
+                        </div>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+                </ol>
+            </div>
         </section>
     </div>
 </div>
