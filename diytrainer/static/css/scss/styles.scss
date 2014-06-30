@@ -6,7 +6,7 @@
 
 // Global overrides
 
-//$visual-grid: true;
+$visual-grid: true;
 $visual-grid-color: yellow;
 
 // Colors
@@ -46,8 +46,127 @@ $open-sans: 'Open Sans', sans-serif;
 }
 
 // Global
-.container {
-    @include outer-container;
+
+
+body.projects {
+    font-family: $open-sans;
+    margin: 0;
+
+    header {
+        //background-color: $guide_medium_green;
+        //@include background(url(../images/project_shape_bg.png) center 300px no-repeat, url(../images/guide_grid_bg.png) top no-repeat, linear-gradient($guide_bg_green, black) top no-repeat);
+        padding-top: 25px;
+
+        .container {
+            @include outer-container();
+        }
+
+        hgroup {
+            @include span-columns(12);
+        }
+
+        h1 {
+            @include span-columns(1 of 12);
+            @include shift(1);
+            @include hide-text;
+            width: 293px;
+            height: 342px;
+            background-image: url(../images/diy_trainer_logo_lg.png);
+            background-size: cover;
+        }
+
+        .header_secondary {
+            @include span-columns(6 of 12);
+            //@include shift(2);
+
+            h2 {
+                //@include span-columns(1 of 12);
+                //@include shift(2);
+                font-size: 56px;
+                font-weight: 700;
+                text-transform: uppercase;
+                //color: white;
+                border-bottom: thick solid black;
+            }
+
+            #detail_level {
+                margin-top: 15px;
+                margin-bottom: 25px;
+                font-size: 24px;
+                //color: white;
+                font-weight: 700;
+                text-transform: uppercase;
+
+                .level_list {
+                    display: inline;
+
+                    .level {
+                        display: inline;
+                        margin-right: 25px;
+
+                        &.current_level {
+                            display: inline-block;
+                            background: white;
+                            color: $guide_medium_green;
+                            border-radius: 50%;
+                            width: 48px;
+                            height: 48px;
+                            padding-left: 16px;
+                            padding-top: 6px;
+                            margin-right: 9px;
+                        }
+                    }
+                }
+            }
+
+            h3 {
+                font-size: 18px;
+                font-weight: 600;
+                //color: white;
+                text-transform: uppercase;
+                font-style: italic;
+                margin-bottom: 25px;
+            }
+
+            h4 {
+                font-size: 24px;
+                font-weight: 800;
+                text-transform: uppercase;
+                background-image: url(../images/project_headline_bg.png);
+                background-size: cover;
+                width: 617px;
+                height: 129px;
+                z-index: 1;
+                padding-top: 10px;
+                line-height: 1.5em;
+                letter-spacing: 2px;
+                padding-left: 75px;
+                padding-right: 75px;
+            }
+
+            h5 {
+                font-size: 18px;
+                text-transform: none;
+                font-weight: normal;
+            }   
+        }
+    }
+
+    .content_wrap {
+        //background-color: white;
+
+        .container {
+            @include outer-container();
+        }
+    }
+
+    footer {
+        //background-color: $guide_medium_green;
+
+        .container {
+            @include outer-container();
+        }
+    }
 }
 
 
@@ -56,6 +175,10 @@ body.guides {
     font-family: $open-sans;
     background-color: $guide_medium_green;
     @include background(url(../images/guide_shape_bg.png) center 300px no-repeat, url(../images/guide_grid_bg.png) top no-repeat, linear-gradient($guide_bg_green, black) top no-repeat);
+
+    .container {
+        @include outer-container();
+    }
 
     header {
         @include row();

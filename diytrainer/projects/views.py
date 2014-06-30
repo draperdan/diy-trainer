@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 
 from braces.views import SelectRelatedMixin
 
-from .models import Project, Feedback, DetailLevel
+from .models import Project, Feedback, DetailLevel, Step, Module
 from .forms import SuccessfulFeedbackForm, UnsuccessfulFeedbackForm
 
 
@@ -67,7 +67,7 @@ class DetailLevelView(SelectRelatedMixin, DetailView):
     slug_field = 'level'
     slug_url_kwarg = 'level'
     model = DetailLevel
-    select_related = [u"project"]
+    select_related = [u"project", u"step", u"module"]
 
     def get_queryset(self):
         self.project = get_object_or_404(Project, slug__iexact=self.kwargs['slug'])
