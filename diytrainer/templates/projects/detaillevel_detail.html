@@ -5,7 +5,6 @@
 {% block view %}detaillevel{% endblock view %}
 
 {% block content %}
-{{ detaillevel.get_level_display }}
 <header>
     <hgroup>
         <h1>DIY Trainer</h1>
@@ -28,15 +27,38 @@
 </div>
 
 <div class="project_overview">
-    {{ project.description_html|safe }}
+    <h2 class="section_heading">Project Overview</h2>
+    {{ detaillevel.project_overview_html|safe }}
 </div>
 
 <section id="detaillevel_content">
+<h2 class="section_heading">Time, Skill &amp; Complexity</h2>
 {{ detaillevel.time_skill_and_complexity_html|safe }}
 
+{% if detaillevel.terminology %}
+<h2 class="section_heading">Terminology</h2>
 {{ detaillevel.terminology_html|safe }}
+{% endif %}
 
+<h2 class="section_heading">Tools &amp; Complexity</h2>
 {{ detaillevel.tools_and_materials_html|safe }}
+
+<h2 class="section_heading">Step-by-Step Instructions</h2>
+<ol class="step_list">
+{% for step in detaillevel.step_set.all %}
+    <li class="step">
+        <span class="step_rank">{{ step.rank }}</span>
+        <h3 class="step_title">{{ step.title }}</h3>
+        <p>{{ step.body }}</p>
+        {% if step.quick_tip %}
+        <div class="quicktip">
+            <h4>Quick Tip</h4>
+            <p>{{ step.quick_tip }}</p>
+        </div>
+        {% endif %}
+    </li>
+{% endfor %}
+</ul>
 
 {% endblock content %}
 
