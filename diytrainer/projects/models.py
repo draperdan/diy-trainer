@@ -31,8 +31,8 @@ def markup(text):
 @python_2_unicode_compatible
 class Project(models.Model):
     """ A project for the granularity test. """
-    name = models.CharField(max_length=250)
-    slug = models.SlugField()
+    name = models.CharField(max_length=250, help_text='Max 250 characters')
+    slug = models.SlugField(help_text='Will populate from the name field')
     lead_art = ImageField(upload_to='images/projects/project')
 
     class Meta:
@@ -41,6 +41,12 @@ class Project(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse(
+            'detaillevel_detail',
+            kwargs={'slug': self.slug, 'level': 1}
+            )
 
 
 class ProjectRelatedModel(models.Model):
@@ -53,31 +59,42 @@ class ProjectRelatedModel(models.Model):
 @python_2_unicode_compatible
 class DetailLevel(ProjectRelatedModel):
     """ A detail level for a given project. """
-    LEVEL_CHOICES = Choices((1, 'low', _('1')), (2, 'medium', _('2')), (3, 'high', _('3')))
+    LEVEL_CHOICES = Choices((1, 'low', _('1')),
+                            (2, 'medium', _('2')),
+                            (3, 'high', _('3')))
     level = models.IntegerField(choices=LEVEL_CHOICES)
-    descriptor = models.CharField(max_length=250)
+    descriptor = models.CharField(max_length=250,
+                                  help_text='Max 250 characters')
     introduction = models.TextField()
-    project_overview = models.TextField()
+    project_overview = models.TextField(
+        help_text='Use Markdown for formatting')
     project_overview_html = models.TextField(editable=False, blank=True)
-    time_skill_and_complexity = models.TextField(blank=True)
-    time_skill_and_complexity_html = models.TextField(editable=False, blank=True)
-    terminology = models.TextField(blank=True)
+    time_skill_and_complexity = models.TextField(
+        blank=True, help_text='Use Markdown for formatting')
+    time_skill_and_complexity_html = models.TextField(
+        editable=False, blank=True)
+    terminology = models.TextField(blank=True,
+                                   help_text='Use Markdown for formatting')
     terminology_html = models.TextField(editable=False, blank=True)
-    tools_and_materials = models.TextField(blank=True)
+    tools_and_materials = models.TextField(
+        blank=True, help_text='Use Markdown for formatting')
     tools_and_materials_html = models.TextField(editable=False, blank=True)
 
     class Meta:
-        verbose_name_plural = 'Detail level'
+        verbose_name_plural = 'Detail levels'
         ordering = ('level',)
 
     def save(self, *args, **kwargs):
-        self.time_skill_and_complexity_html = markup(self.time_skill_and_complexity)
+        """ Convert Markdown to HTML on save """
+        self.time_skill_and_complexity_html = markup(
+            self.time_skill_and_complexity)
         self.terminology_html = markup(self.terminology)
         self.tools_and_materials_html = markup(self.tools_and_materials)
         self.project_overview_html = markup(self.project_overview)
         super(DetailLevel, self).save(*args, **kwargs)
 
     def __str__(self):
+        # Return the string for level instead of int
         return '%s' % (self.level)
 
     # For paging-type functionality to get the next level for a project
@@ -95,7 +112,10 @@ class DetailLevel(ProjectRelatedModel):
         return False
 
     def get_absolute_url(self):
-        return reverse('detaillevel_detail', kwargs={'level': self.level, 'slug': self.project.slug})
+        return reverse(
+            'detaillevel_detail',
+            kwargs={'level': self.level, 'slug': self.project.slug}
+            )
 
 
 class DetailLevelRelatedModel(models.Model):
@@ -107,10 +127,11 @@ class DetailLevelRelatedModel(models.Model):
 
 @python_2_unicode_compatible
 class Step(DetailLevelRelatedModel):
-    rank = models.PositiveSmallIntegerField()
-    title = models.CharField(max_length=100)
-    body = models.TextField()
-    quick_tip = models.TextField(blank=True)
+    rank = models.PositiveSmallIntegerField(
+        help_text='Used for ordering steps')
+    title = models.CharField(max_length=100, help_text='Max 100 characters')
+    body = models.TextField(help_text='No HTML allowed')
+    quick_tip = models.TextField(blank=True, help_text='No HTML allowed')
     image = ImageField(upload_to='images/projects/steps', blank=True)
 
     class Meta:
@@ -122,8 +143,9 @@ class Step(DetailLevelRelatedModel):
 
 @python_2_unicode_compatible
 class Module(DetailLevelRelatedModel):
-    title = models.CharField(max_length=100)
-    rank = models.PositiveSmallIntegerField()
+    title = models.CharField(max_length=100, help_text='Max 100 characters')
+    rank = models.PositiveSmallIntegerField(
+        help_text='Used for ordering modules')
     steps = models.ManyToManyField(Step)
 
     class Meta:
@@ -160,11 +182,15 @@ class Feedback(DetailLevelRelatedModel, ProjectRelatedModel):
                                          _('Confident I can complete this project on my own.')),
                                         ('a home services professional or craftsman. i make a living by working on/repairing homes.',
                                          _('A home services professional or craftsman. I make a living by working on/repairing homes.')))
-    project_progress = models.CharField(choices=PROJECT_PROGRESS_CHOICES, max_length=50, blank=True)
-    project_confidence = models.CharField(choices=PROJECT_CONFIDENCE_CHOICES, max_length=100, blank=True)
+    project_progress = models.CharField(
+        choices=PROJECT_PROGRESS_CHOICES, max_length=50, blank=True)
+    project_confidence = models.CharField(
+        choices=PROJECT_CONFIDENCE_CHOICES, max_length=100, blank=True)
     project_recommendation = models.TextField(blank=True)
     submission_date = models.DateTimeField(default=datetime.datetime.now)
-    was_satisifed = models.BooleanField(default=False, help_text='Returns true if the user exits the process early.')
+    was_satisifed = models.BooleanField(
+        default=False,
+        help_text='Returns true if the user exits the process early.')
 
     class Meta:
         verbose_name_plural = 'Feedback'

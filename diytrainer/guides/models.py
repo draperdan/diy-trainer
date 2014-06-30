@@ -1,11 +1,13 @@
 import datetime
 from markdown import markdown
+from model_utils import Choices
 from typogrify.filters import typogrify
 from sorl.thumbnail import ImageField
 
 from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 from django.core.urlresolvers import reverse
+from django.utils.translation import ugettext_lazy as _
 
 
 def markup(text):
@@ -29,11 +31,15 @@ def markup(text):
 @python_2_unicode_compatible
 class Guide(models.Model):
     """ A guide for a given splash page """
+    VERSION_CHOICES = Choices((1, 'low', _('1')),
+                             (2, 'medium', _('2')),
+                             (3, 'high', _('3')))
     name = models.CharField(max_length=100,
-                            help_text='Limited to 100 characters.')
-    version = models.PositiveSmallIntegerField()
+                            help_text='Max 100 characters.')
+    version = models.PositiveSmallIntegerField(
+        choices=VERSION_CHOICES, help_text='Version of splash page')
     headline = models.CharField(max_length=250,
-                                help_text='Limited to 250 characters.')
+                                help_text='Max 250 characters.')
     description_image = ImageField(blank=True,
                                    upload_to='images/guides/description'
                                    )
@@ -47,7 +53,7 @@ class Guide(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('guide_detail', kwargs={'version': self.version})
+        return reverse('email_signup', kwargs={'guide_version': self.version})
 
 
 class GuideRelatedModel(models.Model):
@@ -60,9 +66,13 @@ class GuideRelatedModel(models.Model):
 @python_2_unicode_compatible
 class Descriptor(GuideRelatedModel):
     """ A descriptor for a guide. """
-    rank = models.PositiveSmallIntegerField(help_text='An integer from 1 to 3')
-    title = models.CharField(max_length=100)
-    body = models.TextField()
+    RANK_CHOICES = Choices((1, 'low', _('1')),
+                           (2, 'medium', _('2')),
+                           (3, 'high', _('3')))
+    rank = models.PositiveSmallIntegerField(
+        choices=RANK_CHOICES, help_text='An integer from 1 to 3')
+    title = models.CharField(max_length=100, help_text='Max 100 characters')
+    body = models.TextField(help_text='No HTML allowed')
     image = ImageField(blank=True, upload_to='images/guides/descriptors')
 
     class Meta:
@@ -94,6 +104,7 @@ class Feedback(GuideRelatedModel):
 class EmailSignUp(GuideRelatedModel):
     """ Emails submitted for a given guide """
     email = models.EmailField(blank=True)
+    submission_date = models.DateTimeField(default=datetime.datetime.now)
 
     class Meta:
         verbose_name_plural = 'Email sign ups'

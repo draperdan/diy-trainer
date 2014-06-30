@@ -10,17 +10,20 @@ class DescriptorInline(AdminImageMixin, admin.StackedInline):
 
 
 class GuideAdmin(AdminImageMixin, admin.ModelAdmin):
+    list_display = ('name', 'version')
     inlines = [
         DescriptorInline
     ]
 
 
 class FeedbackAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('guide', 'submission_date', 'skill_ranking')
+    list_filter = ('submission_date',)
 
 
 class EmailSignUpAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('email', 'guide', 'submission_date')
+    list_filter = ('submission_date',)
 
 admin.site.register(Guide, GuideAdmin)
 admin.site.register(Feedback, FeedbackAdmin)

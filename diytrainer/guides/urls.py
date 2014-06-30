@@ -17,6 +17,6 @@ urlpatterns = patterns('',
     ),
     url(
         regex=r'^(?P<guide_version>\d+)/feedback/thanks/$',
-        view=TemplateView.as_view(template_name="guides/feedback_submitted.html"),
+        view=TemplateView.as_view(template_name='guides/feedback_submitted.html')
     )
 )
