@@ -7,7 +7,7 @@
 // Global overrides
 
 //$visual-grid: true;
-$visual-grid-color: yellow;
+//$visual-grid-color: yellow;
 
 // Colors
 $guide_bg_green: rgba(106,189,69,1);
@@ -27,24 +27,6 @@ $open-sans: 'Open Sans', sans-serif;
 
 @import 'neat/neat';
 
-// Mixins
-/* Calculate fluid ratio based on two dimensions (width/height) */
-@mixin fluid-ratio($large-size, $small-size) {
-  $width-large: nth($large-size, 1);
-  $width-small: nth($small-size, 1);
-  $height-large: nth($large-size, 2);
-  $height-small: nth($small-size, 2);
-  $slope: ($height-large - $height-small) / ($width-large - $width-small);
-  $height: $height-small - $width-small * $slope;
-
-  padding-top: $slope * 100%;
-  height: $height;
-
-  background-size: cover;
-  -moz-background-size: cover;  /* Firefox 3.6 */
-  background-position: center;  /* Internet Explorer 7/8 */
-}
-
 // Global
 
 
@@ -53,10 +35,14 @@ body.projects {
     margin: 0;
 
     header {
+        @include background(url(../images/guide_grid_bg.png) top no-repeat, linear-gradient($guide_bg_green, black) top no-repeat);
         background-color: $guide_medium_green;
-        @include background(url(../images/project_shape_bg.png) center 200px no-repeat, url(../images/guide_grid_bg.png) top no-repeat, linear-gradient($guide_bg_green 0, black 75%) top no-repeat);
         padding-top: 25px;
-        padding-bottom: 50px;
+
+        @include media($medium-screen) {
+            @include background(url(../images/project_shape_bg.png) center 200px no-repeat, url(../images/guide_grid_bg.png) top no-repeat, linear-gradient($guide_bg_green 0, black 75%) top no-repeat);
+            padding-bottom: 50px;
+        }
 
         .container {
             @include outer-container();
@@ -67,25 +53,45 @@ body.projects {
         }
 
         h1 {
-            @include span-columns(1 of 12);
-            @include shift(1);
+            
             @include hide-text;
-            width: 293px;
             height: 342px;
             background-image: url(../images/diy_trainer_logo_lg.png);
-            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
             position: relative;
+
+            @include media($medium-screen) {
+                @include span-columns(1 of 12);
+                @include shift(1);
+                width: 293px;
+            }
         }
 
         .header_secondary {
-            @include span-columns(6 of 12);
+            margin-top: 25px;
+
+            @include media($medium-screen) {
+                @include span-columns(6 of 12);
+                margin-top: 0px;
+            }
 
             h2 {
-                font-size: 56px;
+                font-size: 40px;
                 font-weight: 700;
                 text-transform: uppercase;
                 color: white;
-                border-bottom: thick solid white;
+                text-decoration: underline;
+                text-align: center;
+                margin-bottom: 25px;
+
+                @include media($medium-screen) {
+                    font-size: 56px;
+                    text-align: left;
+                    border-bottom: thick solid white;
+                    text-decoration: none;
+                    margin-bottom: 0px;
+                }
             }
 
             #detail_level {
@@ -95,9 +101,20 @@ body.projects {
                 color: white;
                 font-weight: 700;
                 text-transform: uppercase;
+                text-align: center;
+
+                @include media($medium-screen) {
+                    text-align: left;
+                }
 
                 .level_list {
-                    display: inline;
+                    display: block;
+                    margin-bottom: 15px;
+                    
+                    @include media($medium-screen) {
+                        display: inline;
+                        margin-bottom: 0px;
+                    }
 
                     .level {
                         display: inline;
@@ -110,9 +127,14 @@ body.projects {
                             border-radius: 50%;
                             width: 48px;
                             height: 48px;
-                            padding-left: 16px;
+                            padding-left: 0px;
                             padding-top: 6px;
                             margin-right: 9px;
+
+                            @include media($medium-screen) {
+                                padding-left: 16px;
+                                margin-bottom: 0px;
+                            }
                         }
                     }
                 }
@@ -128,20 +150,25 @@ body.projects {
             }
 
             h4 {
-                font-size: 24px;
+                background-color: white;
+                font-size: 20px;
                 font-weight: 800;
                 text-transform: uppercase;
-                background-image: url(../images/project_headline_bg.png);
-                background-size: cover;
-                width: 617px;
-                height: 129px;
                 z-index: 1;
-                padding-top: 10px;
                 line-height: 1.5em;
                 letter-spacing: 2px;
-                padding-left: 75px;
-                padding-right: 75px;
+                @include padding(15px);
                 color: black;
+
+                @include media($medium-screen) {
+                    background-image: url(../images/project_headline_bg.png);
+                    background-size: cover;
+                    background-color: transparent;
+                    width: 617px;
+                    height: 129px;
+                    font-size: 24px;
+                    @include padding(10px 75px 0px 75px);
+                }
             }
 
             h5 {
@@ -149,6 +176,12 @@ body.projects {
                 text-transform: none;
                 font-weight: normal;
                 margin-top: 25px;
+                @include padding(15px);
+                line-height: 1.5em;
+
+                @include media($medium-screen) {
+                    @include padding(0px);
+                }
             }   
         }
     }
@@ -171,12 +204,26 @@ body.projects {
         section#detaillevel_content {
 
             .detaillevel_section {
-                @include span-columns(7 of 12);
-                @include shift(4);
-                margin-bottom: 50px;
+                margin-bottom: 25px;
+                @include padding(15px);
+
+                @include media($medium-screen) {
+                    @include span-columns(7 of 12);
+                    @include shift(4);
+                    @include padding(0px);
+                    margin-bottom: 50px;
+                }
 
                 p {
                     font-size: 18px;
+                }
+
+                ul {
+                    margin-bottom: 15px;
+
+                    @include media($medium-screen) {
+                        margin-bottom: 0px;
+                    }
                 }
 
                 li {
@@ -192,14 +239,22 @@ body.projects {
                     border-bottom: thick solid black;
                     padding-bottom: 10px;
                     margin-bottom: 25px;
+                    text-align: center;
+
+                    @include media($medium-screen) {
+                        text-align: left;
+                    }
 
                     &:before {
-                        content: "";
-                        position: absolute;
-                        width: 212px;
-                        height: 100px;
-                        left: -275px;
-                        top: 10px;
+
+                        @include media($medium-screen) {
+                            content: "";
+                            position: absolute;
+                            width: 212px;
+                            height: 100px;
+                            left: -275px;
+                            top: 10px;
+                        }
                     }
                 }
 
@@ -220,7 +275,6 @@ body.projects {
                     margin-top: 50px;
 
                     h4 {
-                        @include shift(1);
                         background-color: black;
                         color: $guide_medium_green;
                         display: inline;
@@ -231,13 +285,20 @@ body.projects {
                         top: 1px;
                         left: 50px;
                         letter-spacing: 1px;
+
+                        @include media($medium-screen) {
+                            @include shift(1);
+                        }
                     }
 
                     p {
-                        @include shift(2);
                         margin-top: 25px;
                         font-size: 18px;
                         font-style: italic;
+
+                        @include media($medium-screen) {
+                            @include shift(2);
+                        }
                     }
                 }
 
@@ -293,13 +354,17 @@ body.projects {
                             margin-bottom: 25px;
 
                             span.module_count {
+                                display: block;
                                 width: 180px;
                                 font-size: 26px;
-                                position: absolute;
-                                left: -245px;
-                                top: 0px;
                                 background: url(../images/module_header_bg.png) no-repeat 0px 3px;
                                 padding-left: 10px;
+
+                                @include media($medium-screen) {
+                                    position: absolute;
+                                    left: -245px;
+                                    top: 0px;
+                                }
                             }
                         }
                     }
@@ -318,7 +383,7 @@ body.projects {
                             margin-left: 0;
 
                             .step_rank {
-                                @include span-columns(1 of 12);
+                                @include shift(4);
                                 display: inline-block;
                                 font-size: 24px;
                                 font-weight: 700;
@@ -328,22 +393,39 @@ body.projects {
                                 height: 48px;
                                 padding-left: 16px;
                                 padding-top: 6px;
+                                float: none;
+                                margin-bottom: 25px;
+
+                                @include media($medium-screen) {
+                                    @include span-columns(1 of 12);
+                                    @include shift(0);
+                                    width: 48px;
+                                    margin-bottom: 0px;
+                                }
                             }
 
                             .step_content {
-                                @include span-columns(9 of 12);
-                                @include shift(1);
+                                
                                 margin-bottom: 25px;
+
+                                @include media($medium-screen) {
+                                    @include span-columns(9 of 12);
+                                    @include shift(1);
+                                }
 
                                 .step_image {
                                     position: relative;
 
                                     img {
-                                        position: absolute;
-                                        left: -420px;
-                                        top: 20px;
+                                        
                                         padding: 5px;
                                         border: 1px solid black;
+
+                                        @include media($medium-screen) {
+                                            position: absolute;
+                                            left: -420px;
+                                            top: 20px;
+                                        }
                                     }
                                 }
 
@@ -375,33 +457,59 @@ body.projects {
         }
 
         h2 {
-            @include span-columns(5 of 12);
-            @include shift(1);
-            background: url(../images/get_more_detail_bg.png) no-repeat center center;
-            height: 80px;
             color: black;
             text-transform: uppercase;
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 700;
-            padding-top: 20px;
-            padding-left: 75px;
+            @include padding(15px);
+            background-color: white;
+
+            @include media($medium-screen) {
+                @include span-columns(5 of 12);
+                @include shift(1); 
+                background: url(../images/get_more_detail_bg.png) no-repeat center center;
+                background-color: transparent;
+                padding-top: 20px;
+                padding-left: 75px;
+                font-size: 36px;
+                height: 80px;
+            }
         }
 
         p {
-            @include span-columns(5 of 12);
-            font-size: 24px;
+            font-size: 20px;
             color: white;
             line-height: 1.2em;
+            margin-top: 15px;
+            @include padding(15px);
+
+            @include media($medium-screen) {
+                @include span-columns(5 of 12);
+                font-size: 24px;
+                margin-top: 0px;
+                @include padding(0px);
+            }
         }
 
         .detaillevel_options {
-            @include row($direction: RTL);
-            @include span-columns(6 of 12);
-            @include clearfix;
             margin-top: 25px;
 
+            @include media($medium-screen) {
+                @include row($direction: RTL);
+                @include span-columns(6 of 12);
+                @include clearfix;
+            }
+
             li {
-                display: inline;
+                display: block;
+                text-align: center;
+                margin-top: 25px;
+
+                @include media($medium-screen) {
+                    display: inline;
+                    margin-top: 0px;
+                    text-align: left;
+                }
 
                 a {
                     background-color: $guide_dark_gray;
@@ -427,10 +535,20 @@ body.projects {
 body.guides {
     font-family: $open-sans;
     background-color: $guide_medium_green;
-    @include background(url(../images/guide_shape_bg.png) center 300px no-repeat, url(../images/guide_grid_bg.png) top no-repeat, linear-gradient($guide_bg_green, black) top no-repeat);
+    @include background(linear-gradient($guide_bg_green, black) top no-repeat);
+    
+
+    @include media($medium-screen) {
+        @include background(url(../images/guide_shape_bg.png) center 300px no-repeat, url(../images/guide_grid_bg.png) top no-repeat, linear-gradient($guide_bg_green, black) top no-repeat);
+    }
 
     .container {
         @include outer-container();
+        //@include pad(0px 15px 0px 15px);
+
+        @include media($medium-screen) {
+            padding: 0;
+        }
     }
 
     header {
@@ -443,44 +561,62 @@ body.guides {
         }
 
         h1 {
-            @include span-columns(1 of 12);
-            @include shift(2);
+            @include span-columns(6 of 12);
+            @include shift(3);
             @include hide-text;
-            width: 132px;
-            height: 154px;
+            height: 182px;
             background-image: url(../images/diy_trainer_logo.png);
-            background-size: cover;
+            //background-size: cover;
+            background-position: center center;
             position: relative;
             z-index: 2;
-            //left: 60px;
             bottom: 10px;
+            background-repeat: no-repeat;
+
+            @include media($medium-screen) {
+                @include shift(2);
+                width: 132px;
+                height: 154px;
+            }
         }
 
         h2 {
-            @include span-columns(8 of 12);
-            @include shift(-2);
+            @include span-columns(12 of 12);
             font-size: 16px;
             font-weight: 700;
             text-transform: uppercase;
-            background-image: url(../images/guide_headline_bg.png);
-            background-size: cover;
-            //width: 777px;
-            height: 112px;
             position: relative;
             z-index: 1;
-            padding-top: 25px;
-            padding-left: 175px;
-            padding-right: 75px;
+            @include pad(15px 15px 15px 15px);
             line-height: 1.5em;
             letter-spacing: 2px;
-            left: 40px;
+            background-color: white;
+            
+
+            @include media($medium-screen) {
+                background-image: url(../images/guide_headline_bg.png);
+                background-color: transparent;
+                @include span-columns(8 of 12);
+                @include shift(-2);
+                @include pad(25px 75px 0px 175px);
+                height: 112px;
+                background-size: cover;
+                left: 40px;
+            }
         }
     }
 
     #guide_rendering {
         @include row();
-        @include span-columns(12);
-        text-align: center;    
+        @include pad(0px 15px 0px 15px);
+        margin-top: 50px;
+        text-align: center;
+
+        @include media($medium-screen) {
+            @include span-columns(12);
+            padding: 0px;
+            margin-top: 0px;
+        }    
     }
 
     // Email sign-up view
@@ -488,15 +624,22 @@ body.guides {
 
         #email_signup_form {
             @include row();
-            @include span-columns(8);
-            @include shift(2);
             padding: 10px 25px;
-            margin-top: 10px;
+            margin-top: 25px;
             background-color: $guide_bright_green;
 
+            @include media($medium-screen) {
+                @include span-columns(8);
+                @include shift(2);
+                margin-top: 10px;
+            }
+
             #form_caption {
-                @include span-columns(4 of 8);
                 text-align: center;
+
+                @include media($medium-screen) {
+                    @include span-columns(4 of 8);
+                }
 
                 h2 {
                     font-size: 18px;
@@ -504,6 +647,11 @@ body.guides {
                     color: white;
                     font-weight: 700;
                     letter-spacing: 1px;
+                    margin-bottom: 10px;
+
+                    @include media($medium-screen) {
+                        margin-bottom: 0px;
+                    }
                 }
 
                 h3 {
@@ -515,27 +663,38 @@ body.guides {
                 }               
             }
 
-
-
             form {
-                @include span-columns(4 of 8);
                 background-color: $guide_medium_green;
                 padding: 10px;
+                margin-top: 15px;
+
+                @include media($medium-screen) {
+                    @include span-columns(4 of 8);
+                    margin-top: 0px;
+                }
 
                 label {
                     display: none;
                 }
 
                 input.emailinput {
+                    @include span-columns(6 of 8);
                     margin-bottom: 0;
-                    width: 75%;
-                    float: left;
                     border-radius: 0;
+
+                    @include media($medium-screen) {
+                        width: 75%;
+                        float: left;
+                    }
                 }
 
                 input[type="image"] {
                     @include hide-text;
-                    padding-left: 25px;
+                    padding-left: 15px;
+
+                    @include media($medium-screen) {
+                        padding-left: 25px;
+                    }
                 }
 
             }
@@ -551,11 +710,16 @@ body.guides {
 
         h1 {
             @include row();
-            font-size: 48px;
+            font-size: 38px;
             font-weight: 700;
             text-transform: uppercase;
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 25px;
+
+            @include media($medium-screen) {
+                font-size: 48px;
+                margin-bottom: 50px;
+            }
         }
 
         .explainer_image {
@@ -573,10 +737,14 @@ body.guides {
                 position: relative;
 
                 h2 {
-                    font-size: 30px;
+                    font-size: 26px;
                     font-weight: 700;
                     text-transform: uppercase;
                     margin-bottom: 10px;
+
+                    @include media($medium-screen) {
+                        font-size: 30px;
+                    }
                 }
 
                 p {
@@ -595,21 +763,31 @@ body.guides {
     }
 
     #feedback_form_refer {
+        @include row();
+        @include padding(15px);
         clear: left;
-        @include span-columns(8);
-        @include shift(2);
         background-color: $guide_medium_green;
-        padding: 10px;
         margin-bottom: 50px;
 
+        @include media($medium-screen) {
+            @include span-columns(8);
+            @include shift(2);
+            @include padding(10px);            
+        }
+
         h2 {
-            @include span-columns(5 of 8);
-            @include shift(1);
             font-size: 24px;
             font-weight: normal;
+
+            @include media($medium-screen) {
+                @include span-columns(5 of 8);
+                @include shift(1);
+            }
         }
 
         a {
+            @include row();
+            text-align: center;
             background-color: $guide_dark_gray;
             color: $guide_medium_green;
             padding: 10px 15px;
@@ -617,8 +795,12 @@ body.guides {
             font-size: 18px;
             text-transform: uppercase;
             margin-top: 25px;
-            margin-right: 25px;
-            float: right;
+
+            @include media($medium-screen) {
+                float: right;
+                text-align: left;
+                margin-right: 25px;
+            }
 
             &:hover {
                 background-color: #080808;
@@ -631,15 +813,30 @@ body.guides {
         #descriptor_list {
 
             li {
-                @include span-columns(4);
-                @include shift(2);
+                text-align: center;
+
+                @include media($medium-screen) {
+                    @include span-columns(4);
+                    @include shift(2);
+                    text-align: left; 
+                }
 
                 %descriptor_number {
-                    left: -150px;
-                    position: absolute;
+                    margin-bottom: 15px;
+
+                    @include media($medium-screen) {
+                        left: -150px;
+                        position: absolute;
+                        margin-bottom: 0px;  
+                    }
                 }
             
                 &.descriptor_1 {
+                    margin-bottom: 25px;
+
+                    @include media($medium-screen) {
+                        margin-bottom: 0px;
+                    }
 
                     .descriptor_number {
                         @extend %descriptor_number;
@@ -648,6 +845,11 @@ body.guides {
                 }
 
                 &.descriptor_2 {
+                    margin-bottom: 25px;
+
+                    @include media($medium-screen) {
+                        margin-bottom: 0px;
+                    }
 
                     .descriptor_number {
                         @extend %descriptor_number;
@@ -661,25 +863,41 @@ body.guides {
     &.guide_2 {
 
         #descriptor_list {
+            text-align: center;
 
             li {
-                @include span-columns(10);
-                @include shift(2);
                 margin-bottom: 25px;
 
+                @include media($medium-screen) {
+                    @include span-columns(10);
+                    @include shift(2);
+                    text-align: left;
+                }
+
                 .descriptor_text {
-                    @include span-columns(5 of 10);
-                    left: -150px;
+                    
+                    @include media($medium-screen) {
+                        @include span-columns(5 of 10);
+                        left: -150px;
+                    }
                 }
 
                 img {
-                    @include span-columns(5 of 10);
-                    left: -150px;
+
+                    @include media($medium-screen) {
+                        @include span-columns(5 of 10);
+                        left: -150px;
+                    }
                 }
 
                 %descriptor_number {
-                    left: -150px;
-                    position: absolute;
+                    margin-bottom: 15px;
+                    
+                    @include media($medium-screen) {
+                        left: -150px;
+                        position: absolute;
+                        margin-bottom: 0px;
+                    }
                 }
             
                 &.descriptor_1 {
@@ -715,17 +933,34 @@ body.guides {
             @include span-columns(12);
 
             li {
-                @include span-columns(4 of 12);
                 text-align: center;
+                margin-bottom: 25px;
+
+                @include media($medium-screen) {
+                    @include span-columns(4 of 12);
+                    margin-bottom: 0px;
+                }
 
                 p {
-                    padding-left: 25px;
-                    padding-right: 25px;
+
+                    @include media($medium-screen) {
+                        padding-left: 25px;
+                        padding-right: 25px;
+                    }
+                }
+
+                %descriptor_number {
+                    margin-bottom: 15px;
+
+                    @include media($medium-screen) {
+                        margin-bottom: 0px;
+                    }
                 }
             
                 &.descriptor_1 {
 
                     .descriptor_number {
+                        @extend %descriptor_number;
                         background-image: url(../images/guide3_description_one.png);
                     }
                 }
@@ -733,12 +968,14 @@ body.guides {
                 &.descriptor_2 {
 
                     .descriptor_number {
+                        @extend %descriptor_number;
                         background-image: url(../images/guide3_description_two.png);
                     }
                 }
                 &.descriptor_3 {
 
                     .descriptor_number {
+                        @extend %descriptor_number;
                         background-image: url(../images/guide3_description_three.png);
                     }
                 }
@@ -752,55 +989,79 @@ body.guides {
 body#feedback {
     background-color: white;
     @include background(url(../images/guide_thankyou_grid_bg.png) top center no-repeat, url(../images/guide_thankyou_header_bg.png) top repeat-x);
+    margin-bottom: 50px;
 
     header {
         background: none;
 
         h1 {
-            @include span-columns(4 of 12);
-            @include shift(2);
-            width: 293px;
-            height: 342px;
-            background-image: url(../images/diy_trainer_logo_lg.png);
-            top: 0px;
+            
+            @include media($medium-screen) {
+                width: 293px;
+                height: 342px;
+                background-image: url(../images/diy_trainer_logo_lg.png);
+                @include span-columns(4 of 12);
+                @include shift(2);
+                top: 0px;
+            }
         }
 
         h2 {
-            @include span-columns(4 of 12);
-            @include shift(-2);
             background: none;
             text-decoration: underline;
             font-size: 44px;
             font-weight: 800;
-            top: 150px;
             text-transform: uppercase;
-            position: relative;
-            padding-top: 25px;
-            padding-left: 175px;
-            padding-right: 75px;
-            left: 40px;
             line-height: 1.5em;
             letter-spacing: 2px;
-            height: 112px;
+            text-align: center; 
+
+            @include media($medium-screen) {
+                @include span-columns(4 of 12);
+                @include shift(-2);
+                padding-top: 25px;
+                padding-left: 175px;
+                padding-right: 75px;
+                position: relative;
+                left: 40px;
+                top: 150px;
+                height: 112px;
+                text-align: left;
+            }
         }
 
         h3 {
-            @include span-columns(4 of 12);
             font-style: italic;
             font-weight: normal;
             font-size: 24px;
-            position: relative;
-            top: 200px;
-            padding-left: 50px;
-            padding-right: 25px;
+            padding-left: 15px;
+            padding-right: 15px;
+            clear: both;
+            text-align: center;
+
+            @include media($medium-screen) {
+                @include span-columns(4 of 12);
+                padding-left: 50px;
+                padding-right: 25px;
+                position: relative;
+                top: 185px;
+                clear: none;
+                text-align: left;
+            }
         }
     }
 
     #feedback_form {
-        @include span-columns(8);
-        @include shift(2);
-        margin-top: 100px;
+        margin-top: 75px;
         margin-bottom: 50px;
+        @include padding(0px 15px 50px 15px);
+
+        @include media($medium-screen) {
+            @include span-columns(8);
+            @include shift(2);
+            @include padding(0px);
+            margin-top: 100px;
+        }
 
         label {
             font-size: 20px;
@@ -841,15 +1102,23 @@ body#feedback {
         }
 
         input[type="submit"] {
+            @include span-columns(6 of 12);
+            @include shift(3);
             background-color: $guide_dark_gray;
             color: $guide_medium_green;
             border-radius: 0;
             text-transform: uppercase;
             font-size: 18px;
             font-weight: 800;
-            float: right;
             margin-top: 50px;
             padding: 10px 15px;
+
+            @include media($medium-screen) {
+                //float: right;
+                @include row($direction: RTL);
+                @include shift(0);
+                @include span-columns(2);
+            }
 
             &:hover {
                 background-color: #080808;
@@ -860,43 +1129,73 @@ body#feedback {
     // Projects app
     &.projects {
 
-        header {
-            @include span-columns(8);
-            @include shift(2);
+        header {    
+
+            @include media($medium-screen) {
+                background-position: center center;
+                background-size: cover;
+                @include span-columns(9);
+                @include shift(2);
+            }
 
             h1 {
-                @include shift(1);
+            
+                @include media($medium-screen) {
+                    @include shift(0);
+                }
             }
 
             h3 {
-                @include shift(1);
+                
+                @include media($medium-screen) {
+                    @include span-columns(4);
+                }
             }
         }
 
         #feedback_form {
-            @include span-columns(7);
-            @include shift(3);
-            margin-top: 150px;
+            clear: both;
+            padding-top: 50px;
             margin-bottom: 50px;
+
+            @include media($medium-screen) {
+                @include span-columns(8);
+                @include shift(2);
+                margin-top: 150px;
+            }
 
             label {
                 border-bottom: none;
                 font-weight: normal;
+                font-size: 18px;
+                margin-bottom: 15px;
+
+                @include media($medium-screen) {
+                    font-size: 20px;
+                    margin-bottom: 25px;
+                }
             }
 
             label[for="id_project_progress"], label[for="id_project_confidence"], label[for="id_project_recommendation"] {
                 border-bottom: thick solid black;
                 position: relative;
                 font-weight: 700;
-                font-size: 30px;
+                font-size: 20px;
+
+                @include media($medium-screen) {
+                    font-size: 30px;
+                }
 
                 &:before {
-                    content: "";
-                    width: 132px;
-                    height: 100px;
-                    position: absolute;
-                    left: -160px;
-                    top: 10px;
+
+                    @include media($medium-screen) {
+                        content: "";
+                        width: 132px;
+                        height: 100px;
+                        position: absolute;
+                        left: -160px;
+                        top: 10px;
+                    }
                 }
             }
 
