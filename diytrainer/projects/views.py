@@ -1,5 +1,6 @@
 from django.views.generic import CreateView, DetailView, TemplateView
 from django.shortcuts import get_object_or_404
+from django.core.mail import EmailMessage
 
 from braces.views import SelectRelatedMixin
 
@@ -23,6 +24,22 @@ class FeedbackActionMixin(object):
         instance = form.save(commit=False)
         instance.project = self.project
         instance.detail_level = self.detail_level
+
+        project = self.project
+        detail_level = self.detail_level
+        project_progress = form.cleaned_data.get('project_progress')
+        project_confidence = form.cleaned_data.get('project_confidence')
+        project_recommendation = form.cleaned_data.get('project_recommendation')
+        submission_date = instance.submission_date.strftime('%A, %B %w %Y, %I:%M %p')
+
+        email = EmailMessage()
+        email.body = 'Project progress: ' + project_progress + '\n' + 'Project confidence: ' + project_confidence + '\n' + "Project recommendation: " + project_recommendation + '\n' + 'Submission date: ' + str(submission_date)
+        email.subject = 'Feedback has been submitted for %s (Detail level %s)' % (project, str(detail_level))
+        email.from_email = 'noreply@mail.thevariable.com'
+        email.to = ['pbeeson@thevariable.com']
+        #email.bcc = ['pbeeson@thevariable.com']
+        email.send()
+
         return super(FeedbackActionMixin, self).form_valid(form)
 
     def get_context_data(self, *args, **kwargs):

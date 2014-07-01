@@ -8,6 +8,9 @@
 {% block extra_classes %} detaillevel_{{ detaillevel.level }}{% endblock %}
 
 {% block content %}
+{% for module in detaillevel.module_set.all %}
+{{ module.get_steps_for_detaillevel }}
+{% endfor %}
 <header>
     <div class="container">
         <hgroup>
@@ -63,7 +66,40 @@
             </div>
 
             <div id="instructions" class="detaillevel_section">
-                <h2 class="section_heading">Step-by-Step Instructions</h2>
+                <h2 class="section_heading">Step-by-Step<br>Instructions</h2>
+                {% if detaillevel.module_set.count %}
+                    <ol class="module_list">
+                    {% for module in detaillevel.module_set.all %}
+                        <li class="module">
+                            <h3 class="module_header"><span class="module_count">Module {{ module.rank }}</span> {{ module.title }}</h3>
+                            <ol class="step_list">
+                            {% for step in module.get_steps_for_module %}
+                                <li class="step">
+                                    <span class="step_rank">{{ forloop.counter }}</span>
+                                    <div class="step_content">
+                                        {% if step.image %}
+                                        <div class="step_image">
+                                        {% thumbnail step.image "225x150" crop="center" as step_image %}
+                                            <img src="{{ step_image.url }}" alt="{{ step.title }}">
+                                        {% endthumbnail %}
+                                        </div>
+                                        {% endif %}
+                                        <h3 class="step_title">{{ step.title }}</h3>
+                                        <p>{{ step.body }}</p>
+                                    </div>
+                                    {% if step.quick_tip %}
+                                    <div class="quick_tip">
+                                        <h4>Quick Tip</h4>
+                                        <p>{{ step.quick_tip }}</p>
+                                    </div>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                            </ol>
+                        </li>
+                    {% endfor %}
+                    </ol>
+                {% else %}
                 <ol class="step_list">
                 {% for step in detaillevel.step_set.all %}
                     <li class="step">
@@ -88,6 +124,7 @@
                     </li>
                 {% endfor %}
                 </ol>
+                {% endif %}
             </div>
         </section>
     </div>

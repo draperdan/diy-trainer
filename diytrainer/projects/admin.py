@@ -9,8 +9,13 @@ class StepInline(AdminImageMixin, admin.StackedInline):
     model = Step
 
 
-class ModuleInline(admin.StackedInline):
-    model = Module
+class ModuleAdmin(admin.ModelAdmin):
+    filter_horizontal = ('steps',)
+
+
+#class ModuleInline(admin.StackedInline):
+#    model = Module
+#    filter_horizontal = ('steps',)
 
 
 class ProjectAdmin(AdminImageMixin, admin.ModelAdmin):
@@ -20,7 +25,7 @@ class ProjectAdmin(AdminImageMixin, admin.ModelAdmin):
 class DetailLevelAdmin(admin.ModelAdmin):
     list_display = ('level', 'project')
     inlines = [
-        ModuleInline,
+        #ModuleInline,
         StepInline
     ]
 
@@ -33,3 +38,4 @@ class FeedbackAdmin(admin.ModelAdmin):
 admin.site.register(DetailLevel, DetailLevelAdmin)
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Feedback, FeedbackAdmin)
+admin.site.register(Module, ModuleAdmin)

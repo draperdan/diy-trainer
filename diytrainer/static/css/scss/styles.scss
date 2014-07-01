@@ -273,6 +273,37 @@ body.projects {
 
                 &#instructions {
 
+                    // Modules
+
+                    .module_list {
+
+                        .module {
+                            @include row();
+                            list-style-type: none;
+                            margin-left: 0;
+                            
+                        }
+
+                        .module_header {
+                            position: relative;
+                            font-size: 30px;
+                            text-transform: uppercase;
+                            font-style: italic;
+                            
+                            margin-bottom: 25px;
+
+                            span.module_count {
+                                width: 180px;
+                                font-size: 26px;
+                                position: absolute;
+                                left: -245px;
+                                top: 0px;
+                                background: url(../images/module_header_bg.png) no-repeat 0px 3px;
+                                padding-left: 10px;
+                            }
+                        }
+                    }
+
                     .section_heading {
                         
                         &:before {
@@ -309,7 +340,7 @@ body.projects {
 
                                     img {
                                         position: absolute;
-                                        left: -400px;
+                                        left: -420px;
                                         top: 20px;
                                         padding: 5px;
                                         border: 1px solid black;

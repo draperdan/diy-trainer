@@ -97,7 +97,7 @@ class Feedback(GuideRelatedModel):
 
     def __str__(self):
         return 'Feedback for %s submitted %s' % (self.guide.name,
-                                                 self.submission_date.date().strftime('%A, %B %w %Y'))
+                                                 self.submission_date.strftime('%A, %B %w %Y, %I:%M %p'))
 
 
 @python_2_unicode_compatible

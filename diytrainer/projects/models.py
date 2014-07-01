@@ -111,6 +111,10 @@ class DetailLevel(ProjectRelatedModel):
             return prev[0]
         return False
 
+    # Return steps for the current detaillevel
+    def get_steps_for_detaillevel(self):
+        return Step.objects.filter(detail_level__level=self.level)
+
     def get_absolute_url(self):
         return reverse(
             'detaillevel_detail',
@@ -138,7 +142,7 @@ class Step(DetailLevelRelatedModel):
         ordering = ('rank',)
 
     def __str__(self):
-        return self.title
+        return '%s %s' % (self.title, self.detail_level.level)
 
 
 @python_2_unicode_compatible
@@ -147,6 +151,9 @@ class Module(DetailLevelRelatedModel):
     rank = models.PositiveSmallIntegerField(
         help_text='Used for ordering modules')
     steps = models.ManyToManyField(Step)
+
+    def get_steps_for_module(self):
+        return Step.objects.filter(module__id=self.id)
 
     class Meta:
         ordering = ('rank',)
@@ -198,4 +205,4 @@ class Feedback(DetailLevelRelatedModel, ProjectRelatedModel):
 
     def __str__(self):
         return 'Feedback for %s submitted %s' % (self.project.name,
-                                                 self.submission_date.date().strftime('%A, %B %w %Y'))
+                                                 self.submission_date.strftime('%A, %B %w %Y, %I:%M %p'))

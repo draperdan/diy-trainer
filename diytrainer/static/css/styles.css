@@ -405,6 +405,28 @@ body.projects {
         background: url(../images/time_skill_complexity_icon.png) no-repeat 0px 0px; }
       body.projects .content_wrap section#detaillevel_content .detaillevel_section#tools_materials .section_heading:before {
         background: url(../images/tools_materials_icon.png) no-repeat 0px 0px; }
+      body.projects .content_wrap section#detaillevel_content .detaillevel_section#instructions .module_list .module {
+        display: block;
+        list-style-type: none;
+        margin-left: 0; }
+        body.projects .content_wrap section#detaillevel_content .detaillevel_section#instructions .module_list .module:after {
+          content: "";
+          display: table;
+          clear: both; }
+      body.projects .content_wrap section#detaillevel_content .detaillevel_section#instructions .module_list .module_header {
+        position: relative;
+        font-size: 30px;
+        text-transform: uppercase;
+        font-style: italic;
+        margin-bottom: 25px; }
+        body.projects .content_wrap section#detaillevel_content .detaillevel_section#instructions .module_list .module_header span.module_count {
+          width: 180px;
+          font-size: 26px;
+          position: absolute;
+          left: -245px;
+          top: 0px;
+          background: url(../images/module_header_bg.png) no-repeat 0px 3px;
+          padding-left: 10px; }
       body.projects .content_wrap section#detaillevel_content .detaillevel_section#instructions .section_heading:before {
         background: url(../images/steps_icon.png) no-repeat 0px 0px; }
       body.projects .content_wrap section#detaillevel_content .detaillevel_section#instructions .step_list li.step {
@@ -439,7 +461,7 @@ body.projects {
             position: relative; }
             body.projects .content_wrap section#detaillevel_content .detaillevel_section#instructions .step_list li.step .step_content .step_image img {
               position: absolute;
-              left: -400px;
+              left: -420px;
               top: 20px;
               padding: 5px;
               border: 1px solid black; }
