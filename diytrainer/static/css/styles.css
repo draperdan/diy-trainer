@@ -435,6 +435,14 @@ body.projects {
           margin-bottom: 25px; }
           body.projects .content_wrap section#detaillevel_content .detaillevel_section#instructions .step_list li.step .step_content:last-child {
             margin-right: 0; }
+          body.projects .content_wrap section#detaillevel_content .detaillevel_section#instructions .step_list li.step .step_content .step_image {
+            position: relative; }
+            body.projects .content_wrap section#detaillevel_content .detaillevel_section#instructions .step_list li.step .step_content .step_image img {
+              position: absolute;
+              left: -400px;
+              top: 20px;
+              padding: 5px;
+              border: 1px solid black; }
           body.projects .content_wrap section#detaillevel_content .detaillevel_section#instructions .step_list li.step .step_content h3 {
             margin-top: 0px;
             text-transform: none;

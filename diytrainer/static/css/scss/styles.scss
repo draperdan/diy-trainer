@@ -304,6 +304,18 @@ body.projects {
                                 @include shift(1);
                                 margin-bottom: 25px;
 
+                                .step_image {
+                                    position: relative;
+
+                                    img {
+                                        position: absolute;
+                                        left: -400px;
+                                        top: 20px;
+                                        padding: 5px;
+                                        border: 1px solid black;
+                                    }
+                                }
+
                                 h3 {
                                     margin-top: 0px;
                                     text-transform: none;
