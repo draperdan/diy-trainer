@@ -14,14 +14,16 @@
 </header>
 
 <div class="extra_content">
-{% if show_extra_content %}
-    <img src="http://placehold.it/140x100">
-    <p>Here's a video guide for the project you're working on, if you still need extra help. Good luck!</p>
-    <a href="http://youtube.com">View on YouTube</a>
-{% else %}
-    <p>Now that your voice has been heard, we'll let you get back to work. Head back to the guide to finish your project.</p>
-    <a href="{% url 'detaillevel_detail' project_slug level %}">Back to the Guide</a>
-{% endif %}
+    <div class="container">
+    {% if show_extra_content %}
+        <img src="http://placehold.it/375x275">
+        <p>Here's a video guide for the project you're working on, if you still need extra help. Good luck!</p>
+        <a href="http://youtube.com">View on YouTube</a>
+    {% else %}
+        <p>Now that your voice has been heard, we'll let you get back to work. Head back to the guide to finish your project.</p>
+        <a href="{% url 'detaillevel_detail' project_slug level %}">&lsaquo; Back to the Guide</a>
+    {% endif %}
+    </div>
 </div>
 
 {% endblock content %}
