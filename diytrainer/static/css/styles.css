@@ -241,8 +241,8 @@ body.projects {
         margin-right: 0; }
     body.projects header h1 {
       overflow: hidden;
-      height: 342px;
-      background-image: url(../images/diy_trainer_logo_lg.png);
+      height: 154px;
+      background-image: url(../images/diy_trainer_logo.png);
       background-position: center center;
       background-repeat: no-repeat;
       position: relative; }
@@ -258,7 +258,9 @@ body.projects {
           margin-right: 2.35765%;
           width: 6.17215%;
           margin-left: 8.5298%;
-          width: 293px; }
+          background-image: url(../images/diy_trainer_logo_lg.png);
+          width: 293px;
+          height: 342px; }
           body.projects header h1:last-child {
             margin-right: 0; } }
     body.projects header .header_secondary {
@@ -317,11 +319,13 @@ body.projects {
               height: 48px;
               padding-left: 0px;
               padding-top: 6px;
-              margin-right: 9px; }
+              margin-right: 9px;
+              margin-top: 10px; }
               @media screen and (min-width: 62em) {
                 body.projects header .header_secondary #detail_level .level_list .level.current_level {
                   padding-left: 16px;
-                  margin-bottom: 0px; } }
+                  margin-bottom: 0px;
+                  margin-top: 0px; } }
       body.projects header .header_secondary h3 {
         font-size: 18px;
         font-weight: 600;
@@ -507,7 +511,9 @@ body.projects {
           padding-left: 16px;
           padding-top: 6px;
           float: none;
-          margin-bottom: 25px; }
+          margin-bottom: 25px;
+          position: relative;
+          left: 10px; }
           @media screen and (min-width: 62em) {
             body.projects .content_wrap section#detaillevel_content .detaillevel_section#instructions .step_list li.step .step_rank {
               float: left;
@@ -531,7 +537,13 @@ body.projects {
               body.projects .content_wrap section#detaillevel_content .detaillevel_section#instructions .step_list li.step .step_content:last-child {
                 margin-right: 0; } }
           body.projects .content_wrap section#detaillevel_content .detaillevel_section#instructions .step_list li.step .step_content .step_image {
-            position: relative; }
+            position: relative;
+            text-align: center;
+            margin-bottom: 10px; }
+            @media screen and (min-width: 62em) {
+              body.projects .content_wrap section#detaillevel_content .detaillevel_section#instructions .step_list li.step .step_content .step_image {
+                text-align: left;
+                margin-bottom: 0px; } }
             body.projects .content_wrap section#detaillevel_content .detaillevel_section#instructions .step_list li.step .step_content .step_image img {
               padding: 5px;
               border: 1px solid black; }
@@ -633,8 +645,10 @@ body.projects {
           font-weight: 800;
           font-size: 18px;
           text-transform: uppercase;
-          margin-top: 25px;
-          margin-right: 25px; }
+          margin-top: 25px; }
+          @media screen and (min-width: 62em) {
+            body.projects footer .detaillevel_options li a {
+              margin-right: 25px; } }
           body.projects footer .detaillevel_options li a:hover {
             background-color: #080808; }
 
@@ -1076,28 +1090,34 @@ body#feedback {
   margin-bottom: 50px; }
   body#feedback header {
     background: none; }
-    @media screen and (min-width: 62em) {
-      body#feedback header h1 {
-        width: 293px;
-        height: 342px;
-        background-image: url(../images/diy_trainer_logo_lg.png);
-        float: left;
-        display: block;
-        margin-right: 2.35765%;
-        width: 31.76157%;
-        margin-left: 17.05961%;
-        top: 0px; }
-        body#feedback header h1:last-child {
-          margin-right: 0; } }
+    body#feedback header h1 {
+      background-image: url(../images/diy_trainer_logo.png);
+      height: 154px;
+      margin-bottom: 50px; }
+      @media screen and (min-width: 62em) {
+        body#feedback header h1 {
+          width: 293px;
+          height: 342px;
+          background-image: url(../images/diy_trainer_logo_lg.png);
+          float: left;
+          display: block;
+          margin-right: 2.35765%;
+          width: 31.76157%;
+          margin-left: 17.05961%;
+          top: 0px;
+          margin-bottom: 0px; }
+          body#feedback header h1:last-child {
+            margin-right: 0; } }
     body#feedback header h2 {
       background: none;
       text-decoration: underline;
       font-size: 44px;
       font-weight: 800;
       text-transform: uppercase;
-      line-height: 1.5em;
+      line-height: 1.1em;
       letter-spacing: 2px;
-      text-align: center; }
+      text-align: center;
+      margin-bottom: 15px; }
       @media screen and (min-width: 62em) {
         body#feedback header h2 {
           float: left;
@@ -1112,13 +1132,15 @@ body#feedback {
           left: 40px;
           top: 150px;
           height: 112px;
-          text-align: left; }
+          text-align: left;
+          line-height: 1.5em;
+          margin-bottom: 0px; }
           body#feedback header h2:last-child {
             margin-right: 0; } }
     body#feedback header h3 {
       font-style: italic;
       font-weight: normal;
-      font-size: 24px;
+      font-size: 20px;
       padding-left: 15px;
       padding-right: 15px;
       clear: both;
@@ -1134,7 +1156,8 @@ body#feedback {
           position: relative;
           top: 185px;
           clear: none;
-          text-align: left; }
+          text-align: left;
+          font-size: 24px; }
           body#feedback header h3:last-child {
             margin-right: 0; } }
   body#feedback #feedback_form {
@@ -1189,8 +1212,8 @@ body#feedback {
       text-transform: uppercase;
       font-size: 18px;
       font-weight: 800;
-      margin-top: 50px;
-      padding: 10px 15px; }
+      padding: 10px 15px;
+      margin-top: 50px; }
       body#feedback #feedback_form input[type="submit"]:last-child {
         margin-right: 0; }
       @media screen and (min-width: 62em) {
@@ -1200,7 +1223,8 @@ body#feedback {
           float: right;
           display: block;
           margin-left: 2.35765%;
-          width: 14.70196%; }
+          width: 14.70196%;
+          margin-top: 50px; }
           body#feedback #feedback_form input[type="submit"]:after {
             content: "";
             display: table;
@@ -1277,21 +1301,24 @@ body#feedback {
       background: url(../images/feedback_form_number_2.png) no-repeat; }
     body#feedback.projects #feedback_form label[for="id_project_recommendation"]:before {
       background: url(../images/feedback_form_number_3.png) no-repeat; }
-  body#feedback.projects .ctrlHolder ul li:first-child {
-    display: none; }
+  body#feedback.projects .ctrlHolder {
+    margin-bottom: 50px; }
+    @media screen and (min-width: 62em) {
+      body#feedback.projects .ctrlHolder {
+        margin-bottom: 0px; } }
+    body#feedback.projects .ctrlHolder ul li:first-child {
+      display: none; }
   body#feedback.projects .extra_content {
     position: relative; }
-    body#feedback.projects .extra_content:before {
-      content: "";
-      position: absolute;
-      top: 625px;
-      left: 0px;
-      width: 100%;
-      height: 20px;
-      background: url(../images/project_thankyou_dash.png) repeat-x; }
-      @media screen and (min-width: 62em) {
-        body#feedback.projects .extra_content:before {
-          top: 450px; } }
+    @media screen and (min-width: 62em) {
+      body#feedback.projects .extra_content:before {
+        content: "";
+        position: absolute;
+        top: 450px;
+        left: 0px;
+        width: 100%;
+        height: 20px;
+        background: url(../images/project_thankyou_dash.png) repeat-x; } }
     body#feedback.projects .extra_content .container {
       max-width: 73.125em;
       margin-left: auto;
@@ -1300,7 +1327,7 @@ body#feedback {
       display: block;
       margin-left: 2.35765%;
       width: 100%;
-      margin-top: 100px;
+      margin-top: 50px;
       margin-bottom: 25px; }
       body#feedback.projects .extra_content .container:after {
         content: "";
@@ -1313,54 +1340,75 @@ body#feedback {
           float: right;
           display: block;
           margin-left: 2.35765%;
-          width: 65.88078%;
-          margin-right: 25.58941%; }
+          width: 82.94039%;
+          margin-right: 0%;
+          margin-top: 100px; }
           body#feedback.projects .extra_content .container:last-child {
             margin-left: 0; } }
-    body#feedback.projects .extra_content img {
-      margin-bottom: 15px; }
+    body#feedback.projects .extra_content .extra_content_image {
+      float: right;
+      display: block;
+      margin-left: 3.57866%;
+      width: 100%;
+      margin-bottom: 15px;
+      text-align: center; }
+      body#feedback.projects .extra_content .extra_content_image:last-child {
+        margin-left: 0; }
       @media screen and (min-width: 62em) {
-        body#feedback.projects .extra_content img {
+        body#feedback.projects .extra_content .extra_content_image {
           float: right;
           display: block;
-          margin-left: 2.35765%;
-          width: 48.82117%;
+          margin-left: 3.57866%;
+          width: 35.26334%;
+          float: left;
           margin-bottom: 0px; }
-          body#feedback.projects .extra_content img:last-child {
+          body#feedback.projects .extra_content .extra_content_image:last-child {
             margin-left: 0; } }
+    @media screen and (min-width: 62em) {
+      body#feedback.projects .extra_content .extra_content_copy {
+        float: right;
+        display: block;
+        margin-left: 3.57866%;
+        width: 61.158%;
+        margin-right: 25.89467%; }
+        body#feedback.projects .extra_content .extra_content_copy:last-child {
+          margin-left: 0; } }
     body#feedback.projects .extra_content p {
-      font-size: 24px;
+      font-size: 20px;
       font-style: italic;
       margin-top: 0px;
       padding-left: 15px;
-      padding-right: 15px; }
+      padding-right: 15px;
+      margin-bottom: 50px; }
       @media screen and (min-width: 62em) {
         body#feedback.projects .extra_content p {
-          float: right;
-          display: block;
-          margin-left: 2.35765%;
-          width: 40.29137%; }
-          body#feedback.projects .extra_content p:last-child {
-            margin-left: 0; } }
+          padding-left: 0px;
+          font-size: 24px;
+          margin-bottom: 15px; } }
     body#feedback.projects .extra_content a {
-      display: block;
       background-color: #2d2d2d;
       color: #56bf39;
       padding: 10px 15px;
       font-weight: 800;
       font-size: 18px;
       text-transform: uppercase;
-      display: block;
-      text-align: center; }
-      body#feedback.projects .extra_content a:after {
-        content: "";
-        display: table;
-        clear: both; }
+      display: inline-block;
+      text-align: center;
+      width: 100%;
+      margin-top: 50px; }
       @media screen and (min-width: 62em) {
         body#feedback.projects .extra_content a {
           margin-top: 25px;
           margin-right: 25px;
-          margin-left: 50px;
-          float: right; } }
+          width: 250px; } }
       body#feedback.projects .extra_content a:hover {
         background-color: #080808; }
+  @media screen and (min-width: 62em) {
+    body#feedback.projects.video .extra_content_copy {
+      float: right;
+      display: block;
+      margin-left: 3.57866%;
+      width: 35.26334%;
+      margin-right: 25.89467%; }
+      body#feedback.projects.video .extra_content_copy:last-child {
+        margin-left: 0; } }

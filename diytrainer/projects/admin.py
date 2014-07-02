@@ -10,11 +10,18 @@ class StepInline(AdminImageMixin, admin.StackedInline):
 
 
 class StepAdmin(admin.ModelAdmin):
-    list_display = ('title', 'detail_level', 'rank')
+    list_display = ('title', 'detail_level', 'rank', 'project')
+    readonly_fields = ('project',)
+
+    def project(self, obj):
+        project = Project.objects.filter(detaillevel__level=obj.detail_level.level).values_list('name', flat=True)[0]
+        return project
+    project.short_description = 'Project'
 
 
 class ModuleAdmin(admin.ModelAdmin):
-    fields = ('project',)
+    fields = ('detail_level', 'project', 'title', 'rank', 'steps')
+    list_display = ('title', 'rank', 'project', 'detail_level')
     filter_horizontal = ('steps',)
     readonly_fields = ('project',)
 

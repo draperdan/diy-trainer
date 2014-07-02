@@ -130,7 +130,7 @@ class DetailLevelRelatedModel(models.Model):
     class Meta:
         abstract = True
 
-    detail_level = models.ForeignKey(DetailLevel)
+    detail_level = models.ForeignKey(DetailLevel, null=True, blank=True)
 
 
 @python_2_unicode_compatible
@@ -154,8 +154,8 @@ class Module(models.Model):
     title = models.CharField(max_length=100, help_text='Max 100 characters')
     rank = models.PositiveSmallIntegerField(
         help_text='Used for ordering modules')
-    steps = models.ManyToManyField(Step, limit_choices_to={'detail_level__level': 3})
-    detail_level = models.ForeignKey(DetailLevel, limit_choices_to={'level': 3})
+    steps = models.ManyToManyField(Step, limit_choices_to={'detail_level__level': 3}, null=True, blank=True)
+    detail_level = models.ForeignKey(DetailLevel, limit_choices_to={'level': 3}, null=True, blank=True)
 
     def get_steps_for_module(self):
         return Step.objects.filter(module__id=self.id)
@@ -173,8 +173,6 @@ class Feedback(DetailLevelRelatedModel, ProjectRelatedModel):
     PROJECT_PROGRESS_CHOICES = Choices(
                                       ('planning and preparing',
                                        _('Planning and preparing')),
-                                      ('getting started',
-                                       _('Getting started')),
                                       ('getting started',
                                        _('Getting started')),
                                       ('in the thick of it',
