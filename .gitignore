@@ -42,3 +42,5 @@ Desktop.ini
 diytrainer/media
 diytrainer/guides/migrations
 diytrainer/projects/migrations
+*.sass_cache
+

@@ -138,12 +138,18 @@ class Step(DetailLevelRelatedModel):
     rank = models.PositiveSmallIntegerField(
         help_text='Used for ordering steps')
     title = models.CharField(max_length=100, help_text='Max 100 characters')
-    body = models.TextField(help_text='No HTML allowed')
+    body = models.TextField(help_text='Markdown only')
+    body_html = models.TextField(editable=False, blank=True)
     quick_tip = models.TextField(blank=True, help_text='No HTML allowed')
     image = ImageField(upload_to='images/projects/steps', blank=True)
 
     class Meta:
         ordering = ('rank',)
+
+    def save(self, *args, **kwargs):
+        """ Convert Markdown to HTML on save """
+        self.body_html = markup(self.body)
+        super(Step, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title

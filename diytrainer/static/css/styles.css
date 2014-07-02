@@ -281,14 +281,18 @@ body.projects {
         color: white;
         text-decoration: underline;
         text-align: center;
-        margin-bottom: 25px; }
+        margin-bottom: 25px;
+        padding-left: 15px;
+        padding-right: 15px; }
         @media screen and (min-width: 62em) {
           body.projects header .header_secondary h2 {
             font-size: 56px;
             text-align: left;
             border-bottom: thick solid white;
             text-decoration: none;
-            margin-bottom: 0px; } }
+            margin-bottom: 0px;
+            padding-left: 0px;
+            padding-right: 0px; } }
       body.projects header .header_secondary #detail_level {
         margin-top: 15px;
         margin-bottom: 25px;
@@ -310,6 +314,8 @@ body.projects {
           body.projects header .header_secondary #detail_level .level_list .level {
             display: inline;
             margin-right: 25px; }
+            body.projects header .header_secondary #detail_level .level_list .level:first-child {
+              margin-left: 15px; }
             body.projects header .header_secondary #detail_level .level_list .level.current_level {
               display: inline-block;
               background: white;
@@ -319,7 +325,6 @@ body.projects {
               height: 48px;
               padding-left: 0px;
               padding-top: 6px;
-              margin-right: 9px;
               margin-top: 10px; }
               @media screen and (min-width: 62em) {
                 body.projects header .header_secondary #detail_level .level_list .level.current_level {
@@ -1253,7 +1258,7 @@ body#feedback {
       display: block;
       margin-left: 2.35765%;
       width: 31.76157%;
-      margin-right: 0%; }
+      margin-right: -8.5298%; }
       body#feedback.projects header h3:last-child {
         margin-left: 0; } }
   body#feedback.projects #feedback_form {

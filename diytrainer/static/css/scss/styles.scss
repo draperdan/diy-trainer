@@ -86,6 +86,8 @@ body.projects {
                 text-decoration: underline;
                 text-align: center;
                 margin-bottom: 25px;
+                padding-left: 15px;
+                padding-right: 15px;
 
                 @include media($medium-screen) {
                     font-size: 56px;
@@ -93,6 +95,8 @@ body.projects {
                     border-bottom: thick solid white;
                     text-decoration: none;
                     margin-bottom: 0px;
+                    padding-left: 0px;
+                    padding-right: 0px;
                 }
             }
 
@@ -122,6 +126,10 @@ body.projects {
                         display: inline;
                         margin-right: 25px;
 
+                        &:first-child {
+                            margin-left: 15px;
+                        }
+
                         &.current_level {
                             display: inline-block;
                             background: white;
@@ -131,7 +139,7 @@ body.projects {
                             height: 48px;
                             padding-left: 0px;
                             padding-top: 6px;
-                            margin-right: 9px;
+                            //margin-right: 9px;
                             margin-top: 10px;
 
                             @include media($medium-screen) {
@@ -1175,7 +1183,7 @@ body#feedback {
                 
                 @include media($medium-screen) {
                     @include span-columns(4);
-                    @include shift(0);
+                    @include shift(-1);
                 }
             }
         }
