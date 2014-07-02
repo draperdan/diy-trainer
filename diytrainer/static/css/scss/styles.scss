@@ -1149,6 +1149,7 @@ body#feedback {
                 
                 @include media($medium-screen) {
                     @include span-columns(4);
+                    @include shift(0);
                 }
             }
         }
@@ -1237,42 +1238,67 @@ body#feedback {
             &:before {
                 content: "";
                 position: absolute;
-                top: 450px;
+                top: 625px;
                 left: 0px;
                 width: 100%;
                 height: 20px;
                 background: url(../images/project_thankyou_dash.png) repeat-x;
+
+                @include media($medium-screen) {
+                    top: 450px;
+                }
             }
 
             .container {
                 @include outer-container();
-                @include span-columns(8);
-                @include shift(3);
+                @include span-columns(12);
                 margin-top: 100px;
+                margin-bottom: 25px;
+
+                @include media($medium-screen) {
+                    @include span-columns(8);
+                    @include shift(3);
+                }
             }
 
             img {
-                @include span-columns(6);
+                margin-bottom: 15px;
+                
+                @include media($medium-screen) {
+                    @include span-columns(6);
+                    margin-bottom: 0px;
+                }
             }
 
             p {
-                @include span-columns(5);
                 font-size: 24px;
                 font-style: italic;
                 margin-top: 0px;
+                padding-left: 15px;
+                padding-right: 15px;
+
+                @include media($medium-screen) {
+                    @include span-columns(5);
+                }
             }
 
             a {
+                @include row();
                 background-color: $guide_dark_gray;
                 color: $guide_medium_green;
                 padding: 10px 15px;
                 font-weight: 800;
                 font-size: 18px;
                 text-transform: uppercase;
-                margin-top: 25px;
-                margin-right: 25px;
-                margin-left: 50px;
-                float: left;
+                display: block;
+                text-align: center;
+
+                @include media($medium-screen) {
+                    margin-top: 25px;
+                    margin-right: 25px;
+                    margin-left: 50px;
+                    float: right;
+                }
 
                 &:hover {
                     background-color: #080808;

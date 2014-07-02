@@ -115,6 +115,10 @@ class DetailLevel(ProjectRelatedModel):
     def get_steps_for_detaillevel(self):
         return Step.objects.filter(detail_level__level=self.level)
 
+    # get modules for current detaillevel
+    def get_modules_for_detaillevel(self):
+        return Module.objects.filter(detail_level__level=self.level)
+
     def get_absolute_url(self):
         return reverse(
             'detaillevel_detail',
@@ -142,15 +146,16 @@ class Step(DetailLevelRelatedModel):
         ordering = ('rank',)
 
     def __str__(self):
-        return '%s %s' % (self.title, self.detail_level.level)
+        return self.title
 
 
 @python_2_unicode_compatible
-class Module(DetailLevelRelatedModel):
+class Module(models.Model):
     title = models.CharField(max_length=100, help_text='Max 100 characters')
     rank = models.PositiveSmallIntegerField(
         help_text='Used for ordering modules')
-    steps = models.ManyToManyField(Step)
+    steps = models.ManyToManyField(Step, limit_choices_to={'detail_level__level': 3})
+    detail_level = models.ForeignKey(DetailLevel, limit_choices_to={'level': 3})
 
     def get_steps_for_module(self):
         return Step.objects.filter(module__id=self.id)
