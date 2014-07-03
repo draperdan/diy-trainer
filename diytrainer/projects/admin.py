@@ -31,7 +31,7 @@ class StepAdmin(admin.ModelAdmin):
 
 
 class ModuleAdmin(admin.ModelAdmin):
-    fields = ('detail_level', 'project', 'title', 'rank', 'steps')
+    fields = ('detail_level', 'title', 'rank', 'steps')
     list_display = ('title', 'rank', 'detail_level')
     filter_horizontal = ('steps',)
     #readonly_fields = ('project',)
