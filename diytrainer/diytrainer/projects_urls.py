@@ -12,15 +12,11 @@ urlpatterns = patterns('',
     url(r'^$', TemplateView.as_view(template_name='home.html')),
 
     url(r'^robots\.txt$', RobotsView.as_view()),
-    #url(r'^', include('guides.urls')),
-    #url(r'^', include('projects.urls')),
-
-    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^', include('projects.urls')),
 )
 
 # Uncomment the next line to serve media files in dev.
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+#urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     import debug_toolbar
