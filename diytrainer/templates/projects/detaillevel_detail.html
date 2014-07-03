@@ -1,5 +1,6 @@
 {% extends 'base_projects.html' %}
 {% load thumbnail %}
+{% load markup %}
 
 {% block title %}{{ detaillevel.project.name }} | Detail Level {{ detaillevel.level }}{{ block.super }}{% endblock title %}
 
@@ -84,7 +85,7 @@
                                         {% endthumbnail %}
                                         </div>
                                         {% endif %}
-                                        <h3 class="step_title">{{ step.title }}</h3>
+                                        <h3 class="step_title">{{ step.title|markup|removetags:"p"|safe }}</h3>
                                         {{ step.body_html|safe }}
                                     </div>
                                     {% if step.quick_tip %}
@@ -112,7 +113,7 @@
                         {% endthumbnail %}
                         </div>
                         {% endif %}
-                            <h3 class="step_title">{{ step.title }}</h3>
+                            <h3 class="step_title">{{ step.title|markup|removetags:"p"|safe }}</h3>
                             {{ step.body_html|safe }}
                         </div>
                         {% if step.quick_tip %}

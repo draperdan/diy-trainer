@@ -2,7 +2,7 @@
 
 /* DIY Trainer CSS */
 /* Author: Patrick Beeson, pbeeson@thevariable.com */
-/* Copyright The Variable */
+/* Copyright 2014 The Variable */
 
 // Global overrides
 
@@ -10,24 +10,29 @@
 //$visual-grid-color: yellow;
 
 // Colors
-$guide_bg_green: rgba(106,189,69,1);
-$guide_bright_green: rgba(102,231,67,1);
-$guide_medium_green: rgba(86,191,57,1);
-$guide_dark_gray: rgba(45,45,45,1);
-$guide_light_gray: rgba(209,210,211,1);
+@import 'colors';
 
 //Typography
 $open-sans: 'Open Sans', sans-serif;
 
 // Framework imports
-
 @import 'bourbon/bourbon';
 @import 'base/grid-settings';
 @import 'base/base';
-
 @import 'neat/neat';
 
 // Global
+
+span.changed_copy {
+    color: $guide_bright_green;
+}
+
+form {
+
+    .errorList, .errorField {
+        @extend %flash-error;
+    }
+}
 
 body#home, body#error {
     background-color: $guide_medium_green;
@@ -724,6 +729,10 @@ body.guides {
                 @include media($medium-screen) {
                     @include span-columns(4 of 8);
                     margin-top: 0px;
+                }
+
+                .errorField {
+                    @extend %flash-error;
                 }
 
                 label {
