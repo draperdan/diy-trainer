@@ -29,6 +29,36 @@ $open-sans: 'Open Sans', sans-serif;
 
 // Global
 
+body#home, body#error {
+    background-color: $guide_medium_green;
+    font-family: $open-sans;
+
+    .container {
+        @include outer-container();
+    }
+
+    .generic_content {
+        margin-top: 5em;
+
+        h1 {
+            @include hide-text;
+            background-image: url(../images/diy_trainer_logo_lg.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 100%;
+            height: 342px;
+        }
+
+        p {
+            margin-top: 2em;
+            font-size: 20px;
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-align: center;
+        }
+    }
+}
 
 body.projects {
     font-family: $open-sans;
@@ -53,7 +83,6 @@ body.projects {
         }
 
         h1 {
-            
             @include hide-text;
             height: 154px;
             background-image: url(../images/diy_trainer_logo.png);

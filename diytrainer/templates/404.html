@@ -1,9 +1,12 @@
 {% extends "base_generic.html" %}
 
-{% block title %}Page Not found{% endblock %}
+{% block title %}Page Not found{{ block.super }}{% endblock %}
 
-{% block page_title %}Page Not found{% endblock page_title %}
+{% block view %}error{% endblock view %}
 
 {% block content %}
-<p>This is not the page you were looking for.</p>
+<div class="generic_content">
+    <h1>DIY Trainer</h1>
+    <p>You've reached a page that doesn't exist. Please check your URL, and try again.</p>
+</div>
 {% endblock content %}

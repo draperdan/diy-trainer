@@ -211,6 +211,39 @@ input[type="submit"] {
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
+body#home, body#error {
+  background-color: #56bf39;
+  font-family: "Open Sans", sans-serif; }
+  body#home .container, body#error .container {
+    max-width: 73.125em;
+    margin-left: auto;
+    margin-right: auto; }
+    body#home .container:after, body#error .container:after {
+      content: "";
+      display: table;
+      clear: both; }
+  body#home .generic_content, body#error .generic_content {
+    margin-top: 5em; }
+    body#home .generic_content h1, body#error .generic_content h1 {
+      overflow: hidden;
+      background-image: url(../images/diy_trainer_logo_lg.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 100%;
+      height: 342px; }
+      body#home .generic_content h1:before, body#error .generic_content h1:before {
+        content: "";
+        display: block;
+        width: 0;
+        height: 100%; }
+    body#home .generic_content p, body#error .generic_content p {
+      margin-top: 2em;
+      font-size: 20px;
+      color: white;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-align: center; }
+
 body.projects {
   font-family: "Open Sans", sans-serif;
   margin: 0; }

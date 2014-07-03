@@ -1,1 +1,10 @@
-<h1>Whoops!</h1>
+{% extends "base_generic.html" %}
+
+{% block title %}Server error{{ block.super }}{% endblock %}
+
+{% block view %}error{% endblock view %}
+
+{% block content %}
+    <h1>DIY Trainer</h1>
+    <p>You've reached a page that doesn't exist. Please check your URL, and try again.</p>
+{% endblock content %}
