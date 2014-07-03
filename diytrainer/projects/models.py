@@ -156,7 +156,7 @@ class Step(DetailLevelRelatedModel):
         return strip_tags(self.title)
 
     def __str__(self):
-        return self.title
+        return strip_tags(self.title)
 
 
 @python_2_unicode_compatible
