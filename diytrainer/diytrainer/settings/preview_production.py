@@ -6,4 +6,4 @@ from .production import *
 
 SITE_ID = 3
 
-ROOT_URLCONF = 'preview_urls.py'
+ROOT_URLCONF = 'preview_urls'

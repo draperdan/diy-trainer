@@ -6,4 +6,4 @@ from .production import *
 
 SITE_ID = 2
 
-ROOT_URLCONF = 'projects_urls.py'
+ROOT_URLCONF = 'projects_urls'
