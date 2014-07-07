@@ -10,8 +10,9 @@ class StepInline(AdminImageMixin, admin.StackedInline):
 
 
 class StepAdmin(admin.ModelAdmin):
-    list_display = ('sanitized_title', 'detail_level', 'rank', 'module')
-    readonly_fields = ('module',)
+    list_display = ('sanitized_title', 'detail_level', 'rank', 'module', 'project')
+    readonly_fields = ('module', 'project')
+    search_fields = ('title',)
 
     def module(self, obj):
         if obj.detail_level.level == 3:
@@ -22,26 +23,27 @@ class StepAdmin(admin.ModelAdmin):
             return 'N/A'
     module.short_description = 'Module'
 
-    #def project(self, obj):
-    #    project = Project.objects.filter(
-    #        detaillevel__level=obj.detail_level.level).values_list(
-    #        'name', flat=True)#[0]
-    #    return project
-    #project.short_description = 'Project'
+    def project(self, obj):
+        project = Project.objects.filter(
+            detaillevel__project_id=obj.detail_level.project.id).values_list(
+            'name', flat=True)[0]
+        return project
+    project.short_description = 'Project'
 
 
 class ModuleAdmin(admin.ModelAdmin):
-    fields = ('detail_level', 'title', 'rank', 'steps')
-    list_display = ('title', 'rank', 'detail_level')
+    fields = ('detail_level', 'title', 'rank', 'steps', 'project')
+    list_display = ('title', 'rank', 'project')
     filter_horizontal = ('steps',)
-    #readonly_fields = ('project',)
+    readonly_fields = ('project',)
+    search_fields = ('title',)
 
-    #def project(self, obj):
-    #    project = Project.objects.filter(
-    #        detaillevel__level=obj.detail_level.level).values_list(
-    #        'name', flat=True)[0]
-    #    return project
-    #project.short_description = 'Project'
+    def project(self, obj):
+        project = Project.objects.filter(
+            detaillevel__project_id=obj.detail_level.project.id).values_list(
+            'name', flat=True)[0]
+        return project
+    project.short_description = 'Project'
 
 
 class ModuleInline(admin.StackedInline):

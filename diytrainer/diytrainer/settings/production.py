@@ -56,7 +56,7 @@ DEFAULT_FROM_EMAIL = environ.get('DEFAULT_FROM_EMAIL', 'webmaster@diy-trainer.co
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'diytrainer',
+        'NAME': 'diytrainer_staging',
         'USER': 'diytrainer',
         'PASSWORD': 'Th3V@r1able',
         'HOST': '',

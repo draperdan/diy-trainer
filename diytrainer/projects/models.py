@@ -63,9 +63,15 @@ class DetailLevel(ProjectRelatedModel):
     LEVEL_CHOICES = Choices((1, 'low', _('1')),
                             (2, 'medium', _('2')),
                             (3, 'high', _('3')))
+    DESCRIPTOR_CHOICES = Choices(
+                                      ('nuts and bolts',
+                                       _('Nuts and Bolts')),
+                                      ('more bells and whistles',
+                                       _('More Bells and Whistles')),
+                                      ('everything and the kitchen sink',
+                                       _('Everything and the Kitchen Sink')))
     level = models.IntegerField(choices=LEVEL_CHOICES)
-    descriptor = models.CharField(max_length=250,
-                                  help_text='Max 250 characters')
+    descriptor = models.CharField(choices=DESCRIPTOR_CHOICES, max_length=50)
     introduction = models.TextField()
     project_overview = models.TextField(
         help_text='Use Markdown for formatting')

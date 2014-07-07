@@ -28,7 +28,7 @@ class FormActionMixin(object):
             email = EmailMessage()
             email.body = 'Splash-page version: ' + str(version) + '\n' + 'Project recommendation: ' + project_recommendation + '\n' + 'Skill ranking: ' + str(skill_ranking) + '\n' + 'Submission date: ' + str(submission_date)
             email.subject = 'Feedback has been submitted for %s (%s)' % (guide, version)
-            email.from_email = 'noreply@mail.thevariable.com'
+            email.from_email = 'admin@diy-trainer.com'
             email.to = ['pbeeson@thevariable.com']
             #email.bcc = ['pbeeson@thevariable.com']
             email.send()
@@ -42,7 +42,7 @@ class FormActionMixin(object):
             email = EmailMessage()
             email.body = 'Splash-page version: ' + str(version) + '\n' + 'Email address: ' + submitted_email + '\n' + 'Submission date: ' + str(submission_date)
             email.subject = 'Email address has been submitted for %s (%s)' % (guide, version)
-            email.from_email = 'noreply@mail.thevariable.com'
+            email.from_email = 'admin@diy-trainer.com'
             email.to = ['pbeeson@thevariable.com']
             #email.bcc = ['pbeeson@thevariable.com']
             email.send()
