@@ -76,7 +76,7 @@
                             <ol class="step_list">
                             {% for step in module.get_steps_for_module %}
                                 <li class="step">
-                                    <span class="step_rank">{{ forloop.counter }}</span>
+                                    <span class="step_rank"><div class="count">{{ forloop.counter }}</div></span>
                                     <div class="step_content">
                                         {% if step.image %}
                                         <div class="step_image">
@@ -104,7 +104,7 @@
                 <ol class="step_list">
                 {% for step in detaillevel.step_set.all %}
                     <li class="step">
-                        <span class="step_rank">{{ step.rank }}</span>
+                        <span class="step_rank"><div class="count">{{ step.rank }}</div></span>
                         <div class="step_content">
                         {% if step.image %}
                         <div class="step_image">

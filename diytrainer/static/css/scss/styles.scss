@@ -433,16 +433,20 @@ body.projects {
                                 display: inline-block;
                                 font-size: 24px;
                                 font-weight: 700;
-                                border-radius: 50%;
-                                background-color: $guide_medium_green;
                                 width: 48px;
                                 height: 48px;
-                                padding-left: 16px;
-                                padding-top: 6px;
                                 float: none;
                                 margin-bottom: 25px;
-                                position: relative;
-                                left: 10px;
+
+                                .count {
+                                    background-color: $guide_medium_green;
+                                    border-radius: 50%;
+                                    padding: 50% 0;
+                                    text-align: center;
+                                    width: 100%;
+                                    height: 100%;
+                                    line-height: 0;
+                                }
 
                                 @include media($medium-screen) {
                                     @include span-columns(1 of 12);
@@ -459,6 +463,13 @@ body.projects {
                                 @include media($medium-screen) {
                                     @include span-columns(9 of 12);
                                     @include shift(1);
+                                }
+
+                                ol {
+                                        
+                                    li {
+                                        list-style-type: decimal;
+                                    }
                                 }
 
                                 .step_image {
@@ -1201,6 +1212,10 @@ body#feedback {
     // Projects app
     &.projects {
 
+        .container {
+            @include outer-container();
+        }
+
         header {    
 
             @include media($medium-screen) {
@@ -1214,14 +1229,15 @@ body#feedback {
             
                 @include media($medium-screen) {
                     @include shift(0);
+                    width: 293px;
                 }
             }
 
             h3 {
                 
                 @include media($medium-screen) {
-                    @include span-columns(4);
-                    @include shift(-1);
+                    @include span-columns(5);
+                    @include shift(-2);
                 }
             }
         }

@@ -29,7 +29,7 @@ class FeedbackForm(forms.ModelForm):
         labels = {
             'project_recommendation': _('We\'re diligently building '
                                         'our DIY project database. Please '
-                                        'tell use what projects you\'d '
+                                        'tell us what projects you\'d '
                                         'like to see covered by DIY Trainer!'),
             'skill_ranking': _('On a scale of 1-10, when it comes to the '
                                'idea of starting a home improvement project '
