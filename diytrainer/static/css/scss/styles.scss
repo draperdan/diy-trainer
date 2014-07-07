@@ -613,7 +613,6 @@ body.guides {
 
     .container {
         @include outer-container();
-        //@include pad(0px 15px 0px 15px);
 
         @include media($medium-screen) {
             padding: 0;
@@ -635,7 +634,6 @@ body.guides {
             @include hide-text;
             height: 182px;
             background-image: url(../images/diy_trainer_logo.png);
-            //background-size: cover;
             background-position: center center;
             position: relative;
             z-index: 2;
@@ -643,7 +641,7 @@ body.guides {
             background-repeat: no-repeat;
 
             @include media($medium-screen) {
-                @include shift(2);
+                @include shift(1);
                 width: 132px;
                 height: 154px;
             }
@@ -657,20 +655,25 @@ body.guides {
             position: relative;
             z-index: 1;
             @include pad(15px 15px 15px 15px);
-            line-height: 1.5em;
+            line-height: 1.3em;
             letter-spacing: 2px;
             background-color: white;
             
 
             @include media($medium-screen) {
-                background-image: url(../images/guide_headline_bg.png);
+                background-image: url(../images/guide_headline_bg_wide.png);
                 background-color: transparent;
-                @include span-columns(8 of 12);
+                @include span-columns(9 of 12);
                 @include shift(-2);
-                @include pad(25px 75px 0px 175px);
-                height: 112px;
+                @include pad(30px 75px 0px 175px);
+                height: 240px;
                 background-size: cover;
                 left: 40px;
+                line-height: 1.5em;
+                position: absolute;
+                left: 297px;
+                z-index: 1;
+                font-size: 18px;
             }
         }
     }
@@ -678,13 +681,15 @@ body.guides {
     #guide_rendering {
         @include row();
         @include pad(0px 15px 0px 15px);
-        margin-top: 50px;
+        margin-top: 25px;
         text-align: center;
 
         @include media($medium-screen) {
             @include span-columns(12);
             padding: 0px;
-            margin-top: 0px;
+            margin-top: 25px;
+            position: relative;
+            z-index: 2;
         }    
     }
 
@@ -694,13 +699,16 @@ body.guides {
         #email_signup_form {
             @include row();
             padding: 10px 25px;
-            margin-top: 25px;
-            background-color: $guide_bright_green;
+            margin-top: 50px;
+            background-color: #182b0f;
 
             @include media($medium-screen) {
-                @include span-columns(8);
+                @include span-columns(9);
                 @include shift(2);
-                margin-top: 10px;
+                margin-top: 5px;
+                margin-bottom: 25px;
+                position: relative;
+                z-index: 3;
             }
 
             #form_caption {
@@ -708,6 +716,7 @@ body.guides {
 
                 @include media($medium-screen) {
                     @include span-columns(4 of 8);
+                    padding-top: 0px;
                 }
 
                 h2 {
@@ -725,15 +734,20 @@ body.guides {
 
                 h3 {
                     font-size: 14px;
-                    color: $guide_dark_gray;
+                    color: white;
                     font-weight: normal;
-                    padding-left: 50px;
-                    padding-right: 50px;
+                    padding-left: 25px;
+                    padding-right: 25px;
+
+                    @include media($medium-screen) {
+                        padding-left: 50px;
+                        padding-right: 50px;
+                    }
                 }               
             }
 
             form {
-                background-color: $guide_medium_green;
+                background-color: black;
                 padding: 10px;
                 margin-top: 15px;
 
@@ -751,25 +765,37 @@ body.guides {
                 }
 
                 input.emailinput {
-                    @include span-columns(6 of 8);
+                    @include span-columns(8 of 8);
                     margin-bottom: 0;
                     border-radius: 0;
 
                     @include media($medium-screen) {
-                        width: 75%;
+                        width: 65%;
                         float: left;
                     }
                 }
 
-                input[type="image"] {
-                    @include hide-text;
-                    padding-left: 15px;
+                input[type="submit"] {
+                    background-color: $guide_dark_gray;
+                    color: $guide_medium_green;
+                    border-radius: 0;
+                    text-transform: uppercase;
+                    font-size: 18px;
+                    font-weight: 800;
+                    padding: 10px 15px;
+                    width: 100%;
+                    margin-top: 10px;
 
                     @include media($medium-screen) {
-                        padding-left: 25px;
+                        margin-left: 15px;
+                        width: 110px;
+                        margin-top: 0px;
+                    }
+
+                    &:hover {
+                        background-color: #474747;
                     }
                 }
-
             }
         }
     }
@@ -778,8 +804,8 @@ body.guides {
         clear: left;
         color: #fff;
         padding-top: 25px;
-        @include span-columns(10);
-        @include shift(1);
+        @include span-columns(12);
+        @include shift(0);
 
         h1 {
             @include row();
@@ -791,7 +817,7 @@ body.guides {
 
             @include media($medium-screen) {
                 font-size: 48px;
-                margin-bottom: 50px;
+                margin-bottom: 35px;
             }
         }
 
@@ -800,6 +826,17 @@ body.guides {
             @include span-columns(12);
             text-align: center;
             margin-bottom: 25px;
+            padding-left: 15px;
+            padding-right: 15px;
+
+            img {
+                border: thick solid white;
+            }
+
+            @include media($medium-screen) {
+                padding-left: 0;
+                padding-right: 0;
+            }
         }
 
         #descriptor_list {
@@ -843,8 +880,8 @@ body.guides {
         margin-bottom: 50px;
 
         @include media($medium-screen) {
-            @include span-columns(8);
-            @include shift(2);
+            @include span-columns(10);
+            @include shift(1);
             @include padding(10px);            
         }
 
@@ -867,7 +904,7 @@ body.guides {
             font-weight: 800;
             font-size: 18px;
             text-transform: uppercase;
-            margin-top: 25px;
+            margin-top: 5px;
 
             @include media($medium-screen) {
                 float: right;
@@ -1077,7 +1114,7 @@ body#feedback {
                 height: 342px;
                 background-image: url(../images/diy_trainer_logo_lg.png);
                 @include span-columns(4 of 12);
-                @include shift(2);
+                @include shift(1);
                 top: 0px;
                 margin-bottom: 0px;
             }
@@ -1193,10 +1230,8 @@ body#feedback {
             font-weight: 800;
             padding: 10px 15px;
             margin-top: 50px;
-            //margin-top: -25px;
 
             @include media($medium-screen) {
-                //float: right;
                 @include row($direction: RTL);
                 @include shift(0);
                 @include span-columns(2);
@@ -1221,14 +1256,11 @@ body#feedback {
             @include media($medium-screen) {
                 background-position: center center;
                 background-size: cover;
-                @include span-columns(9);
-                @include shift(2);
             }
 
             h1 {
             
                 @include media($medium-screen) {
-                    @include shift(0);
                     width: 293px;
                 }
             }
@@ -1236,8 +1268,6 @@ body#feedback {
             h3 {
                 
                 @include media($medium-screen) {
-                    @include span-columns(5);
-                    @include shift(-2);
                 }
             }
         }
@@ -1332,7 +1362,7 @@ body#feedback {
                 &:before {
                     content: "";
                     position: absolute;
-                    top: 450px;
+                    top: 325px;
                     left: 0px;
                     width: 100%;
                     height: 20px;
@@ -1348,7 +1378,7 @@ body#feedback {
 
                 @include media($medium-screen) {
                     @include span-columns(10);
-                    @include shift(0);
+                    @include shift(1);
                     margin-top: 100px;
                 }
             }
@@ -1368,8 +1398,8 @@ body#feedback {
             .extra_content_copy {
 
                 @include media($medium-screen) {
-                    @include span-columns(5 of 8);
-                    @include shift(2);
+                    @include span-columns(4 of 8);
+                    @include shift(1);
                 }
             }
 
@@ -1389,7 +1419,6 @@ body#feedback {
             }
 
             a {
-                //@include row();
                 background-color: $guide_dark_gray;
                 color: $guide_medium_green;
                 padding: 10px 15px;
@@ -1419,7 +1448,7 @@ body#feedback {
 
                 @include media($medium-screen) {
                     @include span-columns(3 of 8);
-                    @include shift(2);
+                    @include shift(1);
                 }
             }
 

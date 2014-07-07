@@ -16,20 +16,21 @@
     </hgroup>
 </header>
 
-<div id="guide_rendering">
-    <img src="{{ MEDIA_URL }}{{ guide.rendering }}" alt="Rendering of {{ guide.name }}">
-</div>
-
 <div id="email_signup_form">
     <div id="form_caption">
-        <h2>DIY Trainer is almost here.</h2>
-        <h3>Sign up to be notified when DIY Trainer launches.</h3>
+        <h2>Coming soon!</h2>
+        <h3>Sign up to be notified by email when DIY Trainer launches.</h3>
     </div>
     <form method="post">
         {% csrf_token %}
         {{ form|crispy }}
-        <input type="image" value="Submit" src="{% static 'images/email_submit_btn.png' %}" class="emailsubmit">
+        <input type="submit" value="Sign up &rsaquo;" class="emailsubmit">
+        {% comment %}<input type="image" value="Submit" src="{% static 'images/email_submit_btn.png' %}" class="emailsubmit">{% endcomment %}
     </form>
+</div>
+
+<div id="guide_rendering">
+    <img src="{{ MEDIA_URL }}{{ guide.rendering }}" alt="Rendering of {{ guide.name }}">
 </div>
 
 <section id="guide_explainer">

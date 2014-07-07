@@ -45,3 +45,7 @@ class EmailSignUpForm(forms.ModelForm):
         labels = {
             'email': _('Sign up to be notified when DIY Trainer launches.')
         }
+        widgets = {
+            'email': forms.EmailInput(
+                attrs={'placeholder': 'handywoman@email.com'}),
+        }

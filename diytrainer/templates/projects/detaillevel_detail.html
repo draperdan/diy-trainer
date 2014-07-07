@@ -38,14 +38,14 @@
 
 <div class="content_wrap">
     <div class="container">
-        <div class="project_lead_art">
-            <img src="{{ MEDIA_URL }}{{ detaillevel.project.lead_art }}" alt="{{ detaillevel.project.name }}">
-        </div>
 
         <section id="detaillevel_content">
 
             <div id="project_overview" class="detaillevel_section">
                 <h2 class="section_heading">Project Overview</h2>
+                <div class="project_lead_art">
+                    <img src="{{ MEDIA_URL }}{{ detaillevel.project.lead_art }}" alt="{{ detaillevel.project.name }}">
+                </div>
                 {{ detaillevel.project_overview_html|safe }}
             </div>
 
