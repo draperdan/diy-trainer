@@ -1,5 +1,5 @@
 {% extends 'base_projects.html' %}
-
+{% load staticfiles %}
 {% block title %}Thanks! {{ block.super }}{% endblock title %}
 
 {% block view %}feedback{% endblock view %}
@@ -19,16 +19,32 @@
     <div class="container">
     {% if show_extra_content %}
         <div class="extra_content_image">
-            <img src="http://placehold.it/375x275">
+            {% if project_slug == 'install-mailbox' %}
+                <a href="https://www.youtube.com/results?search_query=how+to+install+a+post+mailbox"><img src="{% static 'images/install_mailbox_youtube_thumb.jpg' %}" alt="Install a mailbox YouTube videos"></a>
+            {% elif project_slug == 'hang-floating-shelf' %}
+                <a href="https://www.youtube.com/results?search_query=how+to+hang+a+floating+shelf"><img src="{% static 'images/hang_floating_shelf_youtube_thumb.jpg' %}" alt="Hang floating shelf YouTube videos"></a>
+            {% elif project_slug == 'install-crown-molding' %}
+                <a href="https://www.youtube.com/results?search_query=how+to+install+crown+molding"><img src="{% static 'images/install_crown_molding_youtube_thumb.jpg' %}" alt="Install crown molding YouTube videos"></a>
+            {% elif project_slug == 'refinish-wood-furniture' %}
+                <a href="https://www.youtube.com/results?search_query=how+to+refinish+wood+furniture"><img src="{% static 'images/refinish_wood_furniture_youtube_thumb.jpg' %}" alt="Refinish wood furniture YouTube videos"></a>
+            {% endif %}
         </div>
         <div class="extra_content_copy">
             <p>Here's a video guide for the project you're working on, if you still need extra help. Good luck!</p>
-            <a href="http://youtube.com">View on YouTube &rsaquo;</a>
+            {% if project_slug == 'install-mailbox' %}
+                <a class="thanks_refer" href="https://www.youtube.com/results?search_query=how+to+install+a+post+mailbox">View on YouTube &rsaquo;</a>
+            {% elif project_slug == 'hang-floating-shelf' %}
+                <a class="thanks_refer" href="https://www.youtube.com/results?search_query=how+to+hang+a+floating+shelf">View on YouTube &rsaquo;</a>
+            {% elif project_slug == 'install-crown-molding' %}
+                <a class="thanks_refer" href="https://www.youtube.com/results?search_query=how+to+install+crown+molding">View on YouTube &rsaquo;</a>
+            {% elif project_slug == 'refinish-wood-furniture' %}
+                <a class="thanks_refer" href="https://www.youtube.com/results?search_query=how+to+refinish+wood+furniture">View on YouTube &rsaquo;</a>
+            {% endif %}
         </div>
     {% else %}
         <div class="extra_content_copy">
             <p>Now that your voice has been heard, we'll let you get back to work. Head back to the guide to finish your project.</p>
-            <a href="{% url 'detaillevel_detail' project_slug level %}">&lsaquo; Back to the Guide</a>
+            <a class="thanks_refer" href="{% url 'detaillevel_detail' project_slug level %}">&lsaquo; Back to the Guide</a>
         </div>
     {% endif %}
     </div>

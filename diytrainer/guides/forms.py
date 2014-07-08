@@ -12,7 +12,7 @@ class Slider(forms.RangeInput):
 
     class Media:
         js = (
-            #'ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js',
+            'ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js',
             'ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js',
         )
         css = {

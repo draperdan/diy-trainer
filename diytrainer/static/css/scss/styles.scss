@@ -1387,6 +1387,17 @@ body#feedback {
                 @include span-columns(8 of 8);
                 margin-bottom: 15px;
                 text-align: center;
+                position: relative;
+
+                &:before {
+                    content: "";
+                    background: url(../images/youtube_icon.png) no-repeat 0px 0px;
+                    position: absolute;
+                    width: 50px;
+                    height: 31px;
+                    width: 100%;
+                    margin-left: 25px;
+                }
 
                 @include media($medium-screen) {
                     @include span-columns(3 of 8);
@@ -1418,7 +1429,7 @@ body#feedback {
                 }
             }
 
-            a {
+            a.thanks_refer {
                 background-color: $guide_dark_gray;
                 color: $guide_medium_green;
                 padding: 10px 15px;
