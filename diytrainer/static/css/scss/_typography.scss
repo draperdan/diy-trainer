@@ -1,0 +1,7 @@
+// Typography
+
+// Used for majority of fonts
+$open-sans: 'Open Sans', sans-serif;
+
+// Used for logo on splash pages
+@include font-face(futura_bold-webfont, '../fonts/futura_bold-webfont');

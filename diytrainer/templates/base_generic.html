@@ -35,12 +35,14 @@
 
   <body id="{% block view %}{% endblock view %}" class="{% block app_name %}{% endblock %}{% block extra_classes %}{% endblock %}">
 
+  {% block header %}{% endblock header %}
+
     <div class="container">
       {% block content %}
       {% endblock content %}
     </div>
 
-    {% block footer %}{% endblock footer %}
+  {% block footer %}{% endblock footer %}
 
     <script src="http://code.jquery.com/jquery-latest.js"></script>
 

@@ -9,14 +9,15 @@
 //$visual-grid: true;
 //$visual-grid-color: yellow;
 
+// Framework imports
+@import 'bourbon/bourbon';
+
 // Colors
 @import 'colors';
 
 //Typography
-$open-sans: 'Open Sans', sans-serif;
+@import 'typography';
 
-// Framework imports
-@import 'bourbon/bourbon';
 @import 'base/grid-settings';
 @import 'base/base';
 @import 'neat/neat';
@@ -603,12 +604,35 @@ body.projects {
 // 'Splash' or guides project
 body.guides {
     font-family: $open-sans;
-    background-color: $guide_medium_green;
-    @include background(linear-gradient($guide_bg_green, black) top no-repeat);
-    
+
+    strong {
+        font-weight: 300;
+    }
 
     @include media($medium-screen) {
-        @include background(url(../images/guide_shape_bg.png) center 300px no-repeat, url(../images/guide_grid_bg.png) top no-repeat, linear-gradient($guide_bg_green, black) top no-repeat);
+        @include background(url(../images/blueprint_shadow_bg.png) 125px 25px no-repeat, url(../images/divider_shadow_bg.png) center center no-repeat);
+    }
+
+    header {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid $guide_dark_gray;
+        background-color: white;
+
+        hgroup {
+            @include outer-container();
+        }
+
+        h1 {
+            @include span-columns(12 of 12);
+            text-align: center;
+            font-family: futura_bold-webfont;
+            font-size: 40px;
+            color: black;
+
+            @include media($medium-screen) {
+            }
+        }
     }
 
     .container {
@@ -619,78 +643,49 @@ body.guides {
         }
     }
 
-    header {
+    #guide_promo {
         @include row();
-        position: relative;
-        top: 25px;
+        @include span-columns(12);
+        margin-top: 50px;
 
-        hgroup {
-            @include span-columns(12);
-        }
-
-        h1 {
-            @include span-columns(6 of 12);
-            @include shift(3);
-            @include hide-text;
-            height: 182px;
-            background-image: url(../images/diy_trainer_logo.png);
-            background-position: center center;
-            position: relative;
-            z-index: 2;
-            bottom: 10px;
-            background-repeat: no-repeat;
+        #guide_rendering {
+            @include span-columns(5 of 12);
+            @include shift(1);
+            @include pad(0px 15px 0px 15px);
 
             @include media($medium-screen) {
-                @include shift(1);
-                width: 132px;
-                height: 154px;
-            }
+                padding: 0px;
+            }    
         }
 
-        h2 {
-            @include span-columns(12 of 12);
-            font-size: 16px;
-            font-weight: 700;
-            text-transform: uppercase;
-            position: relative;
-            z-index: 1;
-            @include pad(15px 15px 15px 15px);
-            line-height: 1.3em;
-            letter-spacing: 2px;
-            background-color: white;
-            
+        #guide_headline {
+            @include span-columns(5 of 12);
+            @include shift(0);
+            @include pad(0px 15px 0px 15px);
+            text-align: center;
+
+            h2 {
+                font-size: 32px;
+                font-weight: 300;
+                margin-bottom: 15px;
+            }
+
+            h3 {
+                color: $guide_medium_gray;
+                font-size: 24px;
+                font-weight: 300;
+                @include pad(0px 15px 0px 15px);
+
+                strong {
+                    color: black;
+                    font-weight: 300px; 
+                }
+            }
 
             @include media($medium-screen) {
-                background-image: url(../images/guide_headline_bg_wide.png);
-                background-color: transparent;
-                @include span-columns(9 of 12);
-                @include shift(-2);
-                @include pad(30px 75px 0px 175px);
-                height: 240px;
-                background-size: cover;
-                left: 40px;
-                line-height: 1.5em;
-                position: absolute;
-                left: 297px;
-                z-index: 1;
-                font-size: 18px;
+                padding: 0px;
             }
         }
-    }
-
-    #guide_rendering {
-        @include row();
-        @include pad(0px 15px 0px 15px);
-        margin-top: 25px;
-        text-align: center;
-
-        @include media($medium-screen) {
-            @include span-columns(12);
-            padding: 0px;
-            margin-top: 25px;
-            position: relative;
-            z-index: 2;
-        }    
     }
 
     // Email sign-up view
@@ -698,62 +693,56 @@ body.guides {
 
         #email_signup_form {
             @include row();
-            padding: 10px 25px;
+            @include span-columns(12);
             margin-top: 50px;
-            background-color: #182b0f;
 
             @include media($medium-screen) {
-                @include span-columns(9);
-                @include shift(2);
-                margin-top: 5px;
-                margin-bottom: 25px;
-                position: relative;
-                z-index: 3;
             }
 
             #form_caption {
-                text-align: center;
+                @include span-columns(6 of 12);
+                @include shift(1);
 
                 @include media($medium-screen) {
-                    @include span-columns(4 of 8);
-                    padding-top: 0px;
                 }
 
                 h2 {
-                    font-size: 18px;
-                    text-transform: uppercase;
-                    color: white;
-                    font-weight: 700;
-                    letter-spacing: 1px;
-                    margin-bottom: 10px;
+                    @include span-columns(2 of 6);
+                    font-size: 28px;
+                    color: black;
+                    font-weight: 300;
+                    position: relative;
+
+                    &:after {
+                        content: "";
+                        border-right: 1px solid $guide_medium_gray;
+                        height: 65px;
+                        position: absolute;
+                        left: 190px;
+                        bottom: -20px;
+                    }
 
                     @include media($medium-screen) {
-                        margin-bottom: 0px;
                     }
                 }
 
                 h3 {
-                    font-size: 14px;
-                    color: white;
-                    font-weight: normal;
-                    padding-left: 25px;
-                    padding-right: 25px;
+                    @include span-columns(4 of 6);
+                    font-size: 18px;
+                    color: $guide_medium_gray;
+                    font-weight: 300;
+                    @include pad(0px 15px 0px 15px);
 
                     @include media($medium-screen) {
-                        padding-left: 50px;
-                        padding-right: 50px;
                     }
                 }               
             }
 
             form {
-                background-color: black;
-                padding: 10px;
-                margin-top: 15px;
+                @include span-columns(4 of 12);
+                @include shift(0);
 
                 @include media($medium-screen) {
-                    @include span-columns(4 of 8);
-                    margin-top: 0px;
                 }
 
                 .errorField {
@@ -777,7 +766,7 @@ body.guides {
 
                 input[type="submit"] {
                     background-color: $guide_dark_gray;
-                    color: $guide_medium_green;
+                    color: white;
                     border-radius: 0;
                     text-transform: uppercase;
                     font-size: 18px;
@@ -802,16 +791,15 @@ body.guides {
 
     section#guide_explainer {
         clear: left;
-        color: #fff;
-        padding-top: 25px;
+        color: black;
+        padding-top: 100px;
         @include span-columns(12);
         @include shift(0);
 
         h1 {
             @include row();
-            font-size: 38px;
-            font-weight: 700;
-            text-transform: uppercase;
+            font-size: 42px;
+            font-weight: 300;
             text-align: center;
             margin-bottom: 25px;
 
@@ -841,15 +829,15 @@ body.guides {
 
         #descriptor_list {
             @include row();
+            @include span-columns(12);
             margin-bottom: 50px;
 
             li {
                 position: relative;
 
                 h2 {
-                    font-size: 26px;
-                    font-weight: 700;
-                    text-transform: uppercase;
+                    font-size: 24px;
+                    font-weight: 300;
                     margin-bottom: 10px;
 
                     @include media($medium-screen) {
@@ -880,8 +868,8 @@ body.guides {
         margin-bottom: 50px;
 
         @include media($medium-screen) {
-            @include span-columns(10);
-            @include shift(1);
+            @include span-columns(8);
+            @include shift(2);
             @include padding(10px);            
         }
 
@@ -926,7 +914,7 @@ body.guides {
                 text-align: center;
 
                 @include media($medium-screen) {
-                    @include span-columns(4);
+                    @include span-columns(4 of 12);
                     @include shift(2);
                     text-align: left; 
                 }
@@ -950,7 +938,7 @@ body.guides {
 
                     .descriptor_number {
                         @extend %descriptor_number;
-                        background-image: url(../images/guide1_description_one.png);
+                        background-image: url(../images/guide1_description_one_dk.png);
                     }
                 }
 
@@ -963,7 +951,7 @@ body.guides {
 
                     .descriptor_number {
                         @extend %descriptor_number;
-                        background-image: url(../images/guide1_description_two.png);
+                        background-image: url(../images/guide1_description_two_dk.png);
                     }
                 }
             }

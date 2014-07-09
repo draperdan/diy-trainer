@@ -1,6 +1,7 @@
 {% extends 'base_guides.html' %}
 {% load staticfiles %}
 {% load crispy_forms_tags %}
+{% load markup %}
 
 {% block title %}{{ guide.name }}{{ block.super }}{% endblock title %}
 
@@ -8,29 +9,36 @@
 
 {% block extra_classes %} guide_{{ guide.version }}{% endblock %}
 
-{% block content %}
+{% block header %}
 <header>
     <hgroup>
         <h1>DIY Trainer</h1>
-        <h2>{{ guide.headline }}</h2>
     </hgroup>
 </header>
+{% endblock header %}
+
+{% block content %}
+
+<div id="guide_promo">
+    <div id="guide_rendering">
+        <img src="{{ MEDIA_URL }}{{ guide.rendering }}" alt="Rendering of {{ guide.name }}">
+    </div>
+    <div id="guide_headline">
+        <h2>Learn new home<br>improvement skills online.</h2>
+        <h3>{{ guide.headline|markup|removetags:"p"|safe }}</h3>
+    </div>
+</div>
 
 <div id="email_signup_form">
     <div id="form_caption">
-        <h2>Coming soon!</h2>
-        <h3>Sign up to be notified by email when<br>DIY Trainer launches.</h3>
+        <h2>Coming Soon</h2>
+        <h3>Sign up to be notified by email when DIY Trainer launches.</h3>
     </div>
     <form method="post">
         {% csrf_token %}
         {{ form|crispy }}
         <input type="submit" value="Sign up &rsaquo;" class="emailsubmit">
-        {% comment %}<input type="image" value="Submit" src="{% static 'images/email_submit_btn.png' %}" class="emailsubmit">{% endcomment %}
     </form>
-</div>
-
-<div id="guide_rendering">
-    <img src="{{ MEDIA_URL }}{{ guide.rendering }}" alt="Rendering of {{ guide.name }}">
 </div>
 
 <section id="guide_explainer">
@@ -57,7 +65,7 @@
 </section>
 
 <div id="feedback_form_refer">
-    <h2>We're busy building out our library of DIY projects. Tell us which ones you'd like to see the most...</h2>
+    <h2>We're busy building out our library of {% if guide.version == 2 %}home improvement experts{% else %}DIY projects{% endif %}. Tell us which {% if guide.version == 2 %}projects{% else %}ones{% endif %} you'd like {% if guide.version == 2 %}advice on{% else %}to see{% endif %} the most...</h2>
     <a href="{% url 'guide_feedback' guide.version %}">Tell Us &rsaquo;</a>
 </div>
 

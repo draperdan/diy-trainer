@@ -39,7 +39,7 @@ class Guide(models.Model):
     version = models.PositiveSmallIntegerField(
         choices=VERSION_CHOICES, help_text='Version of splash page')
     headline = models.CharField(max_length=250,
-                                help_text='Max 250 characters.')
+                                help_text='Max 250 characters. Use Markdown if needed for formatting.')
     description_image = ImageField(blank=True,
                                    upload_to='images/guides/description'
                                    )
