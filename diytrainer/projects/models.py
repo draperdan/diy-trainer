@@ -34,7 +34,7 @@ class Project(models.Model):
     """ A project for the granularity test. """
     name = models.CharField(max_length=250, help_text='Max 250 characters')
     slug = models.SlugField(help_text='Will populate from the name field')
-    lead_art = ImageField(upload_to='images/projects/project')
+    lead_art = ImageField(upload_to='images/projects/project', blank=True)
 
     class Meta:
         verbose_name_plural = 'Projects'
