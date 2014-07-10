@@ -174,7 +174,6 @@ body.projects {
                             height: 48px;
                             padding-left: 0px;
                             padding-top: 6px;
-                            //margin-right: 9px;
                             margin-top: 10px;
 
                             @include media($medium-screen) {
@@ -208,6 +207,16 @@ body.projects {
                 color: black;
 
                 @include media($medium-screen) {
+                    background-image: url(../images/project_headline_bg.png);
+                    background-size: cover;
+                    background-color: transparent;
+                    width: 500px;
+                    height: 129px;
+                    font-size: 24px;
+                    @include padding(10px 35px 0px 35px);
+                }
+
+                @include media($large-screen) {
                     background-image: url(../images/project_headline_bg.png);
                     background-size: cover;
                     background-color: transparent;
@@ -675,6 +684,18 @@ body.projects {
 
                 @include media($medium-screen) {
                     @include span-columns(4 of 12);
+                    @include shift(1);
+                    padding-left: 50px;
+                    padding-right: 25px;
+                    position: relative;
+                    top: 185px;
+                    clear: none;
+                    text-align: left;
+                    font-size: 24px;
+                }
+
+                @include media($large-screen) {
+                    @include span-columns(4 of 12);
                     padding-left: 50px;
                     padding-right: 25px;
                     position: relative;
@@ -1033,8 +1054,22 @@ body.guides {
                     font-size: 28px;
                     color: black;
                     font-weight: 300;
-                    
+
                     @include media($medium-screen) {
+                        @include span-columns(2 of 6);
+                        position: relative;
+
+                        &:after {
+                        content: "";
+                        border-right: 1px solid $guide_medium_gray;
+                        height: 65px;
+                        position: absolute;
+                        left: 150px;
+                        bottom: 0px;
+                        }
+                    }
+                    
+                    @include media($large-screen) {
                         @include span-columns(2 of 6);
                         position: relative;
 
@@ -1086,6 +1121,11 @@ body.guides {
                     border-radius: 0;
 
                     @include media($medium-screen) {
+                        width: 55%;
+                        float: left;
+                    }
+
+                    @include media($large-screen) {
                         width: 65%;
                         float: left;
                     }
@@ -1237,6 +1277,12 @@ body.guides {
             margin-top: 20px;
 
             @include media($medium-screen) {
+                float: right;
+                text-align: left;
+                //margin-right: 50px;
+            }
+
+            @include media($large-screen) {
                 float: right;
                 text-align: left;
                 margin-right: 50px;
