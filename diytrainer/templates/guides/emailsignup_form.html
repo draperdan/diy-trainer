@@ -65,7 +65,7 @@
 </section>
 
 <div id="feedback_form_refer">
-    <h2>We're busy building out our library of {% if guide.version == 2 %}home improvement experts{% else %}DIY projects{% endif %}. Tell us which {% if guide.version == 2 %}projects{% else %}ones{% endif %} you'd like {% if guide.version == 2 %}advice on{% else %}to see{% endif %} the most...</h2>
+    <h2>We're busy building out our {% if guide.version == 2 %}network{% else %}library{% endif %} of {% if guide.version == 2 %}home improvement experts{% else %}DIY projects{% endif %}. Tell us which {% if guide.version == 2 %}projects{% else %}ones{% endif %} you'd like {% if guide.version == 2 %}advice on{% else %}to see{% endif %} the most...</h2>
     <a href="{% url 'guide_feedback' guide.version %}">Tell Us &rsaquo;</a>
 </div>
 
