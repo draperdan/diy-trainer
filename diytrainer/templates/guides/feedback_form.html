@@ -6,14 +6,19 @@
 
 {% block view %}feedback{% endblock view %}
 
-{% block content %}
+{% block header %}
 <header>
     <hgroup>
         <h1>DIY Trainer</h1>
-        <h2>Thank you</h2>
-        <h3>Thanks for your interest!<br>We're working hard to get DIY Trainer in shape for you.</h3>
     </hgroup>
 </header>
+{% endblock header %}
+
+{% block content %}
+<div id="feedback_thanks">
+    <h2>Thank you</h2>
+    <h3>Thanks for your interest!<br>We're working hard to get DIY Trainer in shape for you.</h3>
+</div>
 
 <div id="feedback_form">
     <form method="post">

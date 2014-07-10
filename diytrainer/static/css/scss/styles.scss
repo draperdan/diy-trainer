@@ -7,7 +7,7 @@
 // Global overrides
 
 //$visual-grid: true;
-//$visual-grid-color: yellow;
+$visual-grid-color: yellow;
 
 // Framework imports
 @import 'bourbon/bourbon';
@@ -610,7 +610,8 @@ body.guides {
     }
 
     @include media($medium-screen) {
-        @include background(url(../images/blueprint_shadow_bg.png) 125px 25px no-repeat, url(../images/divider_shadow_bg.png) center center no-repeat);
+        @include background(url(../images/divider_shadow_bg.png) center 500px no-repeat, url(../images/footer_shadow_bg.png) repeat-x center bottom);
+        margin-bottom: 165px;
     }
 
     header {
@@ -646,7 +647,11 @@ body.guides {
     #guide_promo {
         @include row();
         @include span-columns(12);
-        margin-top: 50px;
+        padding-top: 50px;
+
+        @include media($medium-screen) {
+            @include background(url(../images/blueprint_shadow_bg.png) left top no-repeat);
+        }
 
         #guide_rendering {
             @include span-columns(5 of 12);
@@ -813,12 +818,14 @@ body.guides {
             @include row();
             @include span-columns(12);
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 50px;
             padding-left: 15px;
             padding-right: 15px;
 
             img {
-                border: thick solid white;
+                border: 1px solid black;
+                padding: 5px;
+                box-shadow: 0 1.2em 2em -1em black;
             }
 
             @include media($medium-screen) {
@@ -848,6 +855,7 @@ body.guides {
                 p {
                     font-size: 14px;
                     line-height: 1.8em;
+                    color: $guide_dark_gray;
                 }
 
                 .descriptor_number {
@@ -874,7 +882,7 @@ body.guides {
         }
 
         h2 {
-            font-size: 24px;
+            font-size: 23px;
             font-weight: normal;
 
             @include media($medium-screen) {
@@ -892,12 +900,12 @@ body.guides {
             font-weight: 800;
             font-size: 18px;
             text-transform: uppercase;
-            margin-top: 5px;
+            margin-top: 20px;
 
             @include media($medium-screen) {
                 float: right;
                 text-align: left;
-                margin-right: 25px;
+                margin-right: 50px;
             }
 
             &:hover {
@@ -967,7 +975,7 @@ body.guides {
                 margin-bottom: 25px;
 
                 @include media($medium-screen) {
-                    @include span-columns(10);
+                    @include span-columns(9);
                     @include shift(2);
                     text-align: left;
                 }
@@ -975,15 +983,17 @@ body.guides {
                 .descriptor_text {
                     
                     @include media($medium-screen) {
-                        @include span-columns(5 of 10);
+                        @include span-columns(4 of 9);
                         left: -150px;
                     }
                 }
 
                 img {
+                    border: 1px solid black;
+                    box-shadow: 0 1.2em 2em -1em black;
 
                     @include media($medium-screen) {
-                        @include span-columns(5 of 10);
+                        @include span-columns(5 of 9);
                         left: -150px;
                     }
                 }
@@ -1002,7 +1012,7 @@ body.guides {
 
                     .descriptor_number {
                         @extend %descriptor_number;
-                        background-image: url(../images/guide2_description_one.png);
+                        background-image: url(../images/guide2_description_one_dk.png);
                     }
                 }
 
@@ -1010,7 +1020,7 @@ body.guides {
 
                     .descriptor_number {
                         @extend %descriptor_number;
-                        background-image: url(../images/guide2_description_two.png);
+                        background-image: url(../images/guide2_description_two_dk.png);
                     }
                 }
 
@@ -1018,7 +1028,7 @@ body.guides {
 
                     .descriptor_number {
                         @extend %descriptor_number;
-                        background-image: url(../images/guide2_description_three.png);
+                        background-image: url(../images/guide2_description_three_dk.png);
                     }
                 }
             }
@@ -1059,7 +1069,7 @@ body.guides {
 
                     .descriptor_number {
                         @extend %descriptor_number;
-                        background-image: url(../images/guide3_description_one.png);
+                        background-image: url(../images/guide3_description_one_dk.png);
                     }
                 }
 
@@ -1067,15 +1077,130 @@ body.guides {
 
                     .descriptor_number {
                         @extend %descriptor_number;
-                        background-image: url(../images/guide3_description_two.png);
+                        background-image: url(../images/guide3_description_two_dk.png);
                     }
                 }
                 &.descriptor_3 {
 
                     .descriptor_number {
                         @extend %descriptor_number;
-                        background-image: url(../images/guide3_description_three.png);
+                        background: url(../images/guide3_description_three_dk.png) no-repeat;
                     }
+                }
+            }
+        }
+    }
+
+    // Feedback form and thanks page
+    &#feedback {
+        @include background(url(../images/blueprint_bg.png) left top no-repeat, url(../images/divider_shadow_bg.png) center 225px repeat-x);
+        position: relative;
+
+        &:before {
+            content: "";
+            background-color: white;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 375px;
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        #feedback_thanks {
+            @include span-columns(12);
+            margin-top: 75px;
+            margin-bottom: 100px;
+
+            h2 {
+                @include span-columns(4 of 12);
+                @include shift(2);
+                font-size: 64px;
+                font-weight: 300;
+                line-height: 1.1em;
+            }
+
+            h3 {
+                @include span-columns(5 of 12);
+                font-size: 30px;
+                font-weight: 300;
+                color: $guide_medium_gray;
+            }
+        }
+
+        #feedback_form {
+            margin-top: 50px;
+            margin-bottom: 50px;
+            @include padding(0px 15px 50px 15px);
+
+            @include media($medium-screen) {
+                @include span-columns(8);
+                @include shift(2);
+                @include padding(0px);
+                margin-top: 100px;
+            }
+
+            label {
+            font-size: 24px;
+            font-weight: 300;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            }
+
+            textarea#id_project_recommendation {
+                border-radius: 0;
+                margin-bottom: 50px;
+            }
+
+            input[type="range"] {
+                width: 100%;
+            }
+
+            .range_helper {
+                text-align: center;
+                font-size: 14px;
+                @include clearfix;
+
+                .range_number {
+                    color: $guide_light_gray;
+                }
+
+                .start {
+                    float: left;
+                    
+                }
+
+                .finish {
+                    float: right;
+                    
+                }
+            }
+
+            input[type="submit"] {
+                @include span-columns(6 of 12);
+                @include shift(3);
+                background-color: $guide_dark_gray;
+                color: white;
+                border-radius: 0;
+                text-transform: uppercase;
+                font-size: 18px;
+                font-weight: 800;
+                padding: 10px 15px;
+                margin-top: 50px;
+
+                @include media($medium-screen) {
+                    @include row($direction: RTL);
+                    @include shift(0);
+                    @include span-columns(2);
+                    margin-top: 50px;
+                }
+
+                &:hover {
+                    background-color: #080808;
                 }
             }
         }
@@ -1084,7 +1209,7 @@ body.guides {
 
 
 // Feedback forms
-body#feedback {
+/*body#feedback {
     background-color: white;
     @include background(url(../images/guide_thankyou_grid_bg.png) top center no-repeat, url(../images/guide_thankyou_header_bg.png) top repeat-x);
     margin-bottom: 50px;
@@ -1453,5 +1578,5 @@ body#feedback {
 
         }
     }
-}
+}*/
 
