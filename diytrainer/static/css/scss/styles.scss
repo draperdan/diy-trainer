@@ -7,7 +7,7 @@
 // Global overrides
 
 //$visual-grid: true;
-$visual-grid-color: yellow;
+//$visual-grid-color: yellow;
 
 // Framework imports
 @import 'bourbon/bourbon';
@@ -598,6 +598,321 @@ body.projects {
             }
         }
     }
+
+    &#feedback {
+        background-color: white;
+        @include background(url(../images/guide_thankyou_grid_bg.png) top center no-repeat, url(../images/guide_thankyou_header_bg.png) top repeat-x);
+        margin-bottom: 50px;
+
+        .container {
+            @include outer-container();
+        }
+
+        header {
+            background: none;    
+
+            @include media($medium-screen) {
+                background-position: center center;
+                background-size: cover;
+            }
+
+            hgroup {
+                @include span-columns(12);
+                @include row($direction: LTR);
+            }
+
+            h1 {
+                background-image: url(../images/diy_trainer_logo.png);
+                height: 154px;
+                margin-bottom: 50px;
+            
+                @include media($medium-screen) {
+                    height: 342px;
+                    background-image: url(../images/diy_trainer_logo_lg.png);
+                    @include span-columns(4 of 12);
+                    @include shift(1);
+                    top: 0px;
+                    margin-bottom: 0px;
+                    width: 293px;
+                }
+            }
+
+            h2 {
+                background: none;
+                text-decoration: underline;
+                font-size: 44px;
+                font-weight: 800;
+                text-transform: uppercase;
+                line-height: 1.1em;
+                letter-spacing: 2px;
+                text-align: center;
+                margin-bottom: 15px; 
+
+                @include media($medium-screen) {
+                    @include span-columns(4 of 12);
+                    @include shift(-2);
+                    padding-top: 25px;
+                    padding-left: 175px;
+                    padding-right: 75px;
+                    position: relative;
+                    left: 40px;
+                    top: 150px;
+                    height: 112px;
+                    text-align: left;
+                    line-height: 1.5em;
+                    margin-bottom: 0px; 
+                }
+            }
+
+            h3 {
+                font-style: italic;
+                font-weight: normal;
+                font-size: 20px;
+                padding-left: 15px;
+                padding-right: 15px;
+                clear: both;
+                text-align: center;
+
+                @include media($medium-screen) {
+                    @include span-columns(4 of 12);
+                    padding-left: 50px;
+                    padding-right: 25px;
+                    position: relative;
+                    top: 185px;
+                    clear: none;
+                    text-align: left;
+                    font-size: 24px;
+                }
+            }
+        }
+
+        #feedback_form {
+            @include padding(50px 15px 50px 15px);
+            clear: both;
+            margin-bottom: 50px;
+            margin-top: 75px;
+
+            @include media($medium-screen) {
+                @include span-columns(8);
+                @include shift(2);
+                @include padding(0px);
+                margin-top: 150px;
+            }
+
+            label {
+                font-weight: 700;
+                border-bottom: none;
+                font-weight: normal;
+                font-size: 18px;
+                margin-bottom: 15px;
+                padding-bottom: 10px;
+
+                @include media($medium-screen) {
+                    font-size: 20px;
+                    margin-bottom: 25px;
+                }
+            }
+
+            label[for="id_project_progress"], label[for="id_project_confidence"], label[for="id_project_recommendation"] {
+                border-bottom: thick solid black;
+                position: relative;
+                font-weight: 700;
+                font-size: 20px;
+
+                @include media($medium-screen) {
+                    font-size: 30px;
+                }
+
+                &:before {
+
+                    @include media($medium-screen) {
+                        content: "";
+                        width: 132px;
+                        height: 100px;
+                        position: absolute;
+                        left: -160px;
+                        top: 10px;
+                    }
+                }
+            }
+
+            label[for="id_project_progress"] {
+
+                &:before {
+                    background: url(../images/feedback_form_number_1.png) no-repeat;
+                }
+            }
+
+            label[for="id_project_confidence"] {
+
+                &:before {
+                    background: url(../images/feedback_form_number_2.png) no-repeat;
+                }
+            }
+
+            label[for="id_project_recommendation"] {
+            
+                &:before {
+                    background: url(../images/feedback_form_number_3.png) no-repeat;
+                }
+            }
+
+            textarea#id_project_recommendation {
+                border: 10px solid $guide_light_gray;
+                border-radius: 0;
+                margin-bottom: 50px;
+            }
+
+            input[type="submit"] {
+                @include span-columns(6 of 12);
+                @include shift(3);
+                background-color: $guide_dark_gray;
+                color: $guide_medium_green;
+                border-radius: 0;
+                text-transform: uppercase;
+                font-size: 18px;
+                font-weight: 800;
+                padding: 10px 15px;
+                margin-top: 50px;
+
+                @include media($medium-screen) {
+                    @include row($direction: RTL);
+                    @include shift(0);
+                    @include span-columns(2);
+                    margin-top: 50px;
+                }
+
+                &:hover {
+                    background-color: #080808;
+                }
+            }
+        }
+
+        .ctrlHolder {
+            margin-bottom: 50px;
+
+            @include media($medium-screen) {
+                margin-bottom: 0px;
+            }
+
+            ul {
+                // Hide the first option to get around the empty_label issue in Django
+                li:first-child {
+                    display: none;
+                }
+            }
+        }
+
+        .extra_content {
+            position: relative;
+
+            @include media($medium-screen) {
+                &:before {
+                    content: "";
+                    position: absolute;
+                    top: 325px;
+                    left: 0px;
+                    width: 100%;
+                    height: 20px;
+                    background: url(../images/project_thankyou_dash.png) repeat-x;
+                }                
+            }
+
+            .container {
+                @include outer-container();
+                @include span-columns(12);
+                margin-top: 50px;
+                margin-bottom: 25px;
+
+                @include media($medium-screen) {
+                    @include span-columns(10);
+                    @include shift(0);
+                    margin-top: 100px;
+                }
+            }
+
+            .extra_content_image {
+                @include span-columns(8 of 8);
+                margin-bottom: 15px;
+                text-align: center;
+                position: relative;
+
+                &:before {
+                    content: "";
+                    background: url(../images/youtube_icon.png) no-repeat 0px 0px;
+                    position: absolute;
+                    width: 50px;
+                    height: 31px;
+                    width: 100%;
+                    margin-left: 25px;
+                }
+
+                @include media($medium-screen) {
+                    @include span-columns(3 of 8);
+                    @include shift(2);
+                    margin-bottom: 0px;
+                }
+            }
+
+            .extra_content_copy {
+
+                @include media($medium-screen) {
+                    @include span-columns(3 of 8);
+                    @include shift(3);
+                }
+            }
+
+            p {
+                font-size: 20px;
+                font-style: italic;
+                margin-top: 0px;
+                padding-left: 15px;
+                padding-right: 15px;
+                margin-bottom: 50px;
+
+                @include media($medium-screen) {
+                    padding-left: 0px;
+                    font-size: 24px;
+                    margin-bottom: 15px;
+                }
+            }
+
+            a.thanks_refer {
+                background-color: $guide_dark_gray;
+                color: $guide_medium_green;
+                padding: 10px 15px;
+                font-weight: 800;
+                font-size: 18px;
+                text-transform: uppercase;
+                display: inline-block;
+                text-align: center;
+                width: 100%;
+                margin-top: 50px;
+
+                @include media($medium-screen) {
+                    margin-top: 25px;
+                    margin-right: 25px;
+                    width: 250px;
+                }
+
+                &:hover {
+                    background-color: #080808;
+                }
+            }
+        }
+
+        &.video {
+
+            .extra_content_copy {
+
+                @include media($medium-screen) {
+                    @include span-columns(3 of 8);
+                    @include shift(0);
+                }
+            }
+
+        }
+    }
 }
 
 
@@ -647,27 +962,34 @@ body.guides {
     #guide_promo {
         @include row();
         @include span-columns(12);
-        padding-top: 50px;
+        padding-top: 25px;
 
         @include media($medium-screen) {
             @include background(url(../images/blueprint_shadow_bg.png) left top no-repeat);
+            padding-top: 50px;
         }
 
         #guide_rendering {
-            @include span-columns(5 of 12);
-            @include shift(1);
             @include pad(0px 15px 0px 15px);
+            text-align: center;
 
             @include media($medium-screen) {
+                @include span-columns(5 of 12);
+                @include shift(1);
                 padding: 0px;
+                text-align: left;
             }    
         }
 
         #guide_headline {
-            @include span-columns(5 of 12);
-            @include shift(0);
-            @include pad(0px 15px 0px 15px);
+            @include pad(25px 15px 0px 15px);
             text-align: center;
+
+            @include media($medium-screen) {
+                @include span-columns(5 of 12);
+                @include shift(0);
+                padding: 0px;
+            }
 
             h2 {
                 font-size: 32px;
@@ -686,10 +1008,6 @@ body.guides {
                     font-weight: 300px; 
                 }
             }
-
-            @include media($medium-screen) {
-                padding: 0px;
-            }
         }
     }
 
@@ -701,53 +1019,57 @@ body.guides {
             @include span-columns(12);
             margin-top: 50px;
 
-            @include media($medium-screen) {
-            }
-
             #form_caption {
-                @include span-columns(6 of 12);
-                @include shift(1);
+                @include span-columns(12 of 12);
+                text-align: center;
 
                 @include media($medium-screen) {
+                    @include span-columns(6 of 12);
+                    @include shift(1);
+                    text-align: left;
                 }
 
                 h2 {
-                    @include span-columns(2 of 6);
                     font-size: 28px;
                     color: black;
                     font-weight: 300;
-                    position: relative;
+                    
+                    @include media($medium-screen) {
+                        @include span-columns(2 of 6);
+                        position: relative;
 
-                    &:after {
+                        &:after {
                         content: "";
                         border-right: 1px solid $guide_medium_gray;
                         height: 65px;
                         position: absolute;
                         left: 190px;
                         bottom: -20px;
-                    }
-
-                    @include media($medium-screen) {
+                        }
                     }
                 }
 
                 h3 {
-                    @include span-columns(4 of 6);
+                    @include pad(0px 15px 0px 15px);
                     font-size: 18px;
                     color: $guide_medium_gray;
                     font-weight: 300;
-                    @include pad(0px 15px 0px 15px);
 
                     @include media($medium-screen) {
+                        @include span-columns(4 of 6);
                     }
                 }               
             }
 
             form {
-                @include span-columns(4 of 12);
-                @include shift(0);
+                @include pad(25px 15px 0px 15px);
+                clear: both;
 
                 @include media($medium-screen) {
+                    @include span-columns(4 of 12);
+                    @include shift(0);
+                    padding: 0;
+                    clear: none;
                 }
 
                 .errorField {
@@ -795,11 +1117,15 @@ body.guides {
     }
 
     section#guide_explainer {
-        clear: left;
-        color: black;
-        padding-top: 100px;
         @include span-columns(12);
         @include shift(0);
+        clear: left;
+        color: black;
+        padding-top: 50px;
+
+        @include media($medium-screen) {
+            padding-top: 100px;
+        }
 
         h1 {
             @include row();
@@ -825,7 +1151,10 @@ body.guides {
             img {
                 border: 1px solid black;
                 padding: 5px;
-                box-shadow: 0 1.2em 2em -1em black;
+                
+                @include media($medium-screen) {
+                    box-shadow: 0 1.2em 2em -1em black;
+                }
             }
 
             @include media($medium-screen) {
@@ -841,6 +1170,11 @@ body.guides {
 
             li {
                 position: relative;
+                @include pad(0px 15px 0px 15px);
+
+                @include media($medium-screen) {
+                    padding: 0;
+                }
 
                 h2 {
                     font-size: 24px;
@@ -990,11 +1324,12 @@ body.guides {
 
                 img {
                     border: 1px solid black;
-                    box-shadow: 0 1.2em 2em -1em black;
+                    
 
                     @include media($medium-screen) {
                         @include span-columns(5 of 9);
                         left: -150px;
+                        box-shadow: 0 1.2em 2em -1em black;
                     }
                 }
 
@@ -1093,8 +1428,12 @@ body.guides {
 
     // Feedback form and thanks page
     &#feedback {
-        @include background(url(../images/blueprint_bg.png) left top no-repeat, url(../images/divider_shadow_bg.png) center 225px repeat-x);
+        @include background(url(../images/blueprint_bg.png) left top no-repeat, url(../images/divider_shadow_bg.png) center 400px repeat-x);
         position: relative;
+
+        @include media($medium-screen) {
+            @include background(url(../images/blueprint_bg.png) left top no-repeat, url(../images/divider_shadow_bg.png) center 225px repeat-x);
+        }
 
         &:before {
             content: "";
@@ -1102,8 +1441,12 @@ body.guides {
             width: 100%;
             height: 100%;
             position: absolute;
-            top: 375px;
+            top: 550px;
             z-index: 1;
+
+            @include media($medium-screen) {
+                top: 375px;
+            }
         }
 
         .container {
@@ -1113,22 +1456,40 @@ body.guides {
 
         #feedback_thanks {
             @include span-columns(12);
-            margin-top: 75px;
+            margin-top: 25px;
             margin-bottom: 100px;
 
+            @include media($medium-screen) {
+                margin-top: 75px;
+            }
+
             h2 {
-                @include span-columns(4 of 12);
-                @include shift(2);
+                @include padding(0px 15px 0px 15px);
+                text-align: center;
                 font-size: 64px;
                 font-weight: 300;
                 line-height: 1.1em;
+
+                @include media($medium-screen) {
+                    @include span-columns(4 of 12);
+                    @include shift(2);
+                    text-align: left;
+                    padding: 0;
+                }
             }
 
             h3 {
-                @include span-columns(5 of 12);
+                @include padding(25px 15px 0px 15px);
                 font-size: 30px;
                 font-weight: 300;
                 color: $guide_medium_gray;
+                text-align: center;
+
+                @include media($medium-screen) {
+                    @include span-columns(5 of 12);
+                    padding: 0;
+                    text-align: left;
+                }
             }
         }
 
@@ -1206,377 +1567,3 @@ body.guides {
         }
     }
 }
-
-
-// Feedback forms
-/*body#feedback {
-    background-color: white;
-    @include background(url(../images/guide_thankyou_grid_bg.png) top center no-repeat, url(../images/guide_thankyou_header_bg.png) top repeat-x);
-    margin-bottom: 50px;
-
-    header {
-        background: none;
-
-        h1 {
-            background-image: url(../images/diy_trainer_logo.png);
-            height: 154px;
-            margin-bottom: 50px;
-            
-            @include media($medium-screen) {
-                width: 293px;
-                height: 342px;
-                background-image: url(../images/diy_trainer_logo_lg.png);
-                @include span-columns(4 of 12);
-                @include shift(1);
-                top: 0px;
-                margin-bottom: 0px;
-            }
-        }
-
-        h2 {
-            background: none;
-            text-decoration: underline;
-            font-size: 44px;
-            font-weight: 800;
-            text-transform: uppercase;
-            line-height: 1.1em;
-            letter-spacing: 2px;
-            text-align: center;
-            margin-bottom: 15px; 
-
-            @include media($medium-screen) {
-                @include span-columns(4 of 12);
-                @include shift(-2);
-                padding-top: 25px;
-                padding-left: 175px;
-                padding-right: 75px;
-                position: relative;
-                left: 40px;
-                top: 150px;
-                height: 112px;
-                text-align: left;
-                line-height: 1.5em;
-                margin-bottom: 0px; 
-            }
-        }
-
-        h3 {
-            font-style: italic;
-            font-weight: normal;
-            font-size: 20px;
-            padding-left: 15px;
-            padding-right: 15px;
-            clear: both;
-            text-align: center;
-
-            @include media($medium-screen) {
-                @include span-columns(4 of 12);
-                padding-left: 50px;
-                padding-right: 25px;
-                position: relative;
-                top: 185px;
-                clear: none;
-                text-align: left;
-                font-size: 24px;
-            }
-        }
-    }
-
-    #feedback_form {
-        margin-top: 75px;
-        margin-bottom: 50px;
-        @include padding(0px 15px 50px 15px);
-
-        @include media($medium-screen) {
-            @include span-columns(8);
-            @include shift(2);
-            @include padding(0px);
-            margin-top: 100px;
-        }
-
-        label {
-            font-size: 20px;
-            font-weight: 700;
-            border-bottom: thick solid black;
-            padding-bottom: 10px;
-            margin-bottom: 25px;
-        }
-
-        textarea#id_project_recommendation {
-            border: 10px solid $guide_light_gray;
-            border-radius: 0;
-            margin-bottom: 50px;
-        }
-
-        input[type="range"] {
-            width: 100%;
-        }
-
-        .range_helper {
-            text-align: center;
-            font-size: 14px;
-            @include clearfix;
-
-            .range_number {
-                color: $guide_light_gray;
-            }
-
-            .start {
-                float: left;
-                
-            }
-
-            .finish {
-                float: right;
-                
-            }
-        }
-
-        input[type="submit"] {
-            @include span-columns(6 of 12);
-            @include shift(3);
-            background-color: $guide_dark_gray;
-            color: $guide_medium_green;
-            border-radius: 0;
-            text-transform: uppercase;
-            font-size: 18px;
-            font-weight: 800;
-            padding: 10px 15px;
-            margin-top: 50px;
-
-            @include media($medium-screen) {
-                @include row($direction: RTL);
-                @include shift(0);
-                @include span-columns(2);
-                margin-top: 50px;
-            }
-
-            &:hover {
-                background-color: #080808;
-            }
-        }
-    }
-
-    // Projects app
-    &.projects {
-
-        .container {
-            @include outer-container();
-        }
-
-        header {    
-
-            @include media($medium-screen) {
-                background-position: center center;
-                background-size: cover;
-            }
-
-            h1 {
-            
-                @include media($medium-screen) {
-                    width: 293px;
-                }
-            }
-
-            h3 {
-                
-                @include media($medium-screen) {
-                }
-            }
-        }
-
-        #feedback_form {
-            clear: both;
-            padding-top: 50px;
-            margin-bottom: 50px;
-
-            @include media($medium-screen) {
-                @include span-columns(8);
-                @include shift(2);
-                margin-top: 150px;
-            }
-
-            label {
-                border-bottom: none;
-                font-weight: normal;
-                font-size: 18px;
-                margin-bottom: 15px;
-
-                @include media($medium-screen) {
-                    font-size: 20px;
-                    margin-bottom: 25px;
-                }
-            }
-
-            label[for="id_project_progress"], label[for="id_project_confidence"], label[for="id_project_recommendation"] {
-                border-bottom: thick solid black;
-                position: relative;
-                font-weight: 700;
-                font-size: 20px;
-
-                @include media($medium-screen) {
-                    font-size: 30px;
-                }
-
-                &:before {
-
-                    @include media($medium-screen) {
-                        content: "";
-                        width: 132px;
-                        height: 100px;
-                        position: absolute;
-                        left: -160px;
-                        top: 10px;
-                    }
-                }
-            }
-
-            label[for="id_project_progress"] {
-
-                &:before {
-                    background: url(../images/feedback_form_number_1.png) no-repeat;
-                }
-            }
-
-            label[for="id_project_confidence"] {
-
-                &:before {
-                    background: url(../images/feedback_form_number_2.png) no-repeat;
-                }
-            }
-
-            label[for="id_project_recommendation"] {
-
-                &:before {
-                    background: url(../images/feedback_form_number_3.png) no-repeat;
-                }
-            }
-        }
-
-        .ctrlHolder {
-            margin-bottom: 50px;
-
-            @include media($medium-screen) {
-                margin-bottom: 0px;
-            }
-
-            ul {
-                // Hide the first option to get around the empty_label issue in Django
-                li:first-child {
-                    display: none;
-                }
-            }
-        }
-
-        .extra_content {
-            position: relative;
-
-            @include media($medium-screen) {
-                &:before {
-                    content: "";
-                    position: absolute;
-                    top: 325px;
-                    left: 0px;
-                    width: 100%;
-                    height: 20px;
-                    background: url(../images/project_thankyou_dash.png) repeat-x;
-                }                
-            }
-
-            .container {
-                @include outer-container();
-                @include span-columns(12);
-                margin-top: 50px;
-                margin-bottom: 25px;
-
-                @include media($medium-screen) {
-                    @include span-columns(10);
-                    @include shift(1);
-                    margin-top: 100px;
-                }
-            }
-
-            .extra_content_image {
-                @include span-columns(8 of 8);
-                margin-bottom: 15px;
-                text-align: center;
-                position: relative;
-
-                &:before {
-                    content: "";
-                    background: url(../images/youtube_icon.png) no-repeat 0px 0px;
-                    position: absolute;
-                    width: 50px;
-                    height: 31px;
-                    width: 100%;
-                    margin-left: 25px;
-                }
-
-                @include media($medium-screen) {
-                    @include span-columns(3 of 8);
-                    float: left;
-                    margin-bottom: 0px;
-                }
-            }
-
-            .extra_content_copy {
-
-                @include media($medium-screen) {
-                    @include span-columns(4 of 8);
-                    @include shift(1);
-                }
-            }
-
-            p {
-                font-size: 20px;
-                font-style: italic;
-                margin-top: 0px;
-                padding-left: 15px;
-                padding-right: 15px;
-                margin-bottom: 50px;
-
-                @include media($medium-screen) {
-                    padding-left: 0px;
-                    font-size: 24px;
-                    margin-bottom: 15px;
-                }
-            }
-
-            a.thanks_refer {
-                background-color: $guide_dark_gray;
-                color: $guide_medium_green;
-                padding: 10px 15px;
-                font-weight: 800;
-                font-size: 18px;
-                text-transform: uppercase;
-                display: inline-block;
-                text-align: center;
-                width: 100%;
-                margin-top: 50px;
-
-                @include media($medium-screen) {
-                    margin-top: 25px;
-                    margin-right: 25px;
-                    width: 250px;
-                }
-
-                &:hover {
-                    background-color: #080808;
-                }
-            }
-        }
-
-        &.video {
-
-            .extra_content_copy {
-
-                @include media($medium-screen) {
-                    @include span-columns(3 of 8);
-                    @include shift(1);
-                }
-            }
-
-        }
-    }
-}*/
-
