@@ -43,9 +43,11 @@
 
             <div id="project_overview" class="detaillevel_section">
                 <h2 class="section_heading">Project Overview</h2>
+                {% if detaillevel.project.lead_art %}
                 <div class="project_lead_art">
                     <img src="{{ MEDIA_URL }}{{ detaillevel.project.lead_art }}" alt="{{ detaillevel.project.name }}">
                 </div>
+                {% endif %}
                 {{ detaillevel.project_overview_html|safe }}
             </div>
 
