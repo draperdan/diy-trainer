@@ -23,7 +23,7 @@ class FormActionMixin(object):
             version = guide.version
             project_recommendation = form.cleaned_data.get('project_recommendation')
             skill_ranking = form.cleaned_data.get('skill_ranking')
-            submission_date = self.object.submission_date.strftime('%A, %B %w %Y, %I:%M %p')
+            submission_date = self.object.submission_date.strftime('%A, %B %d %Y, %I:%M %p %Z')
 
             email = EmailMessage()
             email.body = 'Splash-page version: ' + str(version) + '\n' + 'Project recommendation: ' + project_recommendation + '\n' + 'Skill ranking: ' + str(skill_ranking) + '\n' + 'Submission date: ' + str(submission_date)
@@ -37,7 +37,7 @@ class FormActionMixin(object):
             submitted_email = form.cleaned_data.get('email')
             guide = self.object.guide
             version = guide.version
-            submission_date = self.object.submission_date.strftime('%A, %B %w %Y, %I:%M %p ')
+            submission_date = self.object.submission_date.strftime('%A, %B %d %Y, %I:%M %p %Z')
 
             email = EmailMessage()
             email.body = 'Splash-page version: ' + str(version) + '\n' + 'Email address: ' + submitted_email + '\n' + 'Submission date: ' + str(submission_date)

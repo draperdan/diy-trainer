@@ -8,6 +8,9 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
+from django.utils import timezone
+
+current_time = timezone.now()
 
 
 def markup(text):
@@ -86,7 +89,7 @@ class Descriptor(GuideRelatedModel):
 @python_2_unicode_compatible
 class Feedback(GuideRelatedModel):
     """ Feedback submitted for a given guide """
-    submission_date = models.DateTimeField(default=datetime.datetime.now,
+    submission_date = models.DateTimeField(default=current_time,
                                            editable=False)
     project_recommendation = models.TextField(blank=True)
     skill_ranking = models.PositiveSmallIntegerField(null=True, blank=True)
@@ -97,14 +100,14 @@ class Feedback(GuideRelatedModel):
 
     def __str__(self):
         return 'Feedback for %s submitted %s' % (self.guide.name,
-                                                 self.submission_date.strftime('%A, %B %w %Y, %I:%M %p'))
+                                                 self.submission_date.strftime('%A, %B %d %Y, %I:%M %p'))
 
 
 @python_2_unicode_compatible
 class EmailSignUp(GuideRelatedModel):
     """ Emails submitted for a given guide """
     email = models.EmailField(blank=True)
-    submission_date = models.DateTimeField(default=datetime.datetime.now)
+    submission_date = models.DateTimeField(default=current_time)
 
     class Meta:
         verbose_name_plural = 'Email sign ups'
