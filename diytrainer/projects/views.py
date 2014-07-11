@@ -1,3 +1,5 @@
+import pytz
+
 from django.views.generic import CreateView, DetailView, TemplateView
 from django.shortcuts import get_object_or_404
 from django.core.mail import EmailMessage
@@ -30,13 +32,15 @@ class FeedbackActionMixin(object):
         project_progress = form.cleaned_data.get('project_progress')
         project_confidence = form.cleaned_data.get('project_confidence')
         project_recommendation = form.cleaned_data.get('project_recommendation')
-        submission_date = instance.submission_date.strftime('%A, %B %w %Y, %I:%M %p')
+
+        est = pytz.timezone('US/Eastern')
+        submission_date = instance.submission_date.astimezone(est).strftime('%A, %B %d %Y, %I:%M %p')
 
         email = EmailMessage()
         email.body = 'Project progress: ' + project_progress + '\n' + 'Project confidence: ' + project_confidence + '\n' + "Project recommendation: " + project_recommendation + '\n' + 'Submission date: ' + str(submission_date)
         email.subject = 'Feedback has been submitted for %s (Detail level %s)' % (project, str(detail_level))
         email.from_email = 'admin@diy-trainer.com'
-        email.to = ['pbeeson@thevariable.com']
+        email.to = ['notifications@diy-trainer.com']
         #email.bcc = ['pbeeson@thevariable.com']
         email.send()
 

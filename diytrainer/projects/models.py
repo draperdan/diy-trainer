@@ -1,3 +1,4 @@
+import pytz
 import datetime
 from markdown import markdown
 from typogrify.filters import typogrify
@@ -9,6 +10,9 @@ from django.db import models
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.utils.html import strip_tags
+from django.utils.timezone import utc
+
+now = datetime.datetime.utcnow().replace(tzinfo=utc)
 
 
 def markup(text):
@@ -213,7 +217,7 @@ class Feedback(DetailLevelRelatedModel, ProjectRelatedModel):
     project_confidence = models.CharField(
         choices=PROJECT_CONFIDENCE_CHOICES, max_length=100, blank=True)
     project_recommendation = models.TextField(blank=True)
-    submission_date = models.DateTimeField(default=datetime.datetime.now)
+    submission_date = models.DateTimeField(default=now)
     was_satisifed = models.BooleanField(
         default=False,
         help_text='Returns true if the user exits the process early.')
@@ -223,5 +227,6 @@ class Feedback(DetailLevelRelatedModel, ProjectRelatedModel):
         ordering = ('submission_date',)
 
     def __str__(self):
+        est = pytz.timezone('US/Eastern')
         return 'Feedback for %s submitted %s' % (self.project.name,
-                                                 self.submission_date.strftime('%A, %B %w %Y, %I:%M %p'))
+                                                 self.submission_date.astimezone(est).strftime('%A, %B %d %Y, %I:%M %p'))

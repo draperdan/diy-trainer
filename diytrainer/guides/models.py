@@ -1,3 +1,4 @@
+import pytz
 import datetime
 from markdown import markdown
 from model_utils import Choices
@@ -8,9 +9,9 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
-from django.utils import timezone
+from django.utils.timezone import utc
 
-current_time = timezone.now()
+now = datetime.datetime.utcnow().replace(tzinfo=utc)
 
 
 def markup(text):
@@ -89,7 +90,7 @@ class Descriptor(GuideRelatedModel):
 @python_2_unicode_compatible
 class Feedback(GuideRelatedModel):
     """ Feedback submitted for a given guide """
-    submission_date = models.DateTimeField(default=current_time,
+    submission_date = models.DateTimeField(default=now,
                                            editable=False)
     project_recommendation = models.TextField(blank=True)
     skill_ranking = models.PositiveSmallIntegerField(null=True, blank=True)
@@ -99,15 +100,16 @@ class Feedback(GuideRelatedModel):
         ordering = ('submission_date',)
 
     def __str__(self):
+        est = pytz.timezone('US/Eastern')
         return 'Feedback for %s submitted %s' % (self.guide.name,
-                                                 self.submission_date.strftime('%A, %B %d %Y, %I:%M %p'))
+                                                 self.submission_date.astimezone(est).strftime('%A, %B %d %Y, %I:%M %p'))
 
 
 @python_2_unicode_compatible
 class EmailSignUp(GuideRelatedModel):
     """ Emails submitted for a given guide """
     email = models.EmailField(blank=True)
-    submission_date = models.DateTimeField(default=current_time)
+    submission_date = models.DateTimeField(default=now)
 
     class Meta:
         verbose_name_plural = 'Email sign ups'
