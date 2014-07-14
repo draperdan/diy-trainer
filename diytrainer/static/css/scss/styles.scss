@@ -9,6 +9,9 @@
 //$visual-grid: true;
 //$visual-grid-color: yellow;
 
+// Normalize import
+@import '../css/normalize.css';
+
 // Framework imports
 @import 'bourbon/bourbon';
 
