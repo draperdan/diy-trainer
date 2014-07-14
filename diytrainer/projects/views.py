@@ -33,11 +33,11 @@ class FeedbackActionMixin(object):
         project_confidence = form.cleaned_data.get('project_confidence')
         project_recommendation = form.cleaned_data.get('project_recommendation')
 
-        est = pytz.timezone('US/Eastern')
-        submission_date = instance.submission_date.astimezone(est).strftime('%A, %B %d %Y, %I:%M %p')
+        #est = pytz.timezone('US/Eastern')
+        #submission_date = instance.submission_date.astimezone(est).strftime('%A, %B %d %Y, %I:%M %p')
 
         email = EmailMessage()
-        email.body = 'Project progress: ' + project_progress + '\n' + 'Project confidence: ' + project_confidence + '\n' + "Project recommendation: " + project_recommendation + '\n' + 'Submission date: ' + str(submission_date)
+        email.body = 'Project progress: ' + project_progress + '\n' + 'Project confidence: ' + project_confidence + '\n' + "Project recommendation: " + project_recommendation# + '\n' + 'Submission date: ' + str(submission_date)
         email.subject = 'Feedback has been submitted for %s (detail level %s)' % (project, str(detail_level))
         email.from_email = 'admin@diy-trainer.com'
         email.to = ['pbeeson@thevariable.com']

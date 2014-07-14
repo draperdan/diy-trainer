@@ -227,6 +227,5 @@ class Feedback(DetailLevelRelatedModel, ProjectRelatedModel):
         ordering = ('submission_date',)
 
     def __str__(self):
-        est = pytz.timezone('US/Eastern')
-        return 'Feedback for %s submitted %s' % (self.project.name,
-                                                 self.submission_date.astimezone(est).strftime('%A, %B %d %Y, %I:%M %p'))
+        #est = pytz.timezone('US/Eastern')
+        return 'Feedback for %s' % (self.project.name)

@@ -25,11 +25,11 @@ class FormActionMixin(object):
             version = guide.version
             project_recommendation = form.cleaned_data.get('project_recommendation')
             skill_ranking = form.cleaned_data.get('skill_ranking')
-            est = pytz.timezone('US/Eastern')
-            submission_date = self.object.submission_date.astimezone(est).strftime('%A, %B %d %Y, %I:%M %p')
+            #est = pytz.timezone('US/Eastern')
+            #submission_date = self.object.submission_date.astimezone(est).strftime('%A, %B %d %Y, %I:%M %p')
 
             email = EmailMessage()
-            email.body = 'Splash-page version: ' + str(version) + '\n' + 'Project recommendation: ' + project_recommendation + '\n' + 'Skill ranking: ' + str(skill_ranking) + '\n' + 'Submission date: ' + str(submission_date)
+            email.body = 'Splash-page version: ' + str(version) + '\n' + 'Project recommendation: ' + project_recommendation + '\n' + 'Skill ranking: ' + str(skill_ranking)# + '\n' + 'Submission date: ' + str(submission_date)
             email.subject = 'Feedback has been submitted for %s (splash page %s)' % (guide, version)
             email.from_email = 'admin@diy-trainer.com'
             email.to = ['pbeeson@thevariable.com']
@@ -41,11 +41,11 @@ class FormActionMixin(object):
             submitted_email = form.cleaned_data.get('email')
             guide = self.object.guide
             version = guide.version
-            est = pytz.timezone('US/Eastern')
-            submission_date = self.object.submission_date.astimezone(est).strftime('%A, %B %d %Y, %I:%M %p')
+            #est = pytz.timezone('US/Eastern')
+            #submission_date = self.object.submission_date.astimezone(est).strftime('%A, %B %d %Y, %I:%M %p')
 
             email = EmailMessage()
-            email.body = 'Splash-page version: ' + str(version) + '\n' + 'Email address: ' + submitted_email + '\n' + 'Submission date: ' + str(submission_date)
+            email.body = 'Splash-page version: ' + str(version) + '\n' + 'Email address: ' + submitted_email# + '\n' + 'Submission date: ' + str(submission_date)
             email.subject = 'Email address has been submitted for %s (splash page %s)' % (guide, version)
             email.from_email = 'admin@diy-trainer.com'
             email.to = ['pbeeson@thevariable.com']

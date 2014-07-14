@@ -99,9 +99,8 @@ class Feedback(GuideRelatedModel):
         ordering = ('submission_date',)
 
     def __str__(self):
-        est = pytz.timezone('US/Eastern')
-        return 'Feedback for %s submitted %s' % (self.guide.name,
-                                                 self.submission_date.astimezone(est).strftime('%A, %B %d %Y, %I:%M %p'))
+        #est = pytz.timezone('US/Eastern')
+        return 'Feedback for %s' % (self.guide.name)
 
 
 @python_2_unicode_compatible
@@ -115,6 +114,5 @@ class EmailSignUp(GuideRelatedModel):
         ordering = ('pk',)
 
     def __str__(self):
-        est = pytz.timezone('US/Eastern')
-        return 'Email for %s submitted %s' % (self.guide.name,
-                                              self.submission_date.astimezone(est).strftime('%A, %B %d %Y, %I:%M %p'))
+        #est = pytz.timezone('US/Eastern')
+        return 'Email for %s' % (self.guide.name)
