@@ -90,8 +90,7 @@ class Descriptor(GuideRelatedModel):
 @python_2_unicode_compatible
 class Feedback(GuideRelatedModel):
     """ Feedback submitted for a given guide """
-    submission_date = models.DateTimeField(default=now,
-                                           editable=False)
+    submission_date = models.DateTimeField(default=now)
     project_recommendation = models.TextField(blank=True)
     skill_ranking = models.PositiveSmallIntegerField(null=True, blank=True)
 
@@ -116,4 +115,6 @@ class EmailSignUp(GuideRelatedModel):
         ordering = ('pk',)
 
     def __str__(self):
-        return self.email
+        est = pytz.timezone('US/Eastern')
+        return 'Email for %s submitted %s' % (self.guide.name,
+                                              self.submission_date.astimezone(est).strftime('%A, %B %d %Y, %I:%M %p'))
