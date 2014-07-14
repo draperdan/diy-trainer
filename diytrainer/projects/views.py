@@ -1,13 +1,18 @@
 import pytz
+import datetime
 
 from django.views.generic import CreateView, DetailView, TemplateView
 from django.shortcuts import get_object_or_404
 from django.core.mail import EmailMessage
+from django.utils.timezone import utc
 
 from braces.views import SelectRelatedMixin
 
 from .models import Project, Feedback, DetailLevel
 from .forms import SuccessfulFeedbackForm, UnsuccessfulFeedbackForm
+
+now = datetime.datetime.utcnow().replace(tzinfo=utc)
+est = pytz.timezone('US/Eastern')
 
 
 class FeedbackSubmittedActionMixin(object):
@@ -32,12 +37,10 @@ class FeedbackActionMixin(object):
         project_progress = form.cleaned_data.get('project_progress')
         project_confidence = form.cleaned_data.get('project_confidence')
         project_recommendation = form.cleaned_data.get('project_recommendation')
-
-        #est = pytz.timezone('US/Eastern')
-        #submission_date = instance.submission_date.astimezone(est).strftime('%A, %B %d %Y, %I:%M %p')
+        submission_date = now.astimezone(est).strftime('%A, %B %d %Y, %I:%M %p')
 
         email = EmailMessage()
-        email.body = 'Project progress: ' + project_progress + '\n' + 'Project confidence: ' + project_confidence + '\n' + "Project recommendation: " + project_recommendation# + '\n' + 'Submission date: ' + str(submission_date)
+        email.body = 'Project progress: ' + project_progress + '\n' + 'Project confidence: ' + project_confidence + '\n' + "Project recommendation: " + project_recommendation + '\n' + 'Submission date: ' + str(submission_date)
         email.subject = 'Feedback has been submitted for %s (detail level %s)' % (project, str(detail_level))
         email.from_email = 'admin@diy-trainer.com'
         email.to = ['pbeeson@thevariable.com']

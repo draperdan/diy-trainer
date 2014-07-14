@@ -1,4 +1,3 @@
-import pytz
 import datetime
 from markdown import markdown
 from model_utils import Choices
@@ -90,7 +89,7 @@ class Descriptor(GuideRelatedModel):
 @python_2_unicode_compatible
 class Feedback(GuideRelatedModel):
     """ Feedback submitted for a given guide """
-    submission_date = models.DateTimeField(default=now)
+    submission_date = models.DateTimeField(auto_now_add=True)
     project_recommendation = models.TextField(blank=True)
     skill_ranking = models.PositiveSmallIntegerField(null=True, blank=True)
 
@@ -99,7 +98,6 @@ class Feedback(GuideRelatedModel):
         ordering = ('submission_date',)
 
     def __str__(self):
-        #est = pytz.timezone('US/Eastern')
         return 'Feedback for %s' % (self.guide.name)
 
 
@@ -107,12 +105,11 @@ class Feedback(GuideRelatedModel):
 class EmailSignUp(GuideRelatedModel):
     """ Emails submitted for a given guide """
     email = models.EmailField(blank=True)
-    submission_date = models.DateTimeField(default=now)
+    submission_date = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name_plural = 'Email sign ups'
         ordering = ('pk',)
 
     def __str__(self):
-        #est = pytz.timezone('US/Eastern')
         return 'Email for %s' % (self.guide.name)

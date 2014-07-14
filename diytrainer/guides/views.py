@@ -1,12 +1,16 @@
 import pytz
+import datetime
 
 from django.views.generic import CreateView
 from django.shortcuts import get_object_or_404
-from django.http import HttpResponseRedirect
 from django.core.mail import EmailMessage
+from django.utils.timezone import utc
 
 from .models import Guide, Feedback, EmailSignUp
 from .forms import FeedbackForm, EmailSignUpForm
+
+now = datetime.datetime.utcnow().replace(tzinfo=utc)
+est = pytz.timezone('US/Eastern')
 
 
 class FormActionMixin(object):
@@ -17,7 +21,6 @@ class FormActionMixin(object):
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.guide = self.guide
-        #self.object.save()
 
         if self.form_class == FeedbackForm:
             # Gather up data for email send
@@ -25,11 +28,10 @@ class FormActionMixin(object):
             version = guide.version
             project_recommendation = form.cleaned_data.get('project_recommendation')
             skill_ranking = form.cleaned_data.get('skill_ranking')
-            #est = pytz.timezone('US/Eastern')
-            #submission_date = self.object.submission_date.astimezone(est).strftime('%A, %B %d %Y, %I:%M %p')
+            submission_date = now.astimezone(est).strftime('%A, %B %d %Y, %I:%M %p')
 
             email = EmailMessage()
-            email.body = 'Splash-page version: ' + str(version) + '\n' + 'Project recommendation: ' + project_recommendation + '\n' + 'Skill ranking: ' + str(skill_ranking)# + '\n' + 'Submission date: ' + str(submission_date)
+            email.body = 'Splash-page version: ' + str(version) + '\n' + 'Project recommendation: ' + project_recommendation + '\n' + 'Skill ranking: ' + str(skill_ranking) + '\n' + 'Submission date: ' + str(submission_date)
             email.subject = 'Feedback has been submitted for %s (splash page %s)' % (guide, version)
             email.from_email = 'admin@diy-trainer.com'
             email.to = ['pbeeson@thevariable.com']
@@ -41,11 +43,10 @@ class FormActionMixin(object):
             submitted_email = form.cleaned_data.get('email')
             guide = self.object.guide
             version = guide.version
-            #est = pytz.timezone('US/Eastern')
-            #submission_date = self.object.submission_date.astimezone(est).strftime('%A, %B %d %Y, %I:%M %p')
+            submission_date = now.astimezone(est).strftime('%A, %B %d %Y, %I:%M %p')
 
             email = EmailMessage()
-            email.body = 'Splash-page version: ' + str(version) + '\n' + 'Email address: ' + submitted_email# + '\n' + 'Submission date: ' + str(submission_date)
+            email.body = 'Splash-page version: ' + str(version) + '\n' + 'Email address: ' + submitted_email + '\n' + 'Submission date: ' + str(submission_date)
             email.subject = 'Email address has been submitted for %s (splash page %s)' % (guide, version)
             email.from_email = 'admin@diy-trainer.com'
             email.to = ['pbeeson@thevariable.com']
@@ -53,7 +54,6 @@ class FormActionMixin(object):
             #email.bcc = ['pbeeson@thevariable.com']
             email.send()
         return super(FormActionMixin, self).form_valid(form)
-        #return HttpResponseRedirect(self.get_success_url())
 
     def get_context_data(self, *args, **kwargs):
         context_data = super(FormActionMixin, self).get_context_data(*args,

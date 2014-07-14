@@ -1,4 +1,3 @@
-import pytz
 import datetime
 from markdown import markdown
 from typogrify.filters import typogrify
@@ -217,7 +216,7 @@ class Feedback(DetailLevelRelatedModel, ProjectRelatedModel):
     project_confidence = models.CharField(
         choices=PROJECT_CONFIDENCE_CHOICES, max_length=100, blank=True)
     project_recommendation = models.TextField(blank=True)
-    submission_date = models.DateTimeField(default=now)
+    submission_date = models.DateTimeField(auto_now_add=True)
     was_satisifed = models.BooleanField(
         default=False,
         help_text='Returns true if the user exits the process early.')
@@ -227,5 +226,4 @@ class Feedback(DetailLevelRelatedModel, ProjectRelatedModel):
         ordering = ('submission_date',)
 
     def __str__(self):
-        #est = pytz.timezone('US/Eastern')
         return 'Feedback for %s' % (self.project.name)
