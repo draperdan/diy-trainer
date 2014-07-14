@@ -38,9 +38,10 @@ class FeedbackActionMixin(object):
 
         email = EmailMessage()
         email.body = 'Project progress: ' + project_progress + '\n' + 'Project confidence: ' + project_confidence + '\n' + "Project recommendation: " + project_recommendation + '\n' + 'Submission date: ' + str(submission_date)
-        email.subject = 'Feedback has been submitted for %s (Detail level %s)' % (project, str(detail_level))
+        email.subject = 'Feedback has been submitted for %s (detail level %s)' % (project, str(detail_level))
         email.from_email = 'admin@diy-trainer.com'
-        email.to = ['notifications@diy-trainer.com']
+        email.to = ['pbeeson@thevariable.com']
+        #email.to = ['notifications@diy-trainer.com']
         #email.bcc = ['pbeeson@thevariable.com']
         email.send()
 

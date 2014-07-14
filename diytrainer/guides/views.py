@@ -17,7 +17,7 @@ class FormActionMixin(object):
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.guide = self.guide
-        self.object.save()
+        #self.object.save()
 
         if self.form_class == FeedbackForm:
             # Gather up data for email send
@@ -30,9 +30,10 @@ class FormActionMixin(object):
 
             email = EmailMessage()
             email.body = 'Splash-page version: ' + str(version) + '\n' + 'Project recommendation: ' + project_recommendation + '\n' + 'Skill ranking: ' + str(skill_ranking) + '\n' + 'Submission date: ' + str(submission_date)
-            email.subject = 'Feedback has been submitted for %s (%s)' % (guide, version)
+            email.subject = 'Feedback has been submitted for %s (splash page %s)' % (guide, version)
             email.from_email = 'admin@diy-trainer.com'
-            email.to = ['notifications@diy-trainer.com']
+            email.to = ['pbeeson@thevariable.com']
+            #email.to = ['notifications@diy-trainer.com']
             #email.bcc = ['pbeeson@thevariable.com']
             email.send()
         elif self.form_class == EmailSignUpForm:
@@ -45,12 +46,14 @@ class FormActionMixin(object):
 
             email = EmailMessage()
             email.body = 'Splash-page version: ' + str(version) + '\n' + 'Email address: ' + submitted_email + '\n' + 'Submission date: ' + str(submission_date)
-            email.subject = 'Email address has been submitted for %s (%s)' % (guide, version)
+            email.subject = 'Email address has been submitted for %s (splash page %s)' % (guide, version)
             email.from_email = 'admin@diy-trainer.com'
-            email.to = ['notifications@diy-trainer.com']
+            email.to = ['pbeeson@thevariable.com']
+            #email.to = ['notifications@diy-trainer.com']
             #email.bcc = ['pbeeson@thevariable.com']
             email.send()
-        return HttpResponseRedirect(self.get_success_url())
+        return super(FormActionMixin, self).form_valid(form)
+        #return HttpResponseRedirect(self.get_success_url())
 
     def get_context_data(self, *args, **kwargs):
         context_data = super(FormActionMixin, self).get_context_data(*args,
