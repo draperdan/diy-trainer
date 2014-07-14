@@ -37,7 +37,7 @@
     <form method="post">
         {% csrf_token %}
         {{ form|crispy }}
-        <input type="submit" value="Sign up &rsaquo;" class="emailsubmit">
+        <input type="submit" value="Sign up &rsaquo;" class="emailsubmit" onClick="ga('send', 'email', 'submit', 'splash_{{ guide.version }}');">
     </form>
 </div>
 
