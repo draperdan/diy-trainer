@@ -11,9 +11,6 @@ from braces.views import SelectRelatedMixin
 from .models import Project, Feedback, DetailLevel
 from .forms import SuccessfulFeedbackForm, UnsuccessfulFeedbackForm
 
-now = datetime.datetime.utcnow().replace(tzinfo=utc)
-est = pytz.timezone('US/Eastern')
-
 
 class FeedbackSubmittedActionMixin(object):
     template_name = "projects/feedback_submitted.html"
@@ -37,6 +34,8 @@ class FeedbackActionMixin(object):
         project_progress = form.cleaned_data.get('project_progress')
         project_confidence = form.cleaned_data.get('project_confidence')
         project_recommendation = form.cleaned_data.get('project_recommendation')
+        now = datetime.datetime.utcnow().replace(tzinfo=utc)
+        est = pytz.timezone('US/Eastern')
         submission_date = now.astimezone(est).strftime('%A, %B %d %Y, %I:%M %p')
 
         email = EmailMessage()
