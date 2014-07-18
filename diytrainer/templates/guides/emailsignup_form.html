@@ -37,7 +37,7 @@
     <form method="post">
         {% csrf_token %}
         {{ form|crispy }}
-        <input type="submit" value="Sign up &rsaquo;" class="emailsubmit" onClick="ga('send', 'email', 'submit', 'splash_{{ guide.version }}');">
+        <input type="submit" value="Sign up &rsaquo;" class="emailsubmit">
     </form>
 </div>
 
@@ -70,3 +70,12 @@
 </div>
 
 {% endblock content %}
+
+{% block extra_js %}
+<script>
+// Event tracking
+$('#id_email').on('focus', function() {
+  ga('send', 'event', 'email', 'focus', 'splash_{{ guide.version }}');
+});
+</script>
+{% endblock extra_js %}
