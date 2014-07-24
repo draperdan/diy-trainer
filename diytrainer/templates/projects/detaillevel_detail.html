@@ -142,8 +142,8 @@
         <p>Do you have the information you need, or do you still want to see more information related to this project?</p>
         
         <ul class="detaillevel_options">
-            <li class="satisfied_option"><a href="{% url 'project_satisfied_feedback' detaillevel.project.slug detaillevel.level %}">I'm good</a></li>
-            <li class="unsatisfied_option"><a href="{% if detaillevel.get_next >= 3 %}{% url 'detaillevel_detail' detaillevel.project.slug detaillevel.get_next %}{% else %}{% url 'project_unsatisfied_feedback' detaillevel.project.slug detaillevel.level %}{% endif %}">Give me more &rsaquo;</a></li>
+            <li class="satisfied_option"><a id="satisfied_option_link" href="{% url 'project_satisfied_feedback' detaillevel.project.slug detaillevel.level %}">I'm good</a></li>
+            <li class="unsatisfied_option"><a id="unsatisfied_option_link" href="{% if detaillevel.get_next >= 3 %}{% url 'detaillevel_detail' detaillevel.project.slug detaillevel.get_next %}{% else %}{% url 'project_unsatisfied_feedback' detaillevel.project.slug detaillevel.level %}{% endif %}">Give me more &rsaquo;</a></li>
         </ul>
         
     </div>
@@ -164,7 +164,9 @@
 $(document).ready(function() {
     // Event tracking
     $('ul.detaillevel_options a').on('mousedown', function() {
-        ga('send', 'event', 'link', 'click', 'detaillevel-options');
+        // Assign the value of the link id to a variable
+        var $link = $(this).attr("id") + '_detaillevel_{{ detaillevel.level }}';
+        ga('send', 'event', 'detaillevel-option', 'click', $link);
     });
 });
 </script>
