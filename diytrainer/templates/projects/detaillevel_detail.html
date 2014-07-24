@@ -1,6 +1,7 @@
 {% extends 'base_projects.html' %}
 {% load thumbnail %}
 {% load markup %}
+{% load staticfiles %}
 
 {% block title %}{{ detaillevel.project.name }} | Detail Level {{ detaillevel.level }}{{ block.super }}{% endblock title %}
 
@@ -148,3 +149,23 @@
     </div>
 </footer>
 {% endblock footer %}
+
+{% block scroll_depth %}
+<script src="{% static 'js/jquery.scrolldepth.min.js' %}"></script>
+<script type="text/javascript">
+  jQuery(function() {
+    jQuery.scrollDepth();
+  });
+</script>
+{% endblock scroll_depth %}
+
+{% block extra_js %}
+<script type="text/javascript">
+$(document).ready(function() {
+    // Event tracking
+    $('ul.detaillevel_options a').on('mousedown', function() {
+        ga('send', 'event', 'link', 'click', 'detaillevel-options');
+    });
+});
+</script>
+{% endblock extra_js %}
