@@ -40,7 +40,10 @@ Desktop.ini
 
 # App specific
 diytrainer/media
+diytrainer/media/cache
+diytrainer/settings
 diytrainer/guides/migrations
 diytrainer/projects/migrations
 *.sass_cache
+*tests.py
 

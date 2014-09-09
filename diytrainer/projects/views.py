@@ -21,7 +21,11 @@ class FeedbackActionMixin(object):
 
     def dispatch(self, *args, **kwargs):
         self.project = get_object_or_404(Project, slug=kwargs['project_slug'])
-        self.detail_level = get_object_or_404(DetailLevel, project=self.project, level=kwargs['level'])
+        self.detail_level = get_object_or_404(
+            DetailLevel,
+            project=self.project,
+            level=kwargs['level']
+        )
         return super(FeedbackActionMixin, self).dispatch(*args, **kwargs)
 
     def form_valid(self, form):
@@ -42,8 +46,7 @@ class FeedbackActionMixin(object):
         email.body = 'Project progress: ' + project_progress + '\n' + 'Project confidence: ' + project_confidence + '\n' + "Project recommendation: " + project_recommendation + '\n' + 'Submission date: ' + submission_date
         email.subject = 'Feedback has been submitted for %s (detail level %s)' % (project, str(detail_level))
         email.from_email = 'admin@diy-trainer.com'
-        email.to = ['pbeeson@thevariable.com', 'akeller@thevariable.com', 'achurch@thevariable.com']
-        #email.bcc = ['pbeeson@thevariable.com']
+        email.to = ['mail@diy-trainer.com']
         email.send()
 
         return super(FeedbackActionMixin, self).form_valid(form)

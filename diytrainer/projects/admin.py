@@ -10,7 +10,13 @@ class StepInline(AdminImageMixin, admin.StackedInline):
 
 
 class StepAdmin(admin.ModelAdmin):
-    list_display = ('sanitized_title', 'detail_level', 'rank', 'module', 'project')
+    list_display = (
+        'sanitized_title',
+        'detail_level',
+        'rank',
+        'module',
+        'project'
+    )
     readonly_fields = ('module', 'project')
     search_fields = ('title',)
 
